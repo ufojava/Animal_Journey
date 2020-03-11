@@ -13,6 +13,7 @@
 		0335757424197D97007ED0F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0335757324197D97007ED0F6 /* Assets.xcassets */; };
 		0335757724197D97007ED0F6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0335757624197D97007ED0F6 /* Preview Assets.xcassets */; };
 		0335757A24197D97007ED0F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0335757824197D97007ED0F6 /* LaunchScreen.storyboard */; };
+		0335758424197EE6007ED0F6 /* GameStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0335758324197EE6007ED0F6 /* GameStructure.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		0335757624197D97007ED0F6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0335757924197D97007ED0F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0335757B24197D97007ED0F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0335758324197EE6007ED0F6 /* GameStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStructure.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,8 @@
 		0335756C24197D94007ED0F6 /* Animal_Journey */ = {
 			isa = PBXGroup;
 			children = (
+				0335758224197DC0007ED0F6 /* Models */,
+				0335758124197DAE007ED0F6 /* Views */,
 				0335756D24197D94007ED0F6 /* AppDelegate.swift */,
 				0335756F24197D94007ED0F6 /* SceneDelegate.swift */,
 				0335757124197D94007ED0F6 /* ContentView.swift */,
@@ -73,6 +77,21 @@
 				0335757624197D97007ED0F6 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0335758124197DAE007ED0F6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0335758324197EE6007ED0F6 /* GameStructure.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0335758224197DC0007ED0F6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0335756E24197D94007ED0F6 /* AppDelegate.swift in Sources */,
+				0335758424197EE6007ED0F6 /* GameStructure.swift in Sources */,
 				0335757024197D94007ED0F6 /* SceneDelegate.swift in Sources */,
 				0335757224197D94007ED0F6 /* ContentView.swift in Sources */,
 			);
