@@ -58,10 +58,6 @@ struct Bee: View {
     @State private var beeCurrentPosition: CGPoint = .zero
     @State private var beeNewPosition: CGPoint = .zero
     
-    //Set Temporary move
-    @State private var beeTempPosition: CGPoint = .init(x: 45, y: -150)
-    
-
     
     //Track bee position
     @State private var getBeeXPosition = 0
@@ -69,8 +65,76 @@ struct Bee: View {
     
     
     //Bee Health
-    @State private var beeHealth = 0
+    @State private var beeHealthCounter = 0
+    @State private var checkBeeHealth = false
     
+    
+    
+    //Function to Check food
+    func processFoodLevel() {
+        
+       
+        
+        //Reset Bee Hive Counter
+        if self.beeHealthCounter > 4 {
+            
+            self.beeHealthCounter = 0
+        }
+        
+        
+        //Feed Bee
+        if (self.getBeeXPosition >= 110 && self.getBeeXPosition <= 120) && (self.getBeeYPosition >= 240 && self.getBeeYPosition <= 245) {
+            
+            self.beeHealthCounter += 1
+        }
+        
+        
+    }
+    
+    
+    //Function to return view
+    func beeFoodOne() -> some View {
+        
+        
+        GameImageV2(imageName: "LunchBox", imageWidth: 30, imageHeight: 30)
+    
+        
+    }
+    
+    //Bee Hive Two
+    func beeFoodTwo() -> some View {
+        
+        HStack {
+        GameImageV2(imageName: "LunchBox", imageWidth: 30, imageHeight: 30)
+        GameImageV2(imageName: "LunchBox1", imageWidth: 30, imageHeight: 30)
+    
+        }
+    }
+    
+    //Bee Hive Three
+    func beeFoodThree() -> some View {
+        
+        HStack {
+        GameImageV2(imageName: "LunchBox", imageWidth: 30, imageHeight: 30)
+        GameImageV2(imageName: "LunchBox1", imageWidth: 30, imageHeight: 30)
+        GameImageV2(imageName: "LunchBox2", imageWidth: 30, imageHeight: 30)
+    
+        }
+    }
+    
+    
+    //Bee Hive Three
+    func beeFoodFour() -> some View {
+        
+        HStack {
+        GameImageV2(imageName: "LunchBox", imageWidth: 30, imageHeight: 30)
+        GameImageV2(imageName: "LunchBox1", imageWidth: 30, imageHeight: 30)
+        GameImageV2(imageName: "LunchBox2", imageWidth: 30, imageHeight: 30)
+        GameImageV2(imageName: "LunchBox3", imageWidth: 30, imageHeight: 30)
+    
+        }
+    }
+
     
     
 
@@ -82,7 +146,7 @@ struct Bee: View {
         
         var beeHomeResult = ""
         
-        if (self.getBeeXPosition) == 0 && (self.getBeeYPosition) == 0 {
+        if (self.getBeeXPosition >= -5 && self.getBeeXPosition <= 5) && (self.getBeeYPosition >= -5 && self.getBeeYPosition <= 5) {
             
             beeHomeResult = "Bee is home 🤪"
           
@@ -133,11 +197,56 @@ struct Bee: View {
                                
                                Text("You are: \(self.getBeeYPosition) on Y axis").foregroundColor(Color.yellow)
                                Text("You are: \(self.getBeeXPosition) on X axis").foregroundColor(Color.red)
-                            Spacer().frame(height:50)
+                            Spacer().frame(height:40)
                             
                             HStack {
-                            GameImageV2(imageName: "Sunflower", imageWidth: 100, imageHeight: 100)
-                                Text(" 👈🏾 Bee Food \n     Necter").font(.custom("Chalkboard SE", size: 30)).foregroundColor(Color.yellow)
+                                GameImageV2(imageName: "Sunflower", imageWidth: 100, imageHeight: 100)
+                    
+                                
+                                        
+                                
+                                Spacer().frame(width:60)
+                                
+                                VStack {
+                                
+                                Button(action: {
+                                    
+                                    self.checkBeeHealth.toggle()
+                                    
+                                }) {
+                         
+                                   
+                                    
+                                    Text("Check Health Level").font(.custom("Chalkboard SE", size: 20)).foregroundColor(Color.green)
+                                    
+                                }
+                                    
+                                
+                                if self.checkBeeHealth {
+                                    
+                                    if self.beeHealthCounter == 0 {
+                                        
+                                        beeFoodOne()
+                                        
+                                    } else if self.beeHealthCounter == 1 {
+                                        
+                                        beeFoodTwo()
+                                        
+                                    } else if self.beeHealthCounter == 2 {
+                                        
+                                        
+                                        beeFoodThree()
+                                        
+                                    } else if self.beeHealthCounter == 4 {
+                                        
+                                        
+                                        beeFoodFour()
+                                    }
+                                }
+                                
+                            
+                                }
+                        
                             }
                                Spacer()
                             
