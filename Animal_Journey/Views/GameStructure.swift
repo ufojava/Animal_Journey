@@ -33,52 +33,21 @@ struct TestGame_Previews: PreviewProvider {
 
 
 
-struct GameImage: View {
+
+struct GameImageV2: View {
     
-    //Variables
-    var inImage = ""
- 
+    var imageName = ""
+    var imageWidth: CGFloat
+    var imageHeight: CGFloat
+    
     var body: some View {
         
-    
-        
-            
-            Image(inImage)
-                .resizable()
-                .frame(width:150,height: 150)
-                .clipShape(Circle())
-                .overlay(Circle().stroke(Color.white,lineWidth: 5))
-                .scaledToFill()
-            
-        
-        
+        Image(imageName)
+            .resizable()
+            .frame(width:imageWidth,height: imageHeight)
+            .scaledToFill()
     }
-
-    
 }
-
-
-
-struct OtherGameImage: View {
-     
-     //Variables
-     var inImage = ""
-  
-     var body: some View {
-         
-     
-         
-             
-             Image(inImage)
-                 .resizable()
-                 .frame(width:100,height: 100)
-                 .scaledToFill()
-             
-         
-         
-     }
-     
- }
 
 
 
@@ -99,6 +68,14 @@ struct Bee: View {
     @State private var getBeeYPosition = 0
     
     
+    //Bee Health
+    @State private var beeHealth = 0
+    
+    
+    
+
+    
+    
     
     
     var beeHome: String {
@@ -108,6 +85,7 @@ struct Bee: View {
         if (self.getBeeXPosition) == 0 && (self.getBeeYPosition) == 0 {
             
             beeHomeResult = "Bee is home 🤪"
+          
             
         } else if (self.getBeeXPosition >= -20 && self.getBeeXPosition <= 20) && (self.getBeeYPosition >= -20 && self.getBeeYPosition <= 20) {
             
@@ -116,15 +94,20 @@ struct Bee: View {
         } else if (self.getBeeXPosition >= -40 && self.getBeeXPosition <= 40) && (self.getBeeYPosition >= -40 && self.getBeeYPosition <= 40) {
             
             beeHomeResult = "Bee is a little further away 🤨"
+        } else if (self.getBeeXPosition >= -22 && self.getBeeXPosition <= 55) && (self.getBeeYPosition >= 315 && self.getBeeYPosition <= 370) {
+            
+            beeHomeResult = "Danger!!! Bee Killer Chemical  ☣️"
         } else {
             
-            beeHomeResult = "The bee is lost 😩"
+            beeHomeResult = "Too far away"
         }
         
         
         return beeHomeResult
         
     }
+    
+
     
     var body: some View {
         
@@ -143,6 +126,8 @@ struct Bee: View {
                            VStack {
                        
                                Text("\(beeHome)")
+                                
+                                    
                                
                                Spacer().frame(height:20)
                                
@@ -151,15 +136,24 @@ struct Bee: View {
                             Spacer().frame(height:50)
                             
                             HStack {
-                            OtherGameImage(inImage: "Sunflower")
+                            GameImageV2(imageName: "Sunflower", imageWidth: 100, imageHeight: 100)
                                 Text(" 👈🏾 Bee Food \n     Necter").font(.custom("Chalkboard SE", size: 30)).foregroundColor(Color.yellow)
                             }
                                Spacer()
                             
+                            HStack(alignment: .bottom, spacing: 0) {
                             
-                            Image("BeeKiller")
-                            .resizable()
-                                .frame(width:130,height: 150)
+                           
+                            //Bee Killer Poisen
+                            GameImageV2(imageName: "BeeKiller", imageWidth: 50, imageHeight: 70)
+                            
+                            //Tree covering the Killer Poisen
+                            GameImageV2(imageName: "Tree", imageWidth: 130, imageHeight: 150)
+                                
+                            
+                                
+                            
+                            }
                            }
                        
                         
@@ -171,7 +165,8 @@ struct Bee: View {
                             
                             HStack {
                            
-                            GameImage(inImage: "bee")
+                                GameImageV2(imageName: "Bee", imageWidth: 150, imageHeight: 150)
+                                    
                                            
                                    }.offset(x:self.beeCurrentPosition.x, y:beeCurrentPosition.y) //Current Position of Bee
                                
@@ -199,9 +194,43 @@ struct Bee: View {
                                     
                                
                                ).animation(.spring())
+                            
+                          
+                            //First Row of Home Image
+                            
+                            VStack {
+                            HStack(spacing:20) {
+                                
+                                GameImageV2(imageName: "HomeFlower1", imageWidth: 80, imageHeight: 50)
+                                GameImageV2(imageName: "HomeFlower2", imageWidth: 30, imageHeight: 80)
+                                GameImageV2(imageName: "HomeFlower3", imageWidth: 50, imageHeight: 80)
+                                
+                            }
+                            
+                            HStack(spacing:60) {
+                                                           
+                               GameImageV2(imageName: "HomeFlower6", imageWidth: 80, imageHeight: 80)
+                               GameImageV2(imageName: "HomeFlower4", imageWidth: 60, imageHeight: 80)
+                               GameImageV2(imageName: "HomeFlower5", imageWidth: 50, imageHeight: 80)
+                               
+                           }
+                                
+                                HStack(spacing:20) {
+                                                               
+                                   GameImageV2(imageName: "HomeFlower3", imageWidth: 80, imageHeight: 50)
+                                   GameImageV2(imageName: "HomeFlower2", imageWidth: 30, imageHeight: 80)
+                                   GameImageV2(imageName: "HomeFlower1", imageWidth: 80, imageHeight: 50)
+                                   
+                               }
                        
+                                
+                                
+                                
+                                
                       
-                         
+                            }//Home Vstack End
+ 
+
                        
                         }
                                  
@@ -209,10 +238,6 @@ struct Bee: View {
                                }
                     
                    
-                    
-                    
-                  
-                    //Spacer()
                    }
                
                
