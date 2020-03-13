@@ -71,23 +71,26 @@ struct Bee: View {
     
     
     //Function to Check food
-    func processFoodLevel() {
+    func processFoodLevel() -> String {
         
        
-        
+        var convertCounterToString = ""
+        /*
         //Reset Bee Hive Counter
         if self.beeHealthCounter > 4 {
             
             self.beeHealthCounter = 0
         }
-        
+        */
         
         //Feed Bee
-        if (self.getBeeXPosition >= 110 && self.getBeeXPosition <= 120) && (self.getBeeYPosition >= 240 && self.getBeeYPosition <= 245) {
+        if (self.getBeeXPosition >= -110 && self.getBeeXPosition <= -120) && (self.getBeeYPosition >= -200 && self.getBeeYPosition <= -250) {
             
             self.beeHealthCounter += 1
+            convertCounterToString = String(self.beeHealthCounter)
         }
         
+        return convertCounterToString
         
     }
     
@@ -171,6 +174,22 @@ struct Bee: View {
         
     }
     
+    var foodCounter: Int {
+        
+        var localFoodCounter = self.beeHealthCounter
+        
+        if (self.getBeeXPosition >= -120 && self.getBeeXPosition <= -110) && (self.getBeeYPosition >= -250 && self.getBeeYPosition <= 200) {
+        
+        
+            localFoodCounter += 1
+            self.beeHealthCounter = localFoodCounter
+        }
+        return localFoodCounter
+        
+    }
+    
+
+    
 
     
     var body: some View {
@@ -197,6 +216,8 @@ struct Bee: View {
                                
                                Text("You are: \(self.getBeeYPosition) on Y axis").foregroundColor(Color.yellow)
                                Text("You are: \(self.getBeeXPosition) on X axis").foregroundColor(Color.red)
+                               Text("\(foodCounter)")
+                            
                             Spacer().frame(height:40)
                             
                             HStack {
@@ -286,6 +307,8 @@ struct Bee: View {
                                            
                                            
                                            self.beeCurrentPosition = CGPoint(x:value.translation.width + self.beeNewPosition.x, y: value.translation.height + self.beeNewPosition.y)
+                                        
+                                        
                                            
                                            
                                        }//End onChanged
@@ -298,6 +321,8 @@ struct Bee: View {
                                            //Track Bee co-ordinates
                                            self.getBeeXPosition = Int(self.beeNewPosition.x)
                                            self.getBeeYPosition = Int(self.beeNewPosition.y)
+                                        
+                                        
                                            
                                        }
                                     
