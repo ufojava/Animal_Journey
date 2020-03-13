@@ -68,29 +68,37 @@ struct Bee: View {
     @State private var beeHealthCounter = 0
     @State private var checkBeeHealth = false
     
+    //Be has fed status
+    @State private var beeHasFed = false
+    var beeMessageMaxLimit = "Max food limit 😩"
+    var beeMessageMinLimit = "Min food limit 😨"
+    var beeMessageBeeKiller = "Bee poisened so needs norishment 🍯"
+    
     
     
     //Function to Check food
-    func processFoodLevel() -> String {
+    func processFoodLevel() {
         
-       
-        var convertCounterToString = ""
-        /*
+        
         //Reset Bee Hive Counter
         if self.beeHealthCounter > 4 {
             
             self.beeHealthCounter = 0
         }
-        */
+        
         
         //Feed Bee
-        if (self.getBeeXPosition >= -110 && self.getBeeXPosition <= -120) && (self.getBeeYPosition >= -200 && self.getBeeYPosition <= -250) {
+        if (self.getBeeXPosition >= -120 && self.getBeeXPosition <= -100) && (self.getBeeYPosition >= -250 && self.getBeeYPosition <= 200) && (self.beeHealthCounter >= 0 && self.beeHealthCounter <= 4) {
+            
             
             self.beeHealthCounter += 1
-            convertCounterToString = String(self.beeHealthCounter)
+            
+        } else if (self.getBeeXPosition >= -60 && self.getBeeXPosition <= 30) && (self.getBeeYPosition >= 342 && self.getBeeYPosition <= 500) && self.beeHealthCounter > 0 {
+            
+            self.beeHealthCounter = 0
         }
         
-        return convertCounterToString
+        
         
     }
     
@@ -149,45 +157,31 @@ struct Bee: View {
         
         var beeHomeResult = ""
         
-        if (self.getBeeXPosition >= -5 && self.getBeeXPosition <= 5) && (self.getBeeYPosition >= -5 && self.getBeeYPosition <= 5) {
+        if (self.getBeeXPosition >= -5 && self.getBeeXPosition <= 5) && (self.getBeeYPosition >= -5 && self.getBeeYPosition <= 5) && self.beeHealthCounter > 0{
             
             beeHomeResult = "Bee is home 🤪"
           
             
-        } else if (self.getBeeXPosition >= -20 && self.getBeeXPosition <= 20) && (self.getBeeYPosition >= -20 && self.getBeeYPosition <= 20) {
+        } else if (self.getBeeXPosition >= -20 && self.getBeeXPosition <= 20) && (self.getBeeYPosition >= -20 && self.getBeeYPosition <= 20) && self.beeHealthCounter > 0 {
             
             beeHomeResult = "Bee is in the neighborhood 🤫"
             
-        } else if (self.getBeeXPosition >= -40 && self.getBeeXPosition <= 40) && (self.getBeeYPosition >= -40 && self.getBeeYPosition <= 40) {
+        } else if (self.getBeeXPosition >= -40 && self.getBeeXPosition <= 40) && (self.getBeeYPosition >= -40 && self.getBeeYPosition <= 40) && self.beeHealthCounter > 0 {
             
             beeHomeResult = "Bee is a little further away 🤨"
-        } else if (self.getBeeXPosition >= -22 && self.getBeeXPosition <= 55) && (self.getBeeYPosition >= 315 && self.getBeeYPosition <= 370) {
+        } else if (self.getBeeXPosition >= -22 && self.getBeeXPosition <= 55) && (self.getBeeYPosition >= 315 && self.getBeeYPosition <= 370) && self.beeHealthCounter > 0 {
             
-            beeHomeResult = "Danger!!! Bee Killer Chemical  ☣️"
+            beeHomeResult = "Chemical!!! Feed Bee Now! 🍔"
         } else {
             
-            beeHomeResult = "Too far away"
+            beeHomeResult = "Bee needs food!!! "
         }
         
         
         return beeHomeResult
         
     }
-    
-    var foodCounter: Int {
-        
-        var localFoodCounter = self.beeHealthCounter
-        
-        if (self.getBeeXPosition >= -120 && self.getBeeXPosition <= -110) && (self.getBeeYPosition >= -250 && self.getBeeYPosition <= 200) {
-        
-        
-            localFoodCounter += 1
-            self.beeHealthCounter = localFoodCounter
-        }
-        return localFoodCounter
-        
-    }
-    
+
 
     
 
@@ -207,21 +201,26 @@ struct Bee: View {
                            .edgesIgnoringSafeArea(.all)
                            
                            VStack {
-                       
+                            HStack {
+                               
+                                Text("Travel Guide:").foregroundColor(Color.yellow)
                                Text("\(beeHome)")
                                 
-                                    
+                            }
                                
                                Spacer().frame(height:20)
                                
                                Text("You are: \(self.getBeeYPosition) on Y axis").foregroundColor(Color.yellow)
                                Text("You are: \(self.getBeeXPosition) on X axis").foregroundColor(Color.red)
-                               Text("\(foodCounter)")
+                               Text("Meals \(self.beeHealthCounter)")
+                            
+            
                             
                             Spacer().frame(height:40)
                             
                             HStack {
                                 GameImageV2(imageName: "Sunflower", imageWidth: 100, imageHeight: 100)
+                                    
                     
                                 
                                         
@@ -232,36 +231,60 @@ struct Bee: View {
                                 
                                 Button(action: {
                                     
-                                    self.checkBeeHealth.toggle()
+                                    self.checkBeeHealth = true
+                                    self.processFoodLevel()
                                     
                                 }) {
                          
-                                   
+                                    VStack {
                                     
-                                    Text("Check Health Level").font(.custom("Chalkboard SE", size: 20)).foregroundColor(Color.green)
+                                    Text("Click to Eat 🐝").font(.custom("Chalkboard SE", size: 15)).foregroundColor(Color.black)
+                                        Spacer().frame(height:3)
+                                        Image("Thermometer")
+                                            .renderingMode(.original)
+                                        .resizable()
+                                        .frame(width:150,height: 15)
+                                        .scaledToFill()
+                                        
+                                    }
                                     
                                 }
                                     
                                 
                                 if self.checkBeeHealth {
                                     
-                                    if self.beeHealthCounter == 0 {
+                                    if (self.beeHealthCounter == 0) && (self.getBeeXPosition >= -120 && self.getBeeXPosition <= -100) && (self.getBeeYPosition >= -250 && self.getBeeYPosition <= 200) {
+                                       
+                                      
+                                        Text("\(self.beeMessageMinLimit)")
+                                     
+                                    } else if(self.beeHealthCounter == 5) && (self.getBeeXPosition >= -120 && self.getBeeXPosition <= -100) && (self.getBeeYPosition >= -250 && self.getBeeYPosition <= 200) {
                                         
-                                        beeFoodOne()
+                                        Text("\(self.beeMessageMaxLimit)")
+                                      
                                         
                                     } else if self.beeHealthCounter == 1 {
                                         
-                                        beeFoodTwo()
+                                        beeFoodOne()
                                         
                                     } else if self.beeHealthCounter == 2 {
                                         
                                         
+                                        beeFoodTwo()
+                                        
+                                    } else if self.beeHealthCounter == 3 {
+                                        
+                                        
                                         beeFoodThree()
+                                        
                                         
                                     } else if self.beeHealthCounter == 4 {
                                         
-                                        
                                         beeFoodFour()
+                                        
+                                    } else if (self.beeHealthCounter < 5) && (self.getBeeXPosition >= -60 && self.getBeeXPosition <= 30) && (self.getBeeYPosition >= 342 && self.getBeeYPosition <= 500) {
+                                        
+                                        Text("\(self.beeMessageBeeKiller)")
                                     }
                                 }
                                 
@@ -271,19 +294,25 @@ struct Bee: View {
                             }
                                Spacer()
                             
-                            HStack(alignment: .bottom, spacing: 0) {
-                            
-                           
-                            //Bee Killer Poisen
-                            GameImageV2(imageName: "BeeKiller", imageWidth: 50, imageHeight: 70)
-                            
-                            //Tree covering the Killer Poisen
-                            GameImageV2(imageName: "Tree", imageWidth: 130, imageHeight: 150)
+                            VStack {
                                 
-                            
-                                
-                            
+                                GameImageV2(imageName: "sun", imageWidth: 300, imageHeight: 50)
+                                    HStack(alignment: .bottom, spacing: 0) {
+                                    
+                                   
+                                        //Bee Killer Poisen
+                                        GameImageV2(imageName: "BeeKiller", imageWidth: 50, imageHeight: 70)
+                                        
+                                        //Tree covering the Killer Poisen
+                                        GameImageV2(imageName: "Tree", imageWidth: 130, imageHeight: 150)
+                                        
+                                    
+                                        
+                                    
+                                    }
                             }
+                            
+                            
                            }
                        
                         
