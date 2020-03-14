@@ -20,6 +20,12 @@
 		03D2C8D7241C5F47005A0434 /* GrowlingSynthBass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03D2C8CF241C5F47005A0434 /* GrowlingSynthBass.mp3 */; };
 		03D2C8D8241C5F47005A0434 /* BeeHomeMusicBeat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03D2C8D0241C5F47005A0434 /* BeeHomeMusicBeat.mp3 */; };
 		03D2C8D9241C5F47005A0434 /* BeeThermostatClick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03D2C8D1241C5F47005A0434 /* BeeThermostatClick.mp3 */; };
+		03D2C8DE241D1AE7005A0434 /* Bethany OH NO.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03D2C8DA241D1AE7005A0434 /* Bethany OH NO.mp3 */; };
+		03D2C8DF241D1AE7005A0434 /* BettyBee_GuideHerHome.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03D2C8DB241D1AE7005A0434 /* BettyBee_GuideHerHome.mp3 */; };
+		03D2C8E0241D1AE7005A0434 /* BettyBee_HomeButHungry.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03D2C8DC241D1AE7005A0434 /* BettyBee_HomeButHungry.mp3 */; };
+		03D2C8E1241D1AE7005A0434 /* Bethany WELL DONE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03D2C8DD241D1AE7005A0434 /* Bethany WELL DONE.mp3 */; };
+		03D2C8E3241D1B4B005A0434 /* BettyAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2C8E2241D1B4B005A0434 /* BettyAudioPlayer.swift */; };
+		03D2C8E5241D35E0005A0434 /* Betty_Arrives_Home.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03D2C8E4241D35DF005A0434 /* Betty_Arrives_Home.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +44,12 @@
 		03D2C8CF241C5F47005A0434 /* GrowlingSynthBass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GrowlingSynthBass.mp3; sourceTree = "<group>"; };
 		03D2C8D0241C5F47005A0434 /* BeeHomeMusicBeat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BeeHomeMusicBeat.mp3; sourceTree = "<group>"; };
 		03D2C8D1241C5F47005A0434 /* BeeThermostatClick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BeeThermostatClick.mp3; sourceTree = "<group>"; };
+		03D2C8DA241D1AE7005A0434 /* Bethany OH NO.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bethany OH NO.mp3"; sourceTree = "<group>"; };
+		03D2C8DB241D1AE7005A0434 /* BettyBee_GuideHerHome.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BettyBee_GuideHerHome.mp3; sourceTree = "<group>"; };
+		03D2C8DC241D1AE7005A0434 /* BettyBee_HomeButHungry.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BettyBee_HomeButHungry.mp3; sourceTree = "<group>"; };
+		03D2C8DD241D1AE7005A0434 /* Bethany WELL DONE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bethany WELL DONE.mp3"; sourceTree = "<group>"; };
+		03D2C8E2241D1B4B005A0434 /* BettyAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettyAudioPlayer.swift; sourceTree = "<group>"; };
+		03D2C8E4241D35DF005A0434 /* Betty_Arrives_Home.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Betty_Arrives_Home.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +85,12 @@
 				03D2C8CE241C5F47005A0434 /* BeeArrvidedHome.mp3 */,
 				03D2C8CB241C5F46005A0434 /* BeeClickAction.mp3 */,
 				03D2C8D0241C5F47005A0434 /* BeeHomeMusicBeat.mp3 */,
+				03D2C8DA241D1AE7005A0434 /* Bethany OH NO.mp3 */,
+				03D2C8DD241D1AE7005A0434 /* Bethany WELL DONE.mp3 */,
+				03D2C8DB241D1AE7005A0434 /* BettyBee_GuideHerHome.mp3 */,
+				03D2C8DC241D1AE7005A0434 /* BettyBee_HomeButHungry.mp3 */,
 				03D2C8D1241C5F47005A0434 /* BeeThermostatClick.mp3 */,
+				03D2C8E4241D35DF005A0434 /* Betty_Arrives_Home.mp3 */,
 				03D2C8CA241C5F46005A0434 /* Danger.mp3 */,
 				03D2C8CF241C5F47005A0434 /* GrowlingSynthBass.mp3 */,
 				0335758224197DC0007ED0F6 /* Models */,
@@ -108,6 +125,7 @@
 		0335758224197DC0007ED0F6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				03D2C8E2241D1B4B005A0434 /* BettyAudioPlayer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -170,14 +188,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03D2C8E0241D1AE7005A0434 /* BettyBee_HomeButHungry.mp3 in Resources */,
 				0335757A24197D97007ED0F6 /* LaunchScreen.storyboard in Resources */,
 				03D2C8D8241C5F47005A0434 /* BeeHomeMusicBeat.mp3 in Resources */,
 				03D2C8D7241C5F47005A0434 /* GrowlingSynthBass.mp3 in Resources */,
 				03D2C8D2241C5F47005A0434 /* Danger.mp3 in Resources */,
 				0335757724197D97007ED0F6 /* Preview Assets.xcassets in Resources */,
 				03D2C8D9241C5F47005A0434 /* BeeThermostatClick.mp3 in Resources */,
+				03D2C8DE241D1AE7005A0434 /* Bethany OH NO.mp3 in Resources */,
 				03D2C8D3241C5F47005A0434 /* BeeClickAction.mp3 in Resources */,
+				03D2C8DF241D1AE7005A0434 /* BettyBee_GuideHerHome.mp3 in Resources */,
 				0335757424197D97007ED0F6 /* Assets.xcassets in Resources */,
+				03D2C8E5241D35E0005A0434 /* Betty_Arrives_Home.mp3 in Resources */,
+				03D2C8E1241D1AE7005A0434 /* Bethany WELL DONE.mp3 in Resources */,
 				03D2C8D6241C5F47005A0434 /* BeeArrvidedHome.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,6 +215,7 @@
 				0335756E24197D94007ED0F6 /* AppDelegate.swift in Sources */,
 				0335758424197EE6007ED0F6 /* GameStructure.swift in Sources */,
 				0335757024197D94007ED0F6 /* SceneDelegate.swift in Sources */,
+				03D2C8E3241D1B4B005A0434 /* BettyAudioPlayer.swift in Sources */,
 				0335757224197D94007ED0F6 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

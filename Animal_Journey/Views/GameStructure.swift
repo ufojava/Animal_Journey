@@ -62,6 +62,7 @@ struct Bee: View {
     //Track bee position
     @State private var getBeeXPosition = 0
     @State private var getBeeYPosition = 0
+    @State private var bettyArrivesHome = false
     
     
     //Bee Health
@@ -69,6 +70,7 @@ struct Bee: View {
     @State private var checkBeeHealth = false
     @State private var beeHasBeenPoisened = false
     @State private var beeHasFedStatus = false
+    
     
     
     //Be has fed status
@@ -245,8 +247,7 @@ struct Bee: View {
                                 
                                 Button(action: {
                                     
-                                    self.checkBeeHealth = true
-                                    self.processFoodLevel()
+                                   
                                     
                                 }) {
                          
@@ -259,6 +260,12 @@ struct Bee: View {
                                         .resizable()
                                         .frame(width:150,height: 15)
                                         .scaledToFill()
+                                        
+                                            .onTapGesture {
+                                                self.checkBeeHealth = true
+                                                self.processFoodLevel()
+                                                playAudioFiles(sound: "BeeClickAction", type: "mp3")
+                                        }
                                         
                                     }
                                     
@@ -342,6 +349,13 @@ struct Bee: View {
                                     
                                            
                                    }.offset(x:self.beeCurrentPosition.x, y:beeCurrentPosition.y) //Current Position of Bee
+                                
+                                .onAppear() {
+                                    
+                                    playAudioFiles(sound: "BettyBee_HomeButHungry", type: "mp3")
+                            }
+                                
+                        
                                
                           
                                    .gesture(DragGesture()
@@ -351,17 +365,7 @@ struct Bee: View {
                                            
                                            self.beeCurrentPosition = CGPoint(x:value.translation.width + self.beeNewPosition.x, y: value.translation.height + self.beeNewPosition.y)
                                         
-                                        if (self.getBeeXPosition >= -22 && self.getBeeXPosition <= 55) && (self.getBeeYPosition >= 315 &&
-                                            self.getBeeYPosition <= 370) {
-                                            
-                                            self.beeHasBeenPoisened = true
-                                            
-                                            if self.beeHasBeenPoisened {
-                                                
-                                                self.beeHealthCounter = 0
-                                            }
                                         
-                                        }
                                            
                                            
                                        }//End onChanged
@@ -370,14 +374,52 @@ struct Bee: View {
                                            
                                            self.beeCurrentPosition = CGPoint(x:value.translation.width + self.beeNewPosition.x, y:value.translation.height + self.beeNewPosition.y)
                                            self.beeNewPosition = self.beeCurrentPosition
+                                        
                                            
                                            //Track Bee co-ordinates
                                            self.getBeeXPosition = Int(self.beeNewPosition.x)
                                            self.getBeeYPosition = Int(self.beeNewPosition.y)
+                                            
+                                        
+                                        //Bee Killer notification
+                                        if (self.getBeeXPosition >= -22 && self.getBeeXPosition <= 55) && (self.getBeeYPosition >= 315 &&
+                                            self.getBeeYPosition <= 370) {
+                                            
+                                            self.beeHasBeenPoisened = true
+                                            
+                                            if self.beeHasBeenPoisened {
+                                                
+                                                self.beeHealthCounter = 0
+                                                
+                                                //Play Bethany's sound
+                                                
+                                                playAudioFiles(sound: "Danger", type: "mp3")
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    playAudioFiles(sound: "Bethany OH NO", type: "mp3")
+                                                   
+                                                }
+                                                
+
+                                                
+                                            }
+                                        
+                                        }//End of Bee Killer
+                                        
+                                        
+                                        //Betty arrives home
+                                        if (self.getBeeXPosition >= 0 && self.getBeeYPosition == 0) && (self.beeHealthCounter > 0) {
+                                            
+                                            playAudioFiles(sound: "Betty_Arrives_Home", type: "mp3")
+                                            
+                                        }//End of Betty arrives home
+                                        
+                                        
+                                        
                                         
                                         
                                            
-                                       }
+                                       }//End of onEnded
                                     
                                
                                ).animation(.spring())

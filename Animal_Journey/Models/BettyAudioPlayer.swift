@@ -1,0 +1,36 @@
+//
+//  BettyAudioPlayer.swift
+//  Animal_Journey
+//
+//  Created by Ufuoma Okoro on 14/03/2020.
+//  Copyright © 2020 Ufuoma Okoro. All rights reserved.
+//
+
+import Foundation
+import AVFoundation
+
+//Set variable for the audio player
+var audioPlayer: AVAudioPlayer?
+
+
+func playAudioFiles(sound: String, type: String) {
+    
+    
+    //If let to ensure the file exist
+    if let path = Bundle.main.path(forResource: sound, ofType: type) {
+        
+        
+        do {
+            
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+            audioPlayer?.play()
+            
+        } catch {
+            
+            print("Could not find file")
+        }
+        
+        
+    }
+    
+}
