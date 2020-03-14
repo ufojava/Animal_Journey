@@ -33,7 +33,7 @@ struct TestGame_Previews: PreviewProvider {
 
 
 
-
+//Struct template for image
 struct GameImageV2: View {
     
     var imageName = ""
@@ -50,7 +50,7 @@ struct GameImageV2: View {
 }
 
 
-
+//Struct for main game
 struct Bee: View {
     
     
@@ -63,6 +63,11 @@ struct Bee: View {
     @State private var getBeeXPosition = 0
     @State private var getBeeYPosition = 0
     @State private var bettyArrivesHome = false
+    
+    //Struct to tract Timer
+    @State private var timeRemaining = 3
+    let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+    @State private var readTimeRemaining = ""
     
     
     //Bee Health
@@ -212,24 +217,62 @@ struct Bee: View {
                   
                     ZStack {
                            
-                           Color(red: 0.2, green: 0.4, blue: 0.4)
-                            
+                           //Color(red: 0.2, green: 0.4, blue: 0.4)
+                        Image("BettyWordBack_GrdOther")
+                            .resizable()
+                            .scaledToFill()
                            .edgesIgnoringSafeArea(.all)
                            
                            VStack {
                             HStack {
                                
-                                Text("Betty's Status:").foregroundColor(Color.yellow)
-                                Text("\(beeHome)").foregroundColor(Color.white)
+                                Text("Betty's Status:").foregroundColor(Color.yellow).font(.custom("Chalkboard SE", size: 20))
+                                Text("\(beeHome)").foregroundColor(Color.white).font(.custom("Chalkboard SE", size: 20))
                                 
                             }
                                
                                Spacer().frame(height:20)
                                
-                               Text("Betty is: \(self.getBeeYPosition) on Y axis").foregroundColor(Color.yellow)
-                               Text("Betty is: \(self.getBeeXPosition) on X axis").foregroundColor(Color.red)
-                               Text("Meals \(self.beeHealthCounter)")
-                            
+                               Text("Betty is: \(self.getBeeYPosition) on Y axis").foregroundColor(Color.yellow).font(.custom("Chalkboard SE", size: 20))
+                               Text("Betty is: \(self.getBeeXPosition) on X axis").foregroundColor(Color.red).font(.custom("Chalkboard SE", size: 20))
+                            HStack {
+                               //Text("Meals: \(self.beeHealthCounter)")
+                                
+                                //Monitor Time Remaining
+                                
+                                Text("\(timeRemaining)")
+                                    .frame(width:40,height: 40)
+                                    .background(Color.red)
+                                    .foregroundColor(Color.white)
+                                .clipShape(Circle())
+                                    .onReceive(timer) {_ in
+                                        
+                                        if self.timeRemaining > 0 {
+                                            self.timeRemaining -= 1
+                                            
+                                            if self.timeRemaining == 2 {
+                                                
+                                                self.readTimeRemaining = "\(self.timeRemaining) minutes remaining"
+                                                ReadSynthWord(word: self.readTimeRemaining)
+                                                
+                                            } else if self.timeRemaining == 1 {
+                                                
+                                                self.readTimeRemaining = "\(self.timeRemaining) minute remaining"
+                                                ReadSynthWord(word: self.readTimeRemaining)
+                                                
+                                            } else if self.timeRemaining == 0 {
+                                                
+                                                ReadSynthWord(word: "Time is up")
+                                            }
+                                            
+                                            
+                                           
+                                        }
+                                        
+                                }
+                                
+                                Text("Minute(s) Remaining").foregroundColor(Color.white).font(.custom("Chalkboard SE", size: 20))
+                            }//End of Timer HStack
             
                             
                             Spacer().frame(height:40)
@@ -353,6 +396,11 @@ struct Bee: View {
                                 .onAppear() {
                                     
                                     playAudioFiles(sound: "BettyBee_HomeButHungry", type: "mp3")
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                                        self.readTimeRemaining = "\(self.timeRemaining) minutes remaining"
+                                        ReadSynthWord(word: String(self.readTimeRemaining))
+                                    }
                             }
                                 
                         

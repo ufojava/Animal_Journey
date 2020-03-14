@@ -34,3 +34,16 @@ func playAudioFiles(sound: String, type: String) {
     }
     
 }
+
+//function to read synthersized time
+
+func ReadSynthWord(word: String) {
+    
+    let utterance = AVSpeechUtterance(string: word)
+    utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
+    utterance.rate = 0.5
+    
+    let synthersizer = AVSpeechSynthesizer()
+    synthersizer.speak(utterance)
+    
+}
