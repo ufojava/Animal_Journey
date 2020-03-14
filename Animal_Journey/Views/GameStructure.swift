@@ -67,12 +67,16 @@ struct Bee: View {
     //Bee Health
     @State private var beeHealthCounter = 0
     @State private var checkBeeHealth = false
+    @State private var beeHasBeenPoisened = false
+    @State private var beeHasFedStatus = false
+    
     
     //Be has fed status
     @State private var beeHasFed = false
     var beeMessageMaxLimit = "Max food limit 😩"
     var beeMessageMinLimit = "Min food limit 😨"
-    var beeMessageBeeKiller = "Bee poisened so needs norishment 🍯"
+    var beeMessageBeeKiller = "Betty poisened!! ☣️"
+    
     
     
     
@@ -159,22 +163,32 @@ struct Bee: View {
         
         if (self.getBeeXPosition >= -5 && self.getBeeXPosition <= 5) && (self.getBeeYPosition >= -5 && self.getBeeYPosition <= 5) && self.beeHealthCounter > 0{
             
-            beeHomeResult = "Bee is home 🤪"
+            beeHomeResult = "Betty is home 🤪"
           
             
         } else if (self.getBeeXPosition >= -20 && self.getBeeXPosition <= 20) && (self.getBeeYPosition >= -20 && self.getBeeYPosition <= 20) && self.beeHealthCounter > 0 {
             
-            beeHomeResult = "Bee is in the neighborhood 🤫"
+            beeHomeResult = "Betty is in the neighborhood 🤫"
             
         } else if (self.getBeeXPosition >= -40 && self.getBeeXPosition <= 40) && (self.getBeeYPosition >= -40 && self.getBeeYPosition <= 40) && self.beeHealthCounter > 0 {
             
-            beeHomeResult = "Bee is a little further away 🤨"
+            beeHomeResult = "Betty is a little further away 🤨"
         } else if (self.getBeeXPosition >= -22 && self.getBeeXPosition <= 55) && (self.getBeeYPosition >= 315 && self.getBeeYPosition <= 370) && self.beeHealthCounter > 0 {
             
-            beeHomeResult = "Chemical!!! Feed Bee Now! 🍔"
-        } else {
+            beeHomeResult = "Betty poisoned!! ☣️"
             
-            beeHomeResult = "Bee needs food!!! "
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                
+                beeHomeResult = "Feed Betty now!!!"
+            }
+        } else if self.beeHealthCounter > 0 {
+            
+            beeHomeResult = "Betty has been fed"
+        
+        
+     }else {
+            
+            beeHomeResult = "Betty needs food!!! "
         }
         
         
@@ -203,15 +217,15 @@ struct Bee: View {
                            VStack {
                             HStack {
                                
-                                Text("Travel Guide:").foregroundColor(Color.yellow)
-                               Text("\(beeHome)")
+                                Text("Betty's Status:").foregroundColor(Color.yellow)
+                                Text("\(beeHome)").foregroundColor(Color.white)
                                 
                             }
                                
                                Spacer().frame(height:20)
                                
-                               Text("You are: \(self.getBeeYPosition) on Y axis").foregroundColor(Color.yellow)
-                               Text("You are: \(self.getBeeXPosition) on X axis").foregroundColor(Color.red)
+                               Text("Betty is: \(self.getBeeYPosition) on Y axis").foregroundColor(Color.yellow)
+                               Text("Betty is: \(self.getBeeXPosition) on X axis").foregroundColor(Color.red)
                                Text("Meals \(self.beeHealthCounter)")
                             
             
@@ -238,7 +252,7 @@ struct Bee: View {
                          
                                     VStack {
                                     
-                                    Text("Click to Eat 🐝").font(.custom("Chalkboard SE", size: 15)).foregroundColor(Color.black)
+                                    Text("Check health 🐝").font(.custom("Chalkboard SE", size: 15)).foregroundColor(Color.black)
                                         Spacer().frame(height:3)
                                         Image("Thermometer")
                                             .renderingMode(.original)
@@ -337,7 +351,17 @@ struct Bee: View {
                                            
                                            self.beeCurrentPosition = CGPoint(x:value.translation.width + self.beeNewPosition.x, y: value.translation.height + self.beeNewPosition.y)
                                         
+                                        if (self.getBeeXPosition >= -22 && self.getBeeXPosition <= 55) && (self.getBeeYPosition >= 315 &&
+                                            self.getBeeYPosition <= 370) {
+                                            
+                                            self.beeHasBeenPoisened = true
+                                            
+                                            if self.beeHasBeenPoisened {
+                                                
+                                                self.beeHealthCounter = 0
+                                            }
                                         
+                                        }
                                            
                                            
                                        }//End onChanged

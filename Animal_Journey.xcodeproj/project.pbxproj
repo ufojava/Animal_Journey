@@ -16,8 +16,6 @@
 		0335758424197EE6007ED0F6 /* GameStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0335758324197EE6007ED0F6 /* GameStructure.swift */; };
 		03D2C8D2241C5F47005A0434 /* Danger.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03D2C8CA241C5F46005A0434 /* Danger.mp3 */; };
 		03D2C8D3241C5F47005A0434 /* BeeClickAction.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03D2C8CB241C5F46005A0434 /* BeeClickAction.mp3 */; };
-		03D2C8D4241C5F47005A0434 /* BuzzyBeeGuideHome.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03D2C8CC241C5F46005A0434 /* BuzzyBeeGuideHome.mp3 */; };
-		03D2C8D5241C5F47005A0434 /* BuzzyBeeHomeToFeed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03D2C8CD241C5F47005A0434 /* BuzzyBeeHomeToFeed.mp3 */; };
 		03D2C8D6241C5F47005A0434 /* BeeArrvidedHome.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03D2C8CE241C5F47005A0434 /* BeeArrvidedHome.mp3 */; };
 		03D2C8D7241C5F47005A0434 /* GrowlingSynthBass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03D2C8CF241C5F47005A0434 /* GrowlingSynthBass.mp3 */; };
 		03D2C8D8241C5F47005A0434 /* BeeHomeMusicBeat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03D2C8D0241C5F47005A0434 /* BeeHomeMusicBeat.mp3 */; };
@@ -36,8 +34,6 @@
 		0335758324197EE6007ED0F6 /* GameStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStructure.swift; sourceTree = "<group>"; };
 		03D2C8CA241C5F46005A0434 /* Danger.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Danger.mp3; sourceTree = "<group>"; };
 		03D2C8CB241C5F46005A0434 /* BeeClickAction.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BeeClickAction.mp3; sourceTree = "<group>"; };
-		03D2C8CC241C5F46005A0434 /* BuzzyBeeGuideHome.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BuzzyBeeGuideHome.mp3; sourceTree = "<group>"; };
-		03D2C8CD241C5F47005A0434 /* BuzzyBeeHomeToFeed.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BuzzyBeeHomeToFeed.mp3; sourceTree = "<group>"; };
 		03D2C8CE241C5F47005A0434 /* BeeArrvidedHome.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BeeArrvidedHome.mp3; sourceTree = "<group>"; };
 		03D2C8CF241C5F47005A0434 /* GrowlingSynthBass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GrowlingSynthBass.mp3; sourceTree = "<group>"; };
 		03D2C8D0241C5F47005A0434 /* BeeHomeMusicBeat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BeeHomeMusicBeat.mp3; sourceTree = "<group>"; };
@@ -78,8 +74,6 @@
 				03D2C8CB241C5F46005A0434 /* BeeClickAction.mp3 */,
 				03D2C8D0241C5F47005A0434 /* BeeHomeMusicBeat.mp3 */,
 				03D2C8D1241C5F47005A0434 /* BeeThermostatClick.mp3 */,
-				03D2C8CC241C5F46005A0434 /* BuzzyBeeGuideHome.mp3 */,
-				03D2C8CD241C5F47005A0434 /* BuzzyBeeHomeToFeed.mp3 */,
 				03D2C8CA241C5F46005A0434 /* Danger.mp3 */,
 				03D2C8CF241C5F47005A0434 /* GrowlingSynthBass.mp3 */,
 				0335758224197DC0007ED0F6 /* Models */,
@@ -177,14 +171,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0335757A24197D97007ED0F6 /* LaunchScreen.storyboard in Resources */,
-				03D2C8D5241C5F47005A0434 /* BuzzyBeeHomeToFeed.mp3 in Resources */,
 				03D2C8D8241C5F47005A0434 /* BeeHomeMusicBeat.mp3 in Resources */,
 				03D2C8D7241C5F47005A0434 /* GrowlingSynthBass.mp3 in Resources */,
 				03D2C8D2241C5F47005A0434 /* Danger.mp3 in Resources */,
 				0335757724197D97007ED0F6 /* Preview Assets.xcassets in Resources */,
 				03D2C8D9241C5F47005A0434 /* BeeThermostatClick.mp3 in Resources */,
 				03D2C8D3241C5F47005A0434 /* BeeClickAction.mp3 in Resources */,
-				03D2C8D4241C5F47005A0434 /* BuzzyBeeGuideHome.mp3 in Resources */,
 				0335757424197D97007ED0F6 /* Assets.xcassets in Resources */,
 				03D2C8D6241C5F47005A0434 /* BeeArrvidedHome.mp3 in Resources */,
 			);
