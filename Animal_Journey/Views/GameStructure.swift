@@ -13,8 +13,15 @@ import SwiftUI
 struct TestGame: View {
     
     var body: some View {
-        
+      
+     
+          
+       
         Bee()
+        //Text("Place holder")
+            
+     
+        
     }
 }
 
@@ -53,6 +60,9 @@ struct GameImageV2: View {
 //Struct for main game
 struct Bee: View {
     
+    //Home
+    
+    @State private var homeScreen = false
     
     //Set CG Point for Bee
     @State private var beeCurrentPosition: CGPoint = .zero
@@ -215,32 +225,38 @@ struct Bee: View {
     
     var body: some View {
         
-        
+      
         VStack {
                
                 
                    VStack {
                   
                     ZStack {
-                           
+                  
                            //Color(red: 0.2, green: 0.4, blue: 0.4)
+                     
                         Image("BettyWordBack_GrdOther")
                             .resizable()
                             .scaledToFill()
+ 
+ 
                            .edgesIgnoringSafeArea(.all)
+                        
+                      
                            
                            VStack {
                             HStack {
                                
-                                Text("Betty's Status:").foregroundColor(Color.yellow).font(.custom("Chalkboard SE", size: 15))
-                                Text("\(beeHome)").foregroundColor(Color.white).font(.custom("Chalkboard SE", size: 15))
+                                
+                                Text("Betty's Status:").foregroundColor(Color.yellow).font(.custom("Chalkboard SE", size: 20))
+                                Text("\(beeHome)").foregroundColor(Color.white).font(.custom("Chalkboard SE", size: 20))
                                 
                             }
                                
                                Spacer().frame(height:10)
                                
-                               Text("Betty is: \(self.getBeeYPosition) on Y axis").foregroundColor(Color.yellow).font(.custom("Chalkboard SE", size: 15))
-                               Text("Betty is: \(self.getBeeXPosition) on X axis").foregroundColor(Color.red).font(.custom("Chalkboard SE", size: 15))
+                               Text("Betty is: \(self.getBeeYPosition) on Y axis").foregroundColor(Color.yellow).font(.custom("Chalkboard SE", size: 20))
+                               Text("Betty is: \(self.getBeeXPosition) on X axis").foregroundColor(Color.red).font(.custom("Chalkboard SE", size: 20))
                             HStack {
                                //Text("Meals: \(self.beeHealthCounter)")
                                 
@@ -277,11 +293,11 @@ struct Bee: View {
                                         
                                 }
                                 
-                                Text("Minute(s) Remaining").foregroundColor(Color.white).font(.custom("Chalkboard SE", size: 15))
+                                Text("Minute(s) Remaining").foregroundColor(Color.white).font(.custom("Chalkboard SE", size: 20))
                             }//End of Timer HStack
             
                             
-                            Spacer().frame(height:40)
+                            Spacer().frame(height:20)
                             
                             HStack {
                                 GameImageV2(imageName: "Sunflower", imageWidth: 100, imageHeight: 100)
@@ -382,21 +398,21 @@ struct Bee: View {
                                 
                                 
                                 
-                                GameImageV2(imageName: "sun", imageWidth: 300, imageHeight: 50)
+                                GameImageV2(imageName: "sun", imageWidth: 280, imageHeight: 40)
                                     HStack(alignment: .bottom, spacing: 0) {
                                     
                                    
                                         //Bee Killer Poisen
-                                        GameImageV2(imageName: "BeeKiller", imageWidth: 50, imageHeight: 70)
+                                        GameImageV2(imageName: "BeeKiller", imageWidth: 40, imageHeight: 40)
                                         
                                         //Tree covering the Killer Poisen
-                                        GameImageV2(imageName: "Tree", imageWidth: 130, imageHeight: 150)
-                                        Spacer().frame(width:40)
+                                        GameImageV2(imageName: "Tree", imageWidth: 110, imageHeight: 130)
+                                        Spacer().frame(width:30)
                                         //Power Jar
                                         VStack {
                                             Text("Power").font(.custom("Chalkboard SE", size: 25)).foregroundColor(Color.yellow)
                                             Spacer().frame(height:3)
-                                            GameImageV2(imageName: "Jar", imageWidth: 50, imageHeight: 70)
+                                            GameImageV2(imageName: "Jar", imageWidth: 40, imageHeight: 40)
                                         }
                                     
                                     }
@@ -414,7 +430,7 @@ struct Bee: View {
                             
                             HStack {
                            
-                                GameImageV2(imageName: "Bee", imageWidth: 150, imageHeight: 150)
+                                GameImageV2(imageName: "Bee", imageWidth: 130, imageHeight: 130)
                                     
                                            
                                    }.offset(x:self.beeCurrentPosition.x, y:beeCurrentPosition.y) //Current Position of Bee
@@ -537,25 +553,25 @@ struct Bee: View {
                                 
                             HStack(spacing:20) {
                                 
-                                GameImageV2(imageName: "HomeFlower1", imageWidth: 80, imageHeight: 50)
-                                GameImageV2(imageName: "HomeFlower2", imageWidth: 30, imageHeight: 80)
-                                GameImageV2(imageName: "HomeFlower3", imageWidth: 50, imageHeight: 80)
+                                GameImageV2(imageName: "HomeFlower1", imageWidth: 50, imageHeight: 30)
+                                GameImageV2(imageName: "HomeFlower2", imageWidth: 10, imageHeight: 60)
+                                GameImageV2(imageName: "HomeFlower3", imageWidth: 30, imageHeight: 60)
                                 
                             }
                             
                             HStack(spacing:60) {
                                                            
-                               GameImageV2(imageName: "HomeFlower6", imageWidth: 80, imageHeight: 80)
-                               GameImageV2(imageName: "HomeFlower4", imageWidth: 60, imageHeight: 80)
-                               GameImageV2(imageName: "HomeFlower5", imageWidth: 50, imageHeight: 80)
+                               GameImageV2(imageName: "HomeFlower6", imageWidth: 60, imageHeight: 60)
+                               GameImageV2(imageName: "HomeFlower4", imageWidth: 40, imageHeight: 60)
+                               GameImageV2(imageName: "HomeFlower5", imageWidth: 30, imageHeight: 60)
                                
                            }
                                 
                                 HStack(spacing:20) {
                                                                
-                                   GameImageV2(imageName: "HomeFlower3", imageWidth: 80, imageHeight: 50)
-                                   GameImageV2(imageName: "HomeFlower2", imageWidth: 30, imageHeight: 80)
-                                   GameImageV2(imageName: "HomeFlower1", imageWidth: 80, imageHeight: 50)
+                                   GameImageV2(imageName: "HomeFlower3", imageWidth: 60, imageHeight: 30)
+                                   GameImageV2(imageName: "HomeFlower2", imageWidth: 10, imageHeight: 60)
+                                   GameImageV2(imageName: "HomeFlower1", imageWidth: 60, imageHeight: 30)
                                    
                                }
                        
@@ -579,13 +595,13 @@ struct Bee: View {
                
                
                }
-    
+       // .navigationBarTitle(Text("Betty's World"),displayMode: .inline)
+        
+        }
         
         
-        
-        
-    }
-}
+ 
 
+}
 
 
