@@ -75,6 +75,7 @@ struct Bee: View {
     @State private var checkBeeHealth = false
     @State private var beeHasBeenPoisened = false
     @State private var beeHasFedStatus = false
+    @State private var beeLandsOnHoneyJar = false
     
     
     
@@ -83,6 +84,11 @@ struct Bee: View {
     var beeMessageMaxLimit = "Max food limit 😩"
     var beeMessageMinLimit = "Min food limit 😨"
     var beeMessageBeeKiller = "Betty poisened!! ☣️"
+    
+    
+    //Naviagtion obstacles for top an buttom of screen
+    var BottomimageObstacle = ["Honeycomb","BeeKiller","Honeycomb","BeeKiller","Honeycomb","BeeKiller","BeeKiller","BeeKiller"].shuffled()
+    
     
     
     
@@ -168,19 +174,19 @@ struct Bee: View {
         
         var beeHomeResult = ""
         
-        if (self.getBeeXPosition >= -5 && self.getBeeXPosition <= 5) && (self.getBeeYPosition >= -5 && self.getBeeYPosition <= 5) && self.beeHealthCounter > 0{
+        if (self.getBeeXPosition == 0) && (self.getBeeYPosition == 0) && self.beeHealthCounter > 0{
             
             beeHomeResult = "Betty is home 🤪"
           
             
         } else if (self.getBeeXPosition >= -20 && self.getBeeXPosition <= 20) && (self.getBeeYPosition >= -20 && self.getBeeYPosition <= 20) && self.beeHealthCounter > 0 {
             
-            beeHomeResult = "Betty is in the neighborhood 🤫"
+            beeHomeResult = "Betty is near home 🤫"
             
         } else if (self.getBeeXPosition >= -40 && self.getBeeXPosition <= 40) && (self.getBeeYPosition >= -40 && self.getBeeYPosition <= 40) && self.beeHealthCounter > 0 {
             
-            beeHomeResult = "Betty is a little further away 🤨"
-        } else if (self.getBeeXPosition >= -22 && self.getBeeXPosition <= 55) && (self.getBeeYPosition >= 315 && self.getBeeYPosition <= 370) && self.beeHealthCounter > 0 {
+            beeHomeResult = "Betty is far away 🤨"
+        } else if (self.getBeeXPosition >= -120 && self.getBeeXPosition <= -100) && (self.getBeeYPosition >= 350 && self.getBeeYPosition <= 370) && self.beeHealthCounter > 0 {
             
             beeHomeResult = "Betty poisoned!! ☣️"
             
@@ -226,15 +232,15 @@ struct Bee: View {
                            VStack {
                             HStack {
                                
-                                Text("Betty's Status:").foregroundColor(Color.yellow).font(.custom("Chalkboard SE", size: 20))
-                                Text("\(beeHome)").foregroundColor(Color.white).font(.custom("Chalkboard SE", size: 20))
+                                Text("Betty's Status:").foregroundColor(Color.yellow).font(.custom("Chalkboard SE", size: 15))
+                                Text("\(beeHome)").foregroundColor(Color.white).font(.custom("Chalkboard SE", size: 15))
                                 
                             }
                                
-                               Spacer().frame(height:20)
+                               Spacer().frame(height:10)
                                
-                               Text("Betty is: \(self.getBeeYPosition) on Y axis").foregroundColor(Color.yellow).font(.custom("Chalkboard SE", size: 20))
-                               Text("Betty is: \(self.getBeeXPosition) on X axis").foregroundColor(Color.red).font(.custom("Chalkboard SE", size: 20))
+                               Text("Betty is: \(self.getBeeYPosition) on Y axis").foregroundColor(Color.yellow).font(.custom("Chalkboard SE", size: 15))
+                               Text("Betty is: \(self.getBeeXPosition) on X axis").foregroundColor(Color.red).font(.custom("Chalkboard SE", size: 15))
                             HStack {
                                //Text("Meals: \(self.beeHealthCounter)")
                                 
@@ -271,7 +277,7 @@ struct Bee: View {
                                         
                                 }
                                 
-                                Text("Minute(s) Remaining").foregroundColor(Color.white).font(.custom("Chalkboard SE", size: 20))
+                                Text("Minute(s) Remaining").foregroundColor(Color.white).font(.custom("Chalkboard SE", size: 15))
                             }//End of Timer HStack
             
                             
@@ -355,10 +361,26 @@ struct Bee: View {
                             
                                 }
                         
+                            }//End of the Sunflower HStack
+                           
+                            
+                            Spacer()
+                            
+                            //Bottom Obstacles
+                            HStack {
+                                
+                                ForEach(0..<BottomimageObstacle.count) { topImage in
+                                    GameImageV2(imageName: self.BottomimageObstacle[topImage], imageWidth: 40, imageHeight: 40)
+                                    
+                                }
+                                
+                                
                             }
-                               Spacer()
+                            
                             
                             VStack {
+                                
+                                
                                 
                                 GameImageV2(imageName: "sun", imageWidth: 300, imageHeight: 50)
                                     HStack(alignment: .bottom, spacing: 0) {
@@ -369,9 +391,13 @@ struct Bee: View {
                                         
                                         //Tree covering the Killer Poisen
                                         GameImageV2(imageName: "Tree", imageWidth: 130, imageHeight: 150)
-                                        
-                                    
-                                        
+                                        Spacer().frame(width:40)
+                                        //Power Jar
+                                        VStack {
+                                            Text("Power").font(.custom("Chalkboard SE", size: 25)).foregroundColor(Color.yellow)
+                                            Spacer().frame(height:3)
+                                            GameImageV2(imageName: "Jar", imageWidth: 50, imageHeight: 70)
+                                        }
                                     
                                     }
                             }
@@ -412,26 +438,12 @@ struct Bee: View {
                                            
                                            
                                            self.beeCurrentPosition = CGPoint(x:value.translation.width + self.beeNewPosition.x, y: value.translation.height + self.beeNewPosition.y)
-                                        
-                                        
-                                           
-                                           
-                                       }//End onChanged
-                                       
-                                       .onEnded { value in
-                                           
-                                           self.beeCurrentPosition = CGPoint(x:value.translation.width + self.beeNewPosition.x, y:value.translation.height + self.beeNewPosition.y)
-                                           self.beeNewPosition = self.beeCurrentPosition
-                                        
-                                           
-                                           //Track Bee co-ordinates
-                                           self.getBeeXPosition = Int(self.beeNewPosition.x)
-                                           self.getBeeYPosition = Int(self.beeNewPosition.y)
                                             
                                         
-                                        //Bee Killer notification
-                                        if (self.getBeeXPosition >= -22 && self.getBeeXPosition <= 55) && (self.getBeeYPosition >= 315 &&
-                                            self.getBeeYPosition <= 370) {
+                                        
+                                        //Bee Killer
+                                        if (self.beeCurrentPosition.x  >= -140 && self.beeCurrentPosition.x <= -100) && (self.beeCurrentPosition.y >= 350 &&
+                                            self.beeCurrentPosition.y <= 370) {
                                             
                                             self.beeHasBeenPoisened = true
                                             
@@ -452,17 +464,61 @@ struct Bee: View {
                                                 
                                             }
                                         
-                                        }//End of Bee Killer
+                                        }//End of Bee notification
                                         
+                                        
+                                        //Jar Power
+                                        if (self.beeCurrentPosition.x >= 100 && self.beeCurrentPosition.x <= 108) && (self.beeCurrentPosition.y >= 352 && self.beeCurrentPosition.y <= 362) && self.beeHealthCounter > 0 {
+                                            
+                                            //Set Jar state to true
+                                            self.beeLandsOnHoneyJar = true
+                                            
+                                            if self.beeLandsOnHoneyJar {
+                                                
+                                                playAudioFiles(sound: "BettyLandsOnJar", type: "mp3")
+                                                
+                                            }
+                                            
+                                            
+                                        }
+                                        
+                                           
+                                           
+                                       }//End onChanged
+                                       
+                                       .onEnded { value in
+                                           
+                                           self.beeCurrentPosition = CGPoint(x:value.translation.width + self.beeNewPosition.x, y:value.translation.height + self.beeNewPosition.y)
+                                           self.beeNewPosition = self.beeCurrentPosition
+                                        
+                                           
+                                           //Track Bee co-ordinates
+                                           self.getBeeXPosition = Int(self.beeNewPosition.x)
+                                           self.getBeeYPosition = Int(self.beeNewPosition.y)
+                                  
                                         
                                         //Betty arrives home
-                                        if (self.getBeeXPosition >= 0 && self.getBeeYPosition == 0) && (self.beeHealthCounter > 0) {
+                                        if (self.getBeeXPosition == 0 && self.getBeeYPosition == 0) && (self.beeHealthCounter > 0) {
                                             
                                             playAudioFiles(sound: "Betty_Arrives_Home", type: "mp3")
                                             
                                         }//End of Betty arrives home
                                         
-                                        
+                                        //Jar Power
+                                        if (self.beeCurrentPosition.x >= 100 && self.beeCurrentPosition.x <= 108) && (self.beeCurrentPosition.y >= 352 && self.beeCurrentPosition.y <= 362) && self.beeHealthCounter > 0 {
+                                            
+                                            //Set Jar state to true
+                                            self.beeLandsOnHoneyJar = true
+                                            
+                                            if self.beeLandsOnHoneyJar {
+                                                
+                                                self.beeCurrentPosition = CGPoint(x: 0.0, y: 0.0)
+                                               
+                                                
+                                            }
+                                            
+                                           
+                                        }
                                         
                                         
                                         
@@ -476,6 +532,9 @@ struct Bee: View {
                             //First Row of Home Image
                             
                             VStack {
+                                
+                                
+                                
                             HStack(spacing:20) {
                                 
                                 GameImageV2(imageName: "HomeFlower1", imageWidth: 80, imageHeight: 50)
