@@ -410,7 +410,7 @@ struct Bee: View {
                                         Spacer().frame(width:30)
                                         //Power Jar
                                         VStack {
-                                            Text("Power").font(.custom("Chalkboard SE", size: 25)).foregroundColor(Color.yellow)
+                                            Text("Magic Jar").font(.custom("Chalkboard SE", size: 20)).foregroundColor(Color.yellow)
                                             Spacer().frame(height:3)
                                             GameImageV2(imageName: "Jar", imageWidth: 40, imageHeight: 40)
                                         }
@@ -458,8 +458,8 @@ struct Bee: View {
                                         
                                         
                                         //Bee Killer
-                                        if (self.beeCurrentPosition.x  >= -140 && self.beeCurrentPosition.x <= -100) && (self.beeCurrentPosition.y >= 350 &&
-                                            self.beeCurrentPosition.y <= 370) {
+                                        if (self.beeCurrentPosition.x  >= -140 && self.beeCurrentPosition.x <= -100) && (self.beeCurrentPosition.y >= 320 &&
+                                            self.beeCurrentPosition.y <= 350) {
                                             
                                             self.beeHasBeenPoisened = true
                                             
@@ -482,21 +482,6 @@ struct Bee: View {
                                         
                                         }//End of Bee notification
                                         
-                                        
-                                        //Jar Power
-                                        if (self.beeCurrentPosition.x >= 100 && self.beeCurrentPosition.x <= 108) && (self.beeCurrentPosition.y >= 352 && self.beeCurrentPosition.y <= 362) && self.beeHealthCounter > 0 {
-                                            
-                                            //Set Jar state to true
-                                            self.beeLandsOnHoneyJar = true
-                                            
-                                            if self.beeLandsOnHoneyJar {
-                                                
-                                                playAudioFiles(sound: "BettyLandsOnJar", type: "mp3")
-                                                
-                                            }
-                                            
-                                            
-                                        }
                                         
                                            
                                            
@@ -521,13 +506,13 @@ struct Bee: View {
                                         }//End of Betty arrives home
                                         
                                         //Jar Power
-                                        if (self.beeCurrentPosition.x >= 100 && self.beeCurrentPosition.x <= 108) && (self.beeCurrentPosition.y >= 352 && self.beeCurrentPosition.y <= 362) && self.beeHealthCounter > 0 {
+                                        if (self.beeCurrentPosition.x >= 75 && self.beeCurrentPosition.x <= 85) && (self.beeCurrentPosition.y >= 319 && self.beeCurrentPosition.y <= 335) && self.beeHealthCounter > 0 {
                                             
                                             //Set Jar state to true
                                             self.beeLandsOnHoneyJar = true
                                             
                                             if self.beeLandsOnHoneyJar {
-                                                
+                                                playAudioFiles(sound: "BettyLandsOnJar", type: "mp3")
                                                 self.beeCurrentPosition = CGPoint(x: 0.0, y: 0.0)
                                                
                                                 
