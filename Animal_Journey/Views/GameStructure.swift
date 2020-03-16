@@ -68,6 +68,35 @@ struct Bee: View {
     @State private var beeCurrentPosition: CGPoint = .zero
     @State private var beeNewPosition: CGPoint = .zero
     
+    //Array Current Position
+   // @State private var imageArrayCurrentOnePosition: CGPoint = .init(x: -174, y: 142)
+    @State private var imageArrayCurrentOnePosition: CGPoint = .zero
+    @State private var imageArrayNewOnePosition: CGPoint = .zero
+    
+    @State private var imageArrayCurrentTwoPosition: CGPoint = .zero
+    @State private var imageArrayNewTwoPosition: CGPoint = .zero
+    
+    @State private var imageArrayCurrentThreePosition: CGPoint = .zero
+    @State private var imageArrayNewThreePosition: CGPoint = .zero
+    
+    @State private var imageArrayCurrentFourPosition: CGPoint = .zero
+    @State private var imageArrayNewFourPosition: CGPoint = .zero
+    
+    @State private var imageArrayCurrentFivePosition: CGPoint = .zero
+    @State private var imageArrayNewFivePosition: CGPoint = .zero
+    
+    @State private var imageArrayCurrentSixPosition: CGPoint = .zero
+    @State private var imageArrayNewSixPosition: CGPoint = .zero
+    
+    @State private var imageArrayCurrentSevenPosition: CGPoint = .zero
+    @State private var imageArrayNewSevenPosition: CGPoint = .zero
+    
+    @State private var imageArrayCurrentEightPosition: CGPoint = .zero
+    @State private var imageArrayNewEightPosition: CGPoint = .zero
+    
+ 
+    
+    
     
     //Track bee position
     @State private var getBeeXPosition = 0
@@ -454,6 +483,29 @@ struct Bee: View {
                                            
                                            
                                            self.beeCurrentPosition = CGPoint(x:value.translation.width + self.beeNewPosition.x, y: value.translation.height + self.beeNewPosition.y)
+                                        
+                                        
+        
+                                        
+                                            //Array Coordinates
+                                        self.imageArrayCurrentOnePosition = CGPoint(x:value.translation.width + self.imageArrayNewOnePosition.x, y: value.translation.height + self.imageArrayNewOnePosition.y)
+                                        
+                                        
+                                        
+                                        self.imageArrayCurrentTwoPosition = CGPoint(x:value.translation.width + self.imageArrayNewTwoPosition.x, y: value.translation.height + self.imageArrayNewTwoPosition.y)
+                                        
+                                        self.imageArrayCurrentThreePosition = CGPoint(x:value.translation.width + self.imageArrayNewThreePosition.x, y: value.translation.height + self.imageArrayNewThreePosition.y)
+                                        
+                                        self.imageArrayCurrentFourPosition = CGPoint(x:value.translation.width + self.imageArrayNewFourPosition.x, y: value.translation.height + self.imageArrayNewFourPosition.y)
+                                        
+                                        self.imageArrayCurrentFivePosition = CGPoint(x:value.translation.width + self.imageArrayNewFivePosition.x, y: value.translation.height + self.imageArrayNewFivePosition.y)
+                                        
+                                        self.imageArrayCurrentSixPosition = CGPoint(x:value.translation.width + self.imageArrayNewSixPosition.x, y: value.translation.height + self.imageArrayNewSixPosition.y)
+                                        
+                                        self.imageArrayCurrentSevenPosition = CGPoint(x:value.translation.width + self.imageArrayNewSevenPosition.x, y: value.translation.height + self.imageArrayNewSevenPosition.y)
+                                        
+                                        self.imageArrayCurrentEightPosition = CGPoint(x:value.translation.width + self.imageArrayNewEightPosition.x, y: value.translation.height + self.imageArrayNewEightPosition.y)
+                                        
                                             
                                         
                                         
@@ -483,7 +535,40 @@ struct Bee: View {
                                         }//End of Bee notification
                                         
                                         
-                                           
+                                        //Bee Killer conditions
+                                        if (self.imageArrayCurrentOnePosition.x >= -180 && self.imageArrayCurrentOnePosition.x  <= -170) && (self.imageArrayCurrentOnePosition.y >= 138 && self.imageArrayCurrentOnePosition.y <= 144) && self.BottomimageObstacle[0].contains("BeeKiller") {
+                                            
+                                            playAudioFiles(sound: "Danger", type: "mp3")
+                                        
+                                        } else if (self.imageArrayCurrentTwoPosition.x >= -140 && self.imageArrayCurrentTwoPosition.x <= -128) && (self.imageArrayCurrentTwoPosition.y >= 138 && self.imageArrayCurrentTwoPosition.y <= 144) && self.BottomimageObstacle[1].contains("BeeKiller") {
+                                            
+                                            playAudioFiles(sound: "Danger", type: "mp3")
+                                            
+                                        } else if (self.imageArrayCurrentThreePosition.x >= -85 && self.imageArrayCurrentThreePosition.x <= -78) && (self.imageArrayCurrentThreePosition.y >= 138 && self.imageArrayCurrentThreePosition.y <= 144) && self.BottomimageObstacle[2].contains("BeeKiller") {
+                                        
+                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                        
+                                        } else if (self.imageArrayCurrentFourPosition.x >= -35 && self.imageArrayCurrentFourPosition.x <= -29) && (self.imageArrayCurrentFourPosition.y >= 138 && self.imageArrayCurrentFourPosition.y <= 144) && self.BottomimageObstacle[3].contains("BeeKiller") {
+                                        
+                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                        
+                                        } else if (self.imageArrayCurrentFivePosition.x >= 11 && self.imageArrayCurrentFivePosition.x <= 15) && (self.imageArrayCurrentFivePosition.y >= 138 && self.imageArrayCurrentFivePosition.y <= 144) && self.BottomimageObstacle[4].contains("BeeKiller") {
+                                        
+                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                        
+                                        } else if (self.imageArrayCurrentSixPosition.x >= 62 && self.imageArrayCurrentSixPosition.x <= 66) && (self.imageArrayCurrentSixPosition.y >= 138 && self.imageArrayCurrentSixPosition.y <= 144) && self.BottomimageObstacle[5].contains("BeeKiller") {
+                                        
+                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                        
+                                        } else if (self.imageArrayCurrentSevenPosition.x >= 107 && self.imageArrayCurrentSevenPosition.x <= 111) && (self.imageArrayCurrentSevenPosition.y >= 138 && self.imageArrayCurrentSevenPosition.y <= 144) && self.BottomimageObstacle[6].contains("BeeKiller") {
+                                        
+                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                        
+                                        } else if (self.imageArrayCurrentEightPosition.x >= 155 && self.imageArrayCurrentEightPosition.x <= 159) && (self.imageArrayCurrentEightPosition.y >= 138 && self.imageArrayCurrentEightPosition.y <= 144) && self.BottomimageObstacle[7].contains("BeeKiller") {
+                                        
+                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                        
+                                        }
                                            
                                        }//End onChanged
                                        
@@ -492,6 +577,42 @@ struct Bee: View {
                                            self.beeCurrentPosition = CGPoint(x:value.translation.width + self.beeNewPosition.x, y:value.translation.height + self.beeNewPosition.y)
                                            self.beeNewPosition = self.beeCurrentPosition
                                         
+                                        
+                                        //Image One Ended Coordinates
+                                        self.imageArrayCurrentOnePosition = CGPoint(x:value.translation.width + self.imageArrayNewOnePosition.x, y: value.translation.height + self.imageArrayNewOnePosition.y)
+                                        self.imageArrayNewOnePosition = self.imageArrayCurrentOnePosition
+                                        
+                                        
+                                        //Image Two Ended Coordinates
+                                        self.imageArrayCurrentTwoPosition = CGPoint(x:value.translation.width + self.imageArrayNewTwoPosition.x, y: value.translation.height + self.imageArrayNewTwoPosition.y)
+                                        self.imageArrayNewTwoPosition = self.imageArrayCurrentTwoPosition
+                                        
+                                        
+                                        //Image Three Ended Coordinates
+                                        self.imageArrayCurrentThreePosition = CGPoint(x:value.translation.width + self.imageArrayNewThreePosition.x, y: value.translation.height + self.imageArrayNewThreePosition.y)
+                                        self.imageArrayNewThreePosition = self.imageArrayCurrentThreePosition
+                                        
+                                        //Image Four Ended Coordinates
+                                        self.imageArrayCurrentFourPosition = CGPoint(x:value.translation.width + self.imageArrayNewFourPosition.x, y: value.translation.height + self.imageArrayNewFourPosition.y)
+                                        self.imageArrayNewFourPosition = self.imageArrayCurrentFourPosition
+                                        
+                                        //Image Five Ended Coordinates
+                                        self.imageArrayCurrentFivePosition = CGPoint(x:value.translation.width + self.imageArrayNewFivePosition.x, y: value.translation.height + self.imageArrayNewFivePosition.y)
+                                        self.imageArrayNewFivePosition = self.imageArrayCurrentFivePosition
+                                        
+                                        
+                                        //Image Six Ended Coordinates
+                                        self.imageArrayCurrentSixPosition = CGPoint(x:value.translation.width + self.imageArrayNewSixPosition.x, y: value.translation.height + self.imageArrayNewSixPosition.y)
+                                        self.imageArrayNewSixPosition = self.imageArrayCurrentSixPosition
+                                        
+                                        
+                                        //Image Seven Ended Coordinates
+                                        self.imageArrayCurrentSevenPosition = CGPoint(x:value.translation.width + self.imageArrayNewSevenPosition.x, y: value.translation.height + self.imageArrayNewSevenPosition.y)
+                                        self.imageArrayNewSevenPosition = self.imageArrayCurrentSevenPosition
+                                        
+                                        //Image Eight Ended Coordinates
+                                        self.imageArrayCurrentEightPosition = CGPoint(x:value.translation.width + self.imageArrayNewEightPosition.x, y: value.translation.height + self.imageArrayNewEightPosition.y)
+                                        self.imageArrayNewEightPosition = self.imageArrayCurrentEightPosition
                                            
                                            //Track Bee co-ordinates
                                            self.getBeeXPosition = Int(self.beeNewPosition.x)
@@ -499,7 +620,7 @@ struct Bee: View {
                                   
                                         
                                         //Betty arrives home
-                                        if (self.getBeeXPosition == 0 && self.getBeeYPosition == 0) && (self.beeHealthCounter > 0) {
+                                        if (self.beeCurrentPosition.x == 0 && self.beeCurrentPosition.y == 0) && (self.beeHealthCounter > 0) {
                                             
                                             playAudioFiles(sound: "Betty_Arrives_Home", type: "mp3")
                                             
@@ -580,7 +701,6 @@ struct Bee: View {
                
                
                }
-       // .navigationBarTitle(Text("Betty's World"),displayMode: .inline)
         
         }
         
