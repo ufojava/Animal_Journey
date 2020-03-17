@@ -115,6 +115,10 @@ struct Bee: View {
     @State private var beeHasBeenPoisened = false
     @State private var beeHasFedStatus = false
     @State private var beeLandsOnHoneyJar = false
+    @State private var bettyStatus = ""
+    
+    //Player Score
+    @State private var playerScore = 0
     
     
     
@@ -233,12 +237,16 @@ struct Bee: View {
                 
                 beeHomeResult = "Feed Betty now!!!"
             }
-        } else if self.beeHealthCounter > 0 {
+        } else if self.beeHealthCounter > 0 && self.timeRemaining != 0 {
             
-            beeHomeResult = "Betty has been fed"
+            beeHomeResult = "Betty has been fed 🍔"
         
         
-     }else {
+        }else if self.timeRemaining == 0 {
+            
+            beeHomeResult = "Game has now ended ❌"
+        
+        } else {
             
             beeHomeResult = "Betty needs food!!! "
         }
@@ -286,8 +294,10 @@ struct Bee: View {
                                
                                Text("Betty is: \(self.getBeeYPosition) on Y axis").foregroundColor(Color.yellow).font(.custom("Chalkboard SE", size: 20))
                                Text("Betty is: \(self.getBeeXPosition) on X axis").foregroundColor(Color.red).font(.custom("Chalkboard SE", size: 20))
+                            
+                            
                             HStack {
-                               //Text("Meals: \(self.beeHealthCounter)")
+                               
                                 
                                 //Monitor Time Remaining
                                 
@@ -314,6 +324,9 @@ struct Bee: View {
                                             } else if self.timeRemaining == 0 {
                                                 
                                                 ReadSynthWord(word: "Time is up")
+                                                self.playerScore = 0
+                                        
+                                                
                                             }
                                             
                                             
@@ -323,6 +336,20 @@ struct Bee: View {
                                 }
                                 
                                 Text("Minute(s) Remaining").foregroundColor(Color.white).font(.custom("Chalkboard SE", size: 20))
+                                
+                                //Space
+                                Spacer().frame(width:5)
+                                
+                                //Player Score
+                                
+                                Text("\(self.playerScore)")
+                                    .frame(width:40,height: 40)
+                                        .background(Color.green)
+                                        .foregroundColor(Color.white)
+                                        .clipShape(Circle())
+                                
+                                Text("Points").foregroundColor(Color.white).font(.custom("Chalkbaord SE", size: 20))
+                                
                             }//End of Timer HStack
             
                             
@@ -358,6 +385,18 @@ struct Bee: View {
                                             .onTapGesture {
                                                 self.checkBeeHealth = true
                                                 self.processFoodLevel()
+                                                
+                                                //Add 10 Points to Player Score
+                                                
+                                                if self.playerScore <= 30 || self.playerScore < 40 {
+                                                    
+                                                self.playerScore += 10
+                                                    
+                                                    ReadSynthWord(word: "\(self.playerScore) Points")
+                                                } else {
+                                                    
+                                                    ReadSynthWord(word: "You have maximum points")
+                                                }
                                                 playAudioFiles(sound: "BeeClickAction", type: "mp3")
                                         }
                                         
@@ -517,7 +556,8 @@ struct Bee: View {
                                             
                                             if self.beeHasBeenPoisened {
                                                 
-                                                self.beeHealthCounter = 0
+                                                self.beeHealthCounter = 0 //Health is now zero
+                                                self.playerScore = 0
                                                 
                                                 //Play Bethany's sound
                                                 
@@ -525,6 +565,7 @@ struct Bee: View {
                                                 
                                                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                                     playAudioFiles(sound: "Bethany OH NO", type: "mp3")
+                            
                                                    
                                                 }
                                                 
@@ -635,6 +676,13 @@ struct Bee: View {
                                             if self.beeLandsOnHoneyJar {
                                                 playAudioFiles(sound: "BettyLandsOnJar", type: "mp3")
                                                 self.beeCurrentPosition = CGPoint(x: 0.0, y: 0.0)
+                                                self.timeRemaining = 0
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                                                    
+                                                    playAudioFiles(sound: "Betty_Arrives_Home", type: "mp3")
+                                                    
+                                                }
                                                
                                                 
                                             }
