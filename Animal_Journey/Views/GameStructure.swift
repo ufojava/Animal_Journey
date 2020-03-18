@@ -292,10 +292,12 @@ struct Bee: View {
                                
                                Spacer().frame(height:10)
                                
-                               Text("Betty is: \(self.getBeeYPosition) on Y axis").foregroundColor(Color.yellow).font(.custom("Chalkboard SE", size: 20))
-                               Text("Betty is: \(self.getBeeXPosition) on X axis").foregroundColor(Color.red).font(.custom("Chalkboard SE", size: 20))
-                            
-                            
+                            Text("Betty's Location X: \(self.getBeeYPosition) Y:  \(self.getBeeYPosition)").foregroundColor(Color.black).font(.custom("Chalkboard SE", size: 20))
+                                .frame(width:350,height: 30)
+                                .background(Color.green)
+                                .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white,lineWidth: 2))
+                                
+                            Spacer().frame(height:10)
                             HStack {
                                
                                 
@@ -305,7 +307,8 @@ struct Bee: View {
                                     .frame(width:40,height: 40)
                                     .background(Color.red)
                                     .foregroundColor(Color.white)
-                                .clipShape(Circle())
+                                    .clipShape(Circle())
+                                    .overlay(Circle().stroke(Color.white,lineWidth: 2))
                                     .onReceive(timer) {_ in
                                         
                                         if self.timeRemaining > 0 {
@@ -335,7 +338,7 @@ struct Bee: View {
                                         
                                 }
                                 
-                                Text("Minute(s) Remaining").foregroundColor(Color.white).font(.custom("Chalkboard SE", size: 20))
+                                Text("Min(s) Left").foregroundColor(Color.white).font(.custom("Chalkboard SE", size: 20))
                                 
                                 //Space
                                 Spacer().frame(width:5)
@@ -344,9 +347,10 @@ struct Bee: View {
                                 
                                 Text("\(self.playerScore)")
                                     .frame(width:40,height: 40)
-                                        .background(Color.green)
+                                        .background(Color.blue)
                                         .foregroundColor(Color.white)
                                         .clipShape(Circle())
+                                        .overlay(Circle().stroke(Color.white,lineWidth: 2))
                                 
                                 Text("Points").foregroundColor(Color.white).font(.custom("Chalkbaord SE", size: 20))
                                 
