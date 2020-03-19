@@ -47,3 +47,22 @@ func ReadSynthWord(word: String) {
     synthersizer.speak(utterance)
     
 }
+
+
+//Funciton to play background music
+func PlayBackgroundMusic(sound:String, type:String) {
+    
+    if let path = Bundle.main.path(forResource: sound, ofType: type) {
+        
+        do {
+            
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+            audioPlayer?.play()
+            
+        } catch {
+            
+            print("Unable to find file")
+        }
+    }
+    
+}

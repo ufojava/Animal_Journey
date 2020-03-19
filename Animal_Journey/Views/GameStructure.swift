@@ -68,8 +68,8 @@ struct Bee: View {
     @State private var beeCurrentPosition: CGPoint = .zero
     @State private var beeNewPosition: CGPoint = .zero
     
-    //Array Current Position
-   // @State private var imageArrayCurrentOnePosition: CGPoint = .init(x: -174, y: 142)
+    //Bottom Obstacle Array Current Position
+
     @State private var imageArrayCurrentOnePosition: CGPoint = .zero
     @State private var imageArrayNewOnePosition: CGPoint = .zero
     
@@ -93,6 +93,32 @@ struct Bee: View {
     
     @State private var imageArrayCurrentEightPosition: CGPoint = .zero
     @State private var imageArrayNewEightPosition: CGPoint = .zero
+    
+    //Top Obstacle Array Current Position
+
+       @State private var topArrayCurrentOnePosition: CGPoint = .zero
+       @State private var topArrayNewOnePosition: CGPoint = .zero
+       
+       @State private var topArrayCurrentTwoPosition: CGPoint = .zero
+       @State private var topArrayNewTwoPosition: CGPoint = .zero
+       
+       @State private var topArrayCurrentThreePosition: CGPoint = .zero
+       @State private var topArrayNewThreePosition: CGPoint = .zero
+       
+       @State private var topArrayCurrentFourPosition: CGPoint = .zero
+       @State private var topArrayNewFourPosition: CGPoint = .zero
+       
+       @State private var topArrayCurrentFivePosition: CGPoint = .zero
+       @State private var topArrayNewFivePosition: CGPoint = .zero
+       
+       @State private var topArrayCurrentSixPosition: CGPoint = .zero
+       @State private var topArrayNewSixPosition: CGPoint = .zero
+       
+       @State private var topArrayCurrentSevenPosition: CGPoint = .zero
+       @State private var topArrayNewSevenPosition: CGPoint = .zero
+       
+       @State private var topArrayCurrentEightPosition: CGPoint = .zero
+       @State private var topArrayNewEightPosition: CGPoint = .zero
     
  
     
@@ -120,6 +146,13 @@ struct Bee: View {
     //Player Score
     @State private var playerScore = 0
     
+    //Variable to Obstacle reset
+    @State private var obstacleResetTimerStatus = false
+    @State private var obstacleResetTime = 180
+    let resetTimer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+    
+    
+    
     
     
     //Be has fed status
@@ -130,7 +163,8 @@ struct Bee: View {
     
     
     //Naviagtion obstacles for top an buttom of screen
-    var BottomimageObstacle = ["Honeycomb","BeeKiller","Honeycomb","BeeKiller","Honeycomb","BeeKiller","BeeKiller","BeeKiller"].shuffled()
+    @State private var topImageObstacle = ["Honeycomb","BeeKiller","Honeycomb","BeeKiller","Honeycomb","BeeKiller","BeeKiller","BeeKiller"].shuffled()
+    @State private var BottomimageObstacle = ["Honeycomb","BeeKiller","Honeycomb","BeeKiller","Honeycomb","BeeKiller","BeeKiller","BeeKiller"].shuffled()
     
     
     
@@ -292,7 +326,7 @@ struct Bee: View {
                                
                                Spacer().frame(height:10)
                                
-                            Text("Betty's Location X: \(self.getBeeYPosition) Y:  \(self.getBeeYPosition)").foregroundColor(Color.black).font(.custom("Chalkboard SE", size: 20))
+                            Text("Betty's Location X: \(self.getBeeXPosition) Y: \(self.getBeeYPosition)").foregroundColor(Color.black).font(.custom("Chalkboard SE", size: 20))
                                 .frame(width:350,height: 30)
                                 .background(Color.green)
                                 .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white,lineWidth: 2))
@@ -358,6 +392,7 @@ struct Bee: View {
             
                             
                             Spacer().frame(height:20)
+                            VStack {
                             
                             HStack {
                                 GameImageV2(imageName: "Sunflower", imageWidth: 100, imageHeight: 100)
@@ -404,9 +439,9 @@ struct Bee: View {
                                                 playAudioFiles(sound: "BeeClickAction", type: "mp3")
                                         }
                                         
-                                    }
+                                    }//End of Thermostat Vstack
                                     
-                                }
+                                }//End of Button Healthcheck
                                     
                                 
                                 if self.checkBeeHealth {
@@ -448,22 +483,76 @@ struct Bee: View {
                                 
                             
                                 }
+                                
                         
                             }//End of the Sunflower HStack
-                           
+                            //Top Obstacles
+                            
+                                HStack {
+                                
+                                ForEach(0..<topImageObstacle.count) {topImage in
+                                    
+                                    GameImageV2(imageName: self.topImageObstacle[topImage], imageWidth: 40, imageHeight: 40)
+                                    
+                                    
+                                    
+                                }.onReceive(resetTimer) { time in
+                                    
+                                    
+                                    if self.obstacleResetTime == 0 {
+                                        
+                                        self.resetTimer.upstream.connect().cancel() //To cancel if zero is reached
+                                        
+                                    } else {
+                                        
+                                        self.obstacleResetTimerStatus = true
+                                    }
+                                    
+                                    if self.obstacleResetTimerStatus {
+                                        
+                                        self.topImageObstacle.shuffle()
+                                    }
+                                     
+                                    /* NOTE:
+                                    No need to set time as this is being taken care off by the botton obstacle
+                                    
+                                    */
+                                    }
+                                    
+                                }//End Top Obstacle HStack
+                                
+                            }//End of VStack for top part of screen
                             
                             Spacer()
                             
                             //Bottom Obstacles
                             HStack {
-                                
-                                ForEach(0..<BottomimageObstacle.count) { topImage in
-                                    GameImageV2(imageName: self.BottomimageObstacle[topImage], imageWidth: 40, imageHeight: 40)
+                               
+                                ForEach(0..<BottomimageObstacle.count) { bottomImage in
+                                    GameImageV2(imageName: self.BottomimageObstacle[bottomImage], imageWidth: 40, imageHeight: 40)
                                     
+                                }.onReceive(resetTimer) { time in
+                                    
+                                    if self.obstacleResetTime == 0 {
+                                        
+                                        self.resetTimer.upstream.connect().cancel() //To cancel when zero is reached
+                                        
+                                    } else {
+                                        
+                                        self.obstacleResetTimerStatus = true
+                                        
+                                    }
+                                        
+                                    if self.obstacleResetTimerStatus {
+                                        self.BottomimageObstacle.shuffle() //Shuffle the array
+                                    }
+                                    
+                                    self.obstacleResetTime -= 5
                                 }
                                 
+                              
                                 
-                            }
+                            }//End of obstacles
                             
                             
                             VStack {
@@ -524,17 +613,33 @@ struct Bee: View {
                                
                                        .onChanged { value in
                                            
-                                           
+                                           //Bee Cordinates
                                            self.beeCurrentPosition = CGPoint(x:value.translation.width + self.beeNewPosition.x, y: value.translation.height + self.beeNewPosition.y)
+                                        
+                                        
+                                        //Top Array Coordinates
+                                        self.topArrayCurrentOnePosition = CGPoint(x:value.translation.width + self.topArrayNewOnePosition.x, y: value.translation.height + self.topArrayNewOnePosition.y)
+                                        
+                                        self.topArrayCurrentTwoPosition = CGPoint(x:value.translation.width + self.topArrayNewTwoPosition.x, y: value.translation.height + self.topArrayNewTwoPosition.y)
+                                        
+                                        self.topArrayCurrentThreePosition = CGPoint(x:value.translation.width + self.topArrayNewThreePosition.x, y: value.translation.height + self.topArrayNewThreePosition.y)
+                                        
+                                        self.topArrayCurrentFourPosition = CGPoint(x:value.translation.width + self.topArrayNewFourPosition.x, y: value.translation.height + self.topArrayNewFourPosition.y)
+                                        
+                                        self.topArrayCurrentFivePosition = CGPoint(x:value.translation.width + self.topArrayNewFivePosition.x, y: value.translation.height + self.topArrayNewFivePosition.y)
+                                        
+                                        self.topArrayCurrentSixPosition = CGPoint(x:value.translation.width + self.topArrayNewSixPosition.x, y: value.translation.height + self.topArrayNewSixPosition.y)
+                                        
+                                        self.topArrayCurrentSevenPosition = CGPoint(x:value.translation.width + self.topArrayNewSevenPosition.x, y: value.translation.height + self.topArrayNewSevenPosition.y)
+                                        
+                                        self.topArrayCurrentEightPosition = CGPoint(x:value.translation.width + self.topArrayNewEightPosition.x, y: value.translation.height + self.topArrayNewEightPosition.y)
                                         
                                         
         
                                         
-                                            //Array Coordinates
+                                            //Bottom Array Coordinates
                                         self.imageArrayCurrentOnePosition = CGPoint(x:value.translation.width + self.imageArrayNewOnePosition.x, y: value.translation.height + self.imageArrayNewOnePosition.y)
-                                        
-                                        
-                                        
+                                                                        
                                         self.imageArrayCurrentTwoPosition = CGPoint(x:value.translation.width + self.imageArrayNewTwoPosition.x, y: value.translation.height + self.imageArrayNewTwoPosition.y)
                                         
                                         self.imageArrayCurrentThreePosition = CGPoint(x:value.translation.width + self.imageArrayNewThreePosition.x, y: value.translation.height + self.imageArrayNewThreePosition.y)
@@ -579,8 +684,44 @@ struct Bee: View {
                                         
                                         }//End of Bee notification
                                         
+                                        //Top Bee Killer Coordinates
                                         
-                                        //Bee Killer conditions
+                                        if (self.topArrayCurrentOnePosition.x >= -177 && self.topArrayCurrentOnePosition.x  <= -175) && (self.topArrayCurrentOnePosition.y >= -96 && self.topArrayCurrentOnePosition.y <= -64) && self.topImageObstacle[0].contains("BeeKiller") {
+                                            
+                                            playAudioFiles(sound: "Danger", type: "mp3")
+                                        
+                                        } else if (self.topArrayCurrentTwoPosition.x >= -135 && self.topArrayCurrentTwoPosition.x <= -133) && (self.topArrayCurrentTwoPosition.y >= -96 && self.topArrayCurrentTwoPosition.y <= -94) && self.topImageObstacle[1].contains("BeeKiller") {
+                                            
+                                            playAudioFiles(sound: "Danger", type: "mp3")
+                                            
+                                        } else if (self.topArrayCurrentThreePosition.x >= -85 && self.topArrayCurrentThreePosition.x <= -81) && (self.topArrayCurrentThreePosition.y >= -96 && self.topArrayCurrentThreePosition.y <= -64) && self.topImageObstacle[2].contains("BeeKiller") {
+                                        
+                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                        
+                                        } else if (self.topArrayCurrentFourPosition.x >= -33 && self.topArrayCurrentFourPosition.x <= -30) && (self.topArrayCurrentFourPosition.y >= -96 && self.topArrayCurrentFourPosition.y <= -94) && self.topImageObstacle[3].contains("BeeKiller") {
+                                        
+                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                        
+                                        } else if (self.topArrayCurrentFivePosition.x >= 16 && self.topArrayCurrentFivePosition.x <= 19) && (self.topArrayCurrentFivePosition.y >= -96 && self.topArrayCurrentFivePosition.y <= -94) && self.topImageObstacle[4].contains("BeeKiller") {
+                                        
+                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                        
+                                        } else if (self.topArrayCurrentSixPosition.x >= 59 && self.topArrayCurrentSixPosition.x <= 61) && (self.topArrayCurrentSixPosition.y >= -96 && self.topArrayCurrentSixPosition.y <= -94) && self.topImageObstacle[5].contains("BeeKiller") {
+                                        
+                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                        
+                                        } else if (self.topArrayCurrentSevenPosition.x >= 106 && self.topArrayCurrentSevenPosition.x <= 109) && (self.topArrayCurrentSevenPosition.y >= -96 && self.topArrayCurrentSevenPosition.y <= -94) && self.topImageObstacle[6].contains("BeeKiller") {
+                                        
+                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                        
+                                        } else if (self.topArrayCurrentEightPosition.x >= 155 && self.topArrayCurrentEightPosition.x <= 157) && (self.topArrayCurrentEightPosition.y >= -96 && self.topArrayCurrentEightPosition.y <= -94) && self.topImageObstacle[7].contains("BeeKiller") {
+                                        
+                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                        
+                                        }
+                                        
+                                        
+                                        //Bottom Bee Killer conditions
                                         if (self.imageArrayCurrentOnePosition.x >= -180 && self.imageArrayCurrentOnePosition.x  <= -170) && (self.imageArrayCurrentOnePosition.y >= 138 && self.imageArrayCurrentOnePosition.y <= 144) && self.BottomimageObstacle[0].contains("BeeKiller") {
                                             
                                             playAudioFiles(sound: "Danger", type: "mp3")
@@ -614,13 +755,45 @@ struct Bee: View {
                                         playAudioFiles(sound: "Danger", type: "mp3")
                                         
                                         }
+                                        
+                                        
                                            
                                        }//End onChanged
                                        
                                        .onEnded { value in
+                                        
+                                        self.beeCurrentPosition = CGPoint(x:value.translation.width + self.beeNewPosition.x, y:value.translation.height + self.beeNewPosition.y)
+                                        self.beeNewPosition = self.beeCurrentPosition
+                                        
+                                        
+                                        
+                                        //Top Array Coordinates
+                                        self.topArrayCurrentOnePosition = CGPoint(x:value.translation.width + self.topArrayNewOnePosition.x, y: value.translation.height + self.topArrayNewOnePosition.y)
+                                        self.topArrayNewOnePosition = self.topArrayCurrentOnePosition
+                                        
+                                        self.topArrayCurrentTwoPosition = CGPoint(x:value.translation.width + self.topArrayNewTwoPosition.x, y: value.translation.height + self.topArrayNewTwoPosition.y)
+                                        self.topArrayNewTwoPosition = self.topArrayCurrentTwoPosition
+                                        
+                                        self.topArrayCurrentThreePosition = CGPoint(x:value.translation.width + self.topArrayNewThreePosition.x, y: value.translation.height + self.topArrayNewThreePosition.y)
+                                        self.topArrayNewThreePosition = self.topArrayCurrentThreePosition
+                                        
+                                        self.topArrayCurrentFourPosition = CGPoint(x:value.translation.width + self.topArrayNewFourPosition.x, y: value.translation.height + self.topArrayNewFourPosition.y)
+                                        self.topArrayNewFourPosition = self.topArrayCurrentFourPosition
+                                        
+                                        self.topArrayCurrentFivePosition = CGPoint(x:value.translation.width + self.topArrayNewFivePosition.x, y: value.translation.height + self.topArrayNewFivePosition.y)
+                                        self.topArrayNewFivePosition = self.topArrayCurrentFivePosition
+                                        
+                                        self.topArrayCurrentSixPosition = CGPoint(x:value.translation.width + self.topArrayNewSixPosition.x, y: value.translation.height + self.topArrayNewSixPosition.y)
+                                        self.topArrayNewSixPosition = self.topArrayCurrentSixPosition
+                                        
+                                        self.topArrayCurrentSevenPosition = CGPoint(x:value.translation.width + self.topArrayNewSevenPosition.x, y: value.translation.height + self.topArrayNewSevenPosition.y)
+                                        self.topArrayNewSevenPosition = self.topArrayCurrentSevenPosition
+                                        
+                                        self.topArrayCurrentEightPosition = CGPoint(x:value.translation.width + self.topArrayNewEightPosition.x, y: value.translation.height + self.topArrayNewEightPosition.y)
+                                        self.topArrayNewEightPosition = self.topArrayCurrentEightPosition
+                                        
                                            
-                                           self.beeCurrentPosition = CGPoint(x:value.translation.width + self.beeNewPosition.x, y:value.translation.height + self.beeNewPosition.y)
-                                           self.beeNewPosition = self.beeCurrentPosition
+                                           
                                         
                                         
                                         //Image One Ended Coordinates
@@ -658,6 +831,10 @@ struct Bee: View {
                                         //Image Eight Ended Coordinates
                                         self.imageArrayCurrentEightPosition = CGPoint(x:value.translation.width + self.imageArrayNewEightPosition.x, y: value.translation.height + self.imageArrayNewEightPosition.y)
                                         self.imageArrayNewEightPosition = self.imageArrayCurrentEightPosition
+                                        
+                                        
+                                        
+                                        
                                            
                                            //Track Bee co-ordinates
                                            self.getBeeXPosition = Int(self.beeNewPosition.x)
@@ -680,7 +857,14 @@ struct Bee: View {
                                             if self.beeLandsOnHoneyJar {
                                                 playAudioFiles(sound: "BettyLandsOnJar", type: "mp3")
                                                 self.beeCurrentPosition = CGPoint(x: 0.0, y: 0.0)
+                                                
+                                                //Updating the Status feild
+                                                self.getBeeXPosition = Int(self.beeCurrentPosition.x)
+                                                self.getBeeYPosition = Int(self.beeCurrentPosition.y)
+                                                
+                                                //Resetting timer values to zero
                                                 self.timeRemaining = 0
+                                                self.obstacleResetTime = 0
                                                 
                                                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                                                     
