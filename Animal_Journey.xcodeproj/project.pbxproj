@@ -14,6 +14,7 @@
 		0335757724197D97007ED0F6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0335757624197D97007ED0F6 /* Preview Assets.xcassets */; };
 		0335757A24197D97007ED0F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0335757824197D97007ED0F6 /* LaunchScreen.storyboard */; };
 		0335758424197EE6007ED0F6 /* GameStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0335758324197EE6007ED0F6 /* GameStructure.swift */; };
+		033785D92424153E0040A53D /* Fantasyland.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 033785D82424153E0040A53D /* Fantasyland.mp3 */; };
 		03D2C8D2241C5F47005A0434 /* Danger.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03D2C8CA241C5F46005A0434 /* Danger.mp3 */; };
 		03D2C8D3241C5F47005A0434 /* BeeClickAction.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03D2C8CB241C5F46005A0434 /* BeeClickAction.mp3 */; };
 		03D2C8D6241C5F47005A0434 /* BeeArrvidedHome.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03D2C8CE241C5F47005A0434 /* BeeArrvidedHome.mp3 */; };
@@ -31,7 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0335756A24197D94007ED0F6 /* Animal_Journey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Animal_Journey.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0335756A24197D94007ED0F6 /* Betty's World.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Betty's World.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0335756D24197D94007ED0F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0335756F24197D94007ED0F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0335757124197D94007ED0F6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,6 +41,7 @@
 		0335757924197D97007ED0F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0335757B24197D97007ED0F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0335758324197EE6007ED0F6 /* GameStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStructure.swift; sourceTree = "<group>"; };
+		033785D82424153E0040A53D /* Fantasyland.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Fantasyland.mp3; sourceTree = "<group>"; };
 		03D2C8CA241C5F46005A0434 /* Danger.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Danger.mp3; sourceTree = "<group>"; };
 		03D2C8CB241C5F46005A0434 /* BeeClickAction.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BeeClickAction.mp3; sourceTree = "<group>"; };
 		03D2C8CE241C5F47005A0434 /* BeeArrvidedHome.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BeeArrvidedHome.mp3; sourceTree = "<group>"; };
@@ -78,7 +80,7 @@
 		0335756B24197D94007ED0F6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0335756A24197D94007ED0F6 /* Animal_Journey.app */,
+				0335756A24197D94007ED0F6 /* Betty's World.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,6 +93,7 @@
 				03D2C8D0241C5F47005A0434 /* BeeHomeMusicBeat.mp3 */,
 				03D2C8DA241D1AE7005A0434 /* Bethany OH NO.mp3 */,
 				03D2C8DD241D1AE7005A0434 /* Bethany WELL DONE.mp3 */,
+				033785D82424153E0040A53D /* Fantasyland.mp3 */,
 				03D2C8DB241D1AE7005A0434 /* BettyBee_GuideHerHome.mp3 */,
 				03D2C8DC241D1AE7005A0434 /* BettyBee_HomeButHungry.mp3 */,
 				03D2C8E8241E8DC8005A0434 /* BettyLandsOnJar.mp3 */,
@@ -153,7 +156,7 @@
 			);
 			name = Animal_Journey;
 			productName = Animal_Journey;
-			productReference = 0335756A24197D94007ED0F6 /* Animal_Journey.app */;
+			productReference = 0335756A24197D94007ED0F6 /* Betty's World.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -196,6 +199,7 @@
 			files = (
 				03D2C8E0241D1AE7005A0434 /* BettyBee_HomeButHungry.mp3 in Resources */,
 				0335757A24197D97007ED0F6 /* LaunchScreen.storyboard in Resources */,
+				033785D92424153E0040A53D /* Fantasyland.mp3 in Resources */,
 				03D2C8D8241C5F47005A0434 /* BeeHomeMusicBeat.mp3 in Resources */,
 				03D2C8D7241C5F47005A0434 /* GrowlingSynthBass.mp3 in Resources */,
 				03D2C8D2241C5F47005A0434 /* Danger.mp3 in Resources */,
@@ -370,7 +374,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ufookoro-me.com.Animal-Journey";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Betty's World";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -390,7 +394,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ufookoro-me.com.Animal-Journey";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Betty's World";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

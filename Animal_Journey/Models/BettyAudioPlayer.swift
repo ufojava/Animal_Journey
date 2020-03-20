@@ -11,6 +11,7 @@ import AVFoundation
 
 //Set variable for the audio player
 var audioPlayer: AVAudioPlayer?
+var backgroundAudioPlayer: AVAudioPlayer?
 
 
 func playAudioFiles(sound: String, type: String) {
@@ -56,8 +57,10 @@ func PlayBackgroundMusic(sound:String, type:String) {
         
         do {
             
-            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
-            audioPlayer?.play()
+            backgroundAudioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+            backgroundAudioPlayer?.numberOfLoops = -1
+            backgroundAudioPlayer?.volume = 0.2
+            backgroundAudioPlayer?.play()
             
         } catch {
             

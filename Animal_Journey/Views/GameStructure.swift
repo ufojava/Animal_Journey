@@ -120,6 +120,27 @@ struct Bee: View {
        @State private var topArrayCurrentEightPosition: CGPoint = .zero
        @State private var topArrayNewEightPosition: CGPoint = .zero
     
+    //Bonus points
+    @State private var bonusPointOneCurrentPoistion:    CGPoint = .zero
+    @State private var bonusPointOneNewPosition:    CGPoint = .zero
+    
+    @State private var bonusPointTwoCurrentPoistion:    CGPoint = .zero
+    @State private var bonusPointTwoNewPosition:    CGPoint = .zero
+    
+    @State private var bonusPointThreeCurrentPoistion:    CGPoint = .zero
+    @State private var bonusPointThreeNewPosition:    CGPoint = .zero
+    
+    @State private var bonusPointFourCurrentPoistion:    CGPoint = .zero
+    @State private var bonusPointFourNewPosition:    CGPoint = .zero
+    
+    @State private var bonusPointFiveCurrentPoistion:    CGPoint = .zero
+    @State private var bonusPointFiveNewPosition:    CGPoint = .zero
+    
+    @State private var bonusPointSixCurrentPoistion:    CGPoint = .zero
+    @State private var bonusPointSixNewPosition:    CGPoint = .zero
+    
+    @State private var bonusPointSevenCurrentPoistion:    CGPoint = .zero
+    @State private var bonusPointSevenNewPosition:    CGPoint = .zero
  
     
     
@@ -150,6 +171,11 @@ struct Bee: View {
     @State private var obstacleResetTimerStatus = false
     @State private var obstacleResetTime = 180
     let resetTimer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+    
+    
+    //Variables to hold scores
+    @State private var finalScores = 0
+    @State private var bonusPoints = 0
     
     
     
@@ -372,12 +398,12 @@ struct Bee: View {
                                         
                                 }
                                 
-                                Text("Min(s) Left").foregroundColor(Color.white).font(.custom("Chalkboard SE", size: 20))
+                                Text("Min(s)").foregroundColor(Color.white).font(.custom("Chalkboard SE", size: 20))
                                 
                                 //Space
                                 Spacer().frame(width:5)
                                 
-                                //Player Score
+                                //Player Health
                                 
                                 Text("\(self.playerScore)")
                                     .frame(width:40,height: 40)
@@ -386,7 +412,18 @@ struct Bee: View {
                                         .clipShape(Circle())
                                         .overlay(Circle().stroke(Color.white,lineWidth: 2))
                                 
-                                Text("Points").foregroundColor(Color.white).font(.custom("Chalkbaord SE", size: 20))
+                                Text("Health").foregroundColor(Color.white).font(.custom("Chalkbaord SE", size: 20))
+                                
+                                
+                                Text("\(self.finalScores)")
+                                    .frame(width:40,height: 40)
+                                    .background(Color.yellow)
+                                    .foregroundColor(Color.black)
+                                    .clipShape(Circle())
+                                    .overlay(Circle().stroke(Color.white,lineWidth: 2))
+                                
+                                Text("Score").foregroundColor(Color.white).font(.custom("Chalkbaord SE", size: 20))
+                                
                                 
                             }//End of Timer HStack
             
@@ -431,10 +468,10 @@ struct Bee: View {
                                                     
                                                 self.playerScore += 10
                                                     
-                                                    ReadSynthWord(word: "\(self.playerScore) Points")
+                                                    ReadSynthWord(word: "\(self.playerScore) Booster Meals")
                                                 } else {
                                                     
-                                                    ReadSynthWord(word: "You have maximum points")
+                                                    ReadSynthWord(word: "You have maximum booster meals")
                                                 }
                                                 playAudioFiles(sound: "BeeClickAction", type: "mp3")
                                         }
@@ -654,6 +691,22 @@ struct Bee: View {
                                         
                                         self.imageArrayCurrentEightPosition = CGPoint(x:value.translation.width + self.imageArrayNewEightPosition.x, y: value.translation.height + self.imageArrayNewEightPosition.y)
                                         
+                                        
+                                        //Bonus Coordinates - Current position
+                                        self.bonusPointOneCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointOneNewPosition.x, y:value.translation.height + self.bonusPointOneNewPosition.y)
+                                        
+                                        self.bonusPointTwoCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointTwoNewPosition.x, y:value.translation.height + self.bonusPointTwoNewPosition.y)
+                                        
+                                        self.bonusPointThreeCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointThreeNewPosition.x, y:value.translation.height + self.bonusPointThreeNewPosition.y)
+                                        
+                                        self.bonusPointFourCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointFourNewPosition.x, y:value.translation.height + self.bonusPointFourNewPosition.y)
+                                        
+                                        self.bonusPointFiveCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointFiveNewPosition.x, y:value.translation.height + self.bonusPointFiveNewPosition.y)
+                                        
+                                        self.bonusPointSixCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointSixNewPosition.x, y:value.translation.height + self.bonusPointSixNewPosition.y)
+                                        
+                                        self.bonusPointSevenCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointSevenNewPosition.x, y:value.translation.height + self.bonusPointSevenNewPosition.y)
+                                        
                                             
                                         
                                         
@@ -683,6 +736,58 @@ struct Bee: View {
                                             }
                                         
                                         }//End of Bee notification
+                                        
+                                        
+                                        //Add bonus points
+                                        if (self.bonusPointOneCurrentPoistion.x == 144)  {
+                                            
+                                            self.finalScores += 20
+                                            ReadSynthWord(word: "Bonus Point 20")
+                                            
+                                        }
+                                                
+                                            if (self.bonusPointTwoCurrentPoistion.x == 32)  {
+                                                
+                                              self.finalScores += 20
+                                                ReadSynthWord(word: "Bonus Point 20")
+                                            }
+                                            
+                                            if (self.bonusPointThreeCurrentPoistion.x == -88) {
+                                                
+                                                self.finalScores += 20
+                                                ReadSynthWord(word: "Bonus Point 20")
+                                            }
+                                            
+                                            
+                                            if (self.bonusPointFourCurrentPoistion.x == -180)  {
+                                                
+                                                self.finalScores += 20
+                                                ReadSynthWord(word: "Bonus Point 20")
+                                                
+                                            }
+                                            
+                                            if (self.bonusPointFiveCurrentPoistion.x == -150) {
+                                                
+                                                self.finalScores += 20
+                                                ReadSynthWord(word: "Bonus Point 20")
+                                                
+                                            }
+                                            
+                                            if (self.bonusPointSixCurrentPoistion.x == -54) {
+                                                
+                                                self.finalScores += 20
+                                                ReadSynthWord(word: "Bonus Point 20")
+                                            }
+                                            
+                                            if (self.bonusPointSevenCurrentPoistion.x == 160) {
+                                                
+                                                self.finalScores += 20
+                                                ReadSynthWord(word: "Bonus Point 20")
+                                            }
+                                            
+                                       
+                                        
+                                        
                                         
                                         //Top Bee Killer Coordinates
                                         
@@ -831,6 +936,29 @@ struct Bee: View {
                                         //Image Eight Ended Coordinates
                                         self.imageArrayCurrentEightPosition = CGPoint(x:value.translation.width + self.imageArrayNewEightPosition.x, y: value.translation.height + self.imageArrayNewEightPosition.y)
                                         self.imageArrayNewEightPosition = self.imageArrayCurrentEightPosition
+                                        
+                                        
+                                        //Bonus Coordinates Ended
+                                        self.bonusPointOneCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointOneNewPosition.x, y:value.translation.height + self.bonusPointOneNewPosition.y)
+                                        self.bonusPointOneNewPosition = self.bonusPointOneCurrentPoistion
+                                        
+                                        self.bonusPointTwoCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointTwoNewPosition.x, y:value.translation.height + self.bonusPointTwoNewPosition.y)
+                                        self.bonusPointTwoNewPosition = self.bonusPointTwoCurrentPoistion
+                                        
+                                        self.bonusPointThreeCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointThreeNewPosition.x, y:value.translation.height + self.bonusPointThreeNewPosition.y)
+                                        self.bonusPointThreeNewPosition = self.bonusPointThreeCurrentPoistion
+                                        
+                                        self.bonusPointFourCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointFourNewPosition.x, y:value.translation.height + self.bonusPointFourNewPosition.y)
+                                        self.bonusPointFourNewPosition = self.bonusPointFourCurrentPoistion
+                                        
+                                        self.bonusPointFiveCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointFiveNewPosition.x, y:value.translation.height + self.bonusPointFiveNewPosition.y)
+                                        self.bonusPointFiveNewPosition = self.bonusPointFiveCurrentPoistion
+                                        
+                                        self.bonusPointSixCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointSixNewPosition.x, y:value.translation.height + self.bonusPointSixNewPosition.y)
+                                        self.bonusPointSixNewPosition = self.bonusPointSixCurrentPoistion
+                                        
+                                        self.bonusPointSevenCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointSevenNewPosition.x, y:value.translation.height + self.bonusPointSevenNewPosition.y)
+                                        self.bonusPointSevenNewPosition = self.bonusPointSevenCurrentPoistion
                                         
                                         
                                         

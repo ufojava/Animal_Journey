@@ -43,7 +43,7 @@ struct ContentView: View {
                                         }
                                     
                                       
-                                        
+                                       
                                             NavigationLink(destination: Bee()) {
                                                 
                                                 
@@ -68,18 +68,22 @@ struct ContentView: View {
                                                                     .onAppear() {
                                                                         
                                                                         self.rotation += 360
+                                                                       PlayBackgroundMusic(sound: "Fantasyland", type: "mp3")
                                                         }
                                                                 
                                                     }
-                                                
+                                                    
+                                                   
                                                     
                                                         }//End of Enter button VStack
                                             
                                                 
+                                                
+                                                
                                             }//End of Navigation link
                                             
                                             
-                            
+                                        
                                         
                                         
                                     }//End of Background ZStack
