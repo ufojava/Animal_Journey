@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		030BDC482424BE3B003B7BDA /* Game_Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030BDC472424BE3A003B7BDA /* Game_Help.swift */; };
 		0335756E24197D94007ED0F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0335756D24197D94007ED0F6 /* AppDelegate.swift */; };
 		0335757024197D94007ED0F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0335756F24197D94007ED0F6 /* SceneDelegate.swift */; };
 		0335757224197D94007ED0F6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0335757124197D94007ED0F6 /* ContentView.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		030BDC472424BE3A003B7BDA /* Game_Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game_Help.swift; sourceTree = "<group>"; };
 		0335756A24197D94007ED0F6 /* Betty's World.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Betty's World.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0335756D24197D94007ED0F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0335756F24197D94007ED0F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			children = (
 				0335758324197EE6007ED0F6 /* GameStructure.swift */,
 				03D2C8E6241E26F5005A0434 /* AssetLocaitonTest.swift */,
+				030BDC472424BE3A003B7BDA /* Game_Help.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0335756E24197D94007ED0F6 /* AppDelegate.swift in Sources */,
+				030BDC482424BE3B003B7BDA /* Game_Help.swift in Sources */,
 				03D2C8E7241E26F5005A0434 /* AssetLocaitonTest.swift in Sources */,
 				0335758424197EE6007ED0F6 /* GameStructure.swift in Sources */,
 				0335757024197D94007ED0F6 /* SceneDelegate.swift in Sources */,

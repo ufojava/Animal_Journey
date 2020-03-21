@@ -13,6 +13,7 @@ struct ContentView: View {
     
     //Animate the start button variable
     @State private var showStartButton = false
+    @State private var gameHelpLink = false
     @State private var rotation = 0.0
     
  
@@ -39,10 +40,11 @@ struct ContentView: View {
                                         
                                             withAnimation {
                                                 self.showStartButton = true
+                                                self.gameHelpLink = true
                                             }
                                         }
                                     
-                                      
+                                       VStack {
                                        
                                             NavigationLink(destination: Bee()) {
                                                 
@@ -69,31 +71,57 @@ struct ContentView: View {
                                                                         
                                                                         self.rotation += 360
                                                                        PlayBackgroundMusic(sound: "Fantasyland", type: "mp3")
+                                                                        
                                                         }
                                                                 
-                                                    }
+                                                    }//End of If ShowStartButton
+                                                    
+                                                    
                                                     
                                                    
-                                                    
-                                                        }//End of Enter button VStack
-                                            
                                                 
                                                 
                                                 
-                                            }//End of Navigation link
+                                            }//End of VStack within Navigation Link
                                             
-                                            
+                                           
+                                    
+                                            }//End of Bee Navigation link
+                            
                                         
                                         
+                                                                 
+                                         if self.gameHelpLink {
+                                            
+                                            NavigationLink(destination: GameHelp()) {
+                                            
+                                            Text("Help").foregroundColor(Color.orange)
+                                         }
+                                        
+                                        }
+                                     }//VStack for buttons within ZStack
+                                       
                                         
                                     }//End of Background ZStack
+                        
+                        
+                            //Test Positioning
+                     
+                        
+                        
+                        
                         
                     }//End of View VStack
             
                         .navigationBarTitle("Home 🏚")
-                    
+                  
                     
                 }//End of Navigation link
+        
+        
+      
+        
+        
         }
             
     }//End of main Viwe

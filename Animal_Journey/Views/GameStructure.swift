@@ -143,6 +143,15 @@ struct Bee: View {
     @State private var bonusPointSevenNewPosition:    CGPoint = .zero
  
     
+    //Set bonus state position Top
+    @State private var bonusPointOneTopState = false
+    @State private var bonusPointTwoTopState = false
+    @State private var bonusPointThreeTopState = false
+    @State private var bonusPointFourTopState = false
+    @State private var bonusPointFiveTopState = false
+    @State private var bonusPointSixTopState = false
+    @State private var bonusPointSevenTopState = false
+    @State private var bonusPointEightTopState = false
     
     
     //Track bee position
@@ -738,124 +747,177 @@ struct Bee: View {
                                         }//End of Bee notification
                                         
                                         
-                                        //Add bonus points
-                                        if (self.bonusPointOneCurrentPoistion.x == 144)  {
-                                            
-                                            self.finalScores += 20
-                                            ReadSynthWord(word: "Bonus Point 20")
-                                            
-                                        }
-                                                
-                                            if (self.bonusPointTwoCurrentPoistion.x == 32)  {
-                                                
-                                              self.finalScores += 20
-                                                ReadSynthWord(word: "Bonus Point 20")
-                                            }
-                                            
-                                            if (self.bonusPointThreeCurrentPoistion.x == -88) {
-                                                
-                                                self.finalScores += 20
-                                                ReadSynthWord(word: "Bonus Point 20")
-                                            }
-                                            
-                                            
-                                            if (self.bonusPointFourCurrentPoistion.x == -180)  {
-                                                
-                                                self.finalScores += 20
-                                                ReadSynthWord(word: "Bonus Point 20")
-                                                
-                                            }
-                                            
-                                            if (self.bonusPointFiveCurrentPoistion.x == -150) {
-                                                
-                                                self.finalScores += 20
-                                                ReadSynthWord(word: "Bonus Point 20")
-                                                
-                                            }
-                                            
-                                            if (self.bonusPointSixCurrentPoistion.x == -54) {
-                                                
-                                                self.finalScores += 20
-                                                ReadSynthWord(word: "Bonus Point 20")
-                                            }
-                                            
-                                            if (self.bonusPointSevenCurrentPoistion.x == 160) {
-                                                
-                                                self.finalScores += 20
-                                                ReadSynthWord(word: "Bonus Point 20")
-                                            }
-                                            
-                                       
-                                        
                                         
                                         
                                         //Top Bee Killer Coordinates
                                         
-                                        if (self.topArrayCurrentOnePosition.x >= -177 && self.topArrayCurrentOnePosition.x  <= -175) && (self.topArrayCurrentOnePosition.y >= -96 && self.topArrayCurrentOnePosition.y <= -64) && self.topImageObstacle[0].contains("BeeKiller") {
-                                            
-                                            playAudioFiles(sound: "Danger", type: "mp3")
-                                        
-                                        } else if (self.topArrayCurrentTwoPosition.x >= -135 && self.topArrayCurrentTwoPosition.x <= -133) && (self.topArrayCurrentTwoPosition.y >= -96 && self.topArrayCurrentTwoPosition.y <= -94) && self.topImageObstacle[1].contains("BeeKiller") {
+                                        //Bee Killer poistion one
+                                        if (self.topArrayCurrentOnePosition.x >= -184 && self.topArrayCurrentOnePosition.x <= -165 ) && (self.topArrayCurrentOnePosition.y >= -113 && self.topArrayCurrentFourPosition.y <= -80) && self.topImageObstacle[0].contains("BeeKiller") {
                                             
                                             playAudioFiles(sound: "Danger", type: "mp3")
                                             
-                                        } else if (self.topArrayCurrentThreePosition.x >= -85 && self.topArrayCurrentThreePosition.x <= -81) && (self.topArrayCurrentThreePosition.y >= -96 && self.topArrayCurrentThreePosition.y <= -64) && self.topImageObstacle[2].contains("BeeKiller") {
+                
+                                        
+                                            //Bee Killer Position Two
+                                        } else if (self.topArrayCurrentTwoPosition.x >= -136 && self.topArrayCurrentTwoPosition.x <= -123) && (self.topArrayCurrentTwoPosition.y >= -113 && self.topArrayCurrentTwoPosition.y <= -80) && self.topImageObstacle[1].contains("BeeKiller") {
+                                            
+                                            playAudioFiles(sound: "Danger", type: "mp3")
+                                            
+                                            
+                                                                                       
+                                        } else if (self.topArrayCurrentThreePosition.x >= -85 && self.topArrayCurrentThreePosition.x <= -71) && (self.topArrayCurrentThreePosition.y >= -113 && self.topArrayCurrentThreePosition.y <= -80) && self.topImageObstacle[2].contains("BeeKiller") {
                                         
                                         playAudioFiles(sound: "Danger", type: "mp3")
                                         
-                                        } else if (self.topArrayCurrentFourPosition.x >= -33 && self.topArrayCurrentFourPosition.x <= -30) && (self.topArrayCurrentFourPosition.y >= -96 && self.topArrayCurrentFourPosition.y <= -94) && self.topImageObstacle[3].contains("BeeKiller") {
+                                        } else if (self.topArrayCurrentFourPosition.x >= -35 && self.topArrayCurrentFourPosition.x <= -26) && (self.topArrayCurrentFourPosition.y >= -113 && self.topArrayCurrentFourPosition.y <= -80) && self.topImageObstacle[3].contains("BeeKiller") {
                                         
                                         playAudioFiles(sound: "Danger", type: "mp3")
                                         
-                                        } else if (self.topArrayCurrentFivePosition.x >= 16 && self.topArrayCurrentFivePosition.x <= 19) && (self.topArrayCurrentFivePosition.y >= -96 && self.topArrayCurrentFivePosition.y <= -94) && self.topImageObstacle[4].contains("BeeKiller") {
+                                        } else if (self.topArrayCurrentFivePosition.x >= 15 && self.topArrayCurrentFivePosition.x <= 27) && (self.topArrayCurrentFivePosition.y >= -113 && self.topArrayCurrentFivePosition.y <= -80) && self.topImageObstacle[4].contains("BeeKiller") {
                                         
                                         playAudioFiles(sound: "Danger", type: "mp3")
                                         
-                                        } else if (self.topArrayCurrentSixPosition.x >= 59 && self.topArrayCurrentSixPosition.x <= 61) && (self.topArrayCurrentSixPosition.y >= -96 && self.topArrayCurrentSixPosition.y <= -94) && self.topImageObstacle[5].contains("BeeKiller") {
+                                        } else if (self.topArrayCurrentSixPosition.x >= 59 && self.topArrayCurrentSixPosition.x <= 66) && (self.topArrayCurrentSixPosition.y >= -113 && self.topArrayCurrentSixPosition.y <= -80) && self.topImageObstacle[5].contains("BeeKiller") {
                                         
                                         playAudioFiles(sound: "Danger", type: "mp3")
                                         
-                                        } else if (self.topArrayCurrentSevenPosition.x >= 106 && self.topArrayCurrentSevenPosition.x <= 109) && (self.topArrayCurrentSevenPosition.y >= -96 && self.topArrayCurrentSevenPosition.y <= -94) && self.topImageObstacle[6].contains("BeeKiller") {
+                                        } else if (self.topArrayCurrentSevenPosition.x >= 107 && self.topArrayCurrentSevenPosition.x <= 116) && (self.topArrayCurrentSevenPosition.y >= -113 && self.topArrayCurrentSevenPosition.y <= -80) && self.topImageObstacle[6].contains("BeeKiller") {
                                         
                                         playAudioFiles(sound: "Danger", type: "mp3")
                                         
-                                        } else if (self.topArrayCurrentEightPosition.x >= 155 && self.topArrayCurrentEightPosition.x <= 157) && (self.topArrayCurrentEightPosition.y >= -96 && self.topArrayCurrentEightPosition.y <= -94) && self.topImageObstacle[7].contains("BeeKiller") {
+                                        } else if (self.topArrayCurrentEightPosition.x >= 159 && self.topArrayCurrentEightPosition.x <= 169) && (self.topArrayCurrentEightPosition.y >= -113 && self.topArrayCurrentEightPosition.y <= -80) && self.topImageObstacle[7].contains("BeeKiller") {
                                         
                                         playAudioFiles(sound: "Danger", type: "mp3")
                                         
                                         }
                                         
                                         
+                                        //Bonus points Top
+                                        if (self.topArrayCurrentOnePosition.x >= -184 && self.topArrayCurrentOnePosition.x <= -165 ) && (self.topArrayCurrentOnePosition.y >= -113 && self.topArrayCurrentFourPosition.y <= -80) && self.topImageObstacle[0].contains("Honeycomb") && self.bonusPointOneTopState != true {
+                                            
+                                            self.bonusPointOneTopState = true
+                                            
+                                            if self.bonusPointOneTopState {
+                                            self.finalScores += 20
+                                            ReadSynthWord(word: "20 bonus points added")
+                                            
+                                            }
+                                        } else if (self.topArrayCurrentTwoPosition.x >= -136 && self.topArrayCurrentTwoPosition.x <= -123) && (self.topArrayCurrentTwoPosition.y >= -113 && self.topArrayCurrentTwoPosition.y <= -80) && self.topImageObstacle[1].contains("Honeycomb") && self.bonusPointTwoTopState != true {
+                                            
+                                            self.bonusPointTwoTopState = true
+                                            
+                                            if self.bonusPointTwoTopState {
+                                            self.finalScores += 20
+                                            ReadSynthWord(word: "20 bonus points added")
+                                            
+                                            }
+                                            
+                                            
+                                        } else if (self.topArrayCurrentThreePosition.x >= -85 && self.topArrayCurrentThreePosition.x <= -71) && (self.topArrayCurrentThreePosition.y >= -113 && self.topArrayCurrentThreePosition.y <= -80) && self.topImageObstacle[2].contains("Honeycomb") && self.bonusPointThreeTopState != true {
+                                            
+                                            self.bonusPointThreeTopState = true
+                                            
+                                            if self.bonusPointThreeTopState {
+                                                
+                                                self.finalScores += 20
+                                                ReadSynthWord(word: "20 bonus points added")
+                                                
+                                                
+                                            }
+                                            
+                                        } else if (self.topArrayCurrentFourPosition.x >= -35 && self.topArrayCurrentFourPosition.x <= -26) && (self.topArrayCurrentFourPosition.y >= -113 && self.topArrayCurrentFourPosition.y <= -80) && self.topImageObstacle[3].contains("Honeycomb") && self.bonusPointFourTopState != true {
+                                            
+                                            
+                                            self.bonusPointFourTopState = true
+                                            
+                                            if self.bonusPointFourTopState {
+                                                
+                                                self.finalScores += 20
+                                                ReadSynthWord(word: "20 bonus points added")
+                                            }
+                                            
+                                            
+                                        } else if (self.topArrayCurrentFivePosition.x >= 15 && self.topArrayCurrentFivePosition.x <= 27) && (self.topArrayCurrentFivePosition.y >= -113 && self.topArrayCurrentFivePosition.y <= -80) && self.topImageObstacle[4].contains("Honeycomb") && self.bonusPointFiveTopState != true {
+                                            
+                                            self.bonusPointFiveTopState = true
+                                            
+                                            self.finalScores += 20
+                                            ReadSynthWord(word: "20 bonus points added")
+                                            
+                                            
+                                        } else if (self.topArrayCurrentSixPosition.x >= 59 && self.topArrayCurrentSixPosition.x <= 66) && (self.topArrayCurrentSixPosition.y >= -113 && self.topArrayCurrentSixPosition.y <= -80) && self.topImageObstacle[5].contains("Honeycomb") && self.bonusPointSixTopState != true {
+                                            
+                                            
+                                            self.bonusPointSixTopState = true
+                                            
+                                            if self.bonusPointSixTopState {
+                                                
+                                                self.finalScores += 20
+                                                ReadSynthWord(word: "20 bonus points added")
+                                                
+                                            }
+                                            
+                                            
+                                        } else if (self.topArrayCurrentSevenPosition.x >= 107 && self.topArrayCurrentSevenPosition.x <= 116) && (self.topArrayCurrentSevenPosition.y >= -113 && self.topArrayCurrentSevenPosition.y <= -80) && self.topImageObstacle[6].contains("Honeycomb") && self.bonusPointSevenTopState != true {
+                                            
+                                            
+                                            self.bonusPointSevenTopState = true
+                                            
+                                            if self.bonusPointSevenTopState {
+                                                
+                                                self.finalScores += 20
+                                                ReadSynthWord(word: "20 bonus points added")
+                                                
+                                            }
+                                            
+                                            
+                                            
+                                        } else if (self.topArrayCurrentEightPosition.x >= 159 && self.topArrayCurrentEightPosition.x <= 169) && (self.topArrayCurrentEightPosition.y >= -113 && self.topArrayCurrentEightPosition.y <= -80) && self.topImageObstacle[7].contains("Honeycomb") && self.bonusPointEightTopState != true {
+                                            
+                                            self.bonusPointEightTopState = true
+                                            
+                                            if self.bonusPointEightTopState {
+                                                
+                                                self.finalScores += 20
+                                                ReadSynthWord(word: "20 bonus points added")
+                                                
+                                            }
+                                            
+                                        }
+                                        
+                                        
+                                        
+                                        
                                         //Bottom Bee Killer conditions
-                                        if (self.imageArrayCurrentOnePosition.x >= -180 && self.imageArrayCurrentOnePosition.x  <= -170) && (self.imageArrayCurrentOnePosition.y >= 138 && self.imageArrayCurrentOnePosition.y <= 144) && self.BottomimageObstacle[0].contains("BeeKiller") {
+                                        if (self.imageArrayCurrentOnePosition.x >= -184 && self.imageArrayCurrentOnePosition.x  <= -165) && (self.imageArrayCurrentOnePosition.y >= 129 && self.imageArrayCurrentOnePosition.y <= 155) && self.BottomimageObstacle[0].contains("BeeKiller") {
                                             
                                             playAudioFiles(sound: "Danger", type: "mp3")
                                         
-                                        } else if (self.imageArrayCurrentTwoPosition.x >= -140 && self.imageArrayCurrentTwoPosition.x <= -128) && (self.imageArrayCurrentTwoPosition.y >= 138 && self.imageArrayCurrentTwoPosition.y <= 144) && self.BottomimageObstacle[1].contains("BeeKiller") {
+                                        } else if (self.imageArrayCurrentTwoPosition.x >= -136 && self.imageArrayCurrentTwoPosition.x <= -123) && (self.imageArrayCurrentTwoPosition.y >= 129 && self.imageArrayCurrentTwoPosition.y <= 155) && self.BottomimageObstacle[1].contains("BeeKiller") {
                                             
                                             playAudioFiles(sound: "Danger", type: "mp3")
                                             
-                                        } else if (self.imageArrayCurrentThreePosition.x >= -85 && self.imageArrayCurrentThreePosition.x <= -78) && (self.imageArrayCurrentThreePosition.y >= 138 && self.imageArrayCurrentThreePosition.y <= 144) && self.BottomimageObstacle[2].contains("BeeKiller") {
+                                        } else if (self.imageArrayCurrentThreePosition.x >= -85 && self.imageArrayCurrentThreePosition.x <= -71) && (self.imageArrayCurrentThreePosition.y >= 129 && self.imageArrayCurrentThreePosition.y <= 155) && self.BottomimageObstacle[2].contains("BeeKiller") {
                                         
                                         playAudioFiles(sound: "Danger", type: "mp3")
                                         
-                                        } else if (self.imageArrayCurrentFourPosition.x >= -35 && self.imageArrayCurrentFourPosition.x <= -29) && (self.imageArrayCurrentFourPosition.y >= 138 && self.imageArrayCurrentFourPosition.y <= 144) && self.BottomimageObstacle[3].contains("BeeKiller") {
+                                        } else if (self.imageArrayCurrentFourPosition.x >= -35 && self.imageArrayCurrentFourPosition.x <= -26) && (self.imageArrayCurrentFourPosition.y >= 129 && self.imageArrayCurrentFourPosition.y <= 155) && self.BottomimageObstacle[3].contains("BeeKiller") {
                                         
                                         playAudioFiles(sound: "Danger", type: "mp3")
                                         
-                                        } else if (self.imageArrayCurrentFivePosition.x >= 11 && self.imageArrayCurrentFivePosition.x <= 15) && (self.imageArrayCurrentFivePosition.y >= 138 && self.imageArrayCurrentFivePosition.y <= 144) && self.BottomimageObstacle[4].contains("BeeKiller") {
+                                        } else if (self.imageArrayCurrentFivePosition.x >= 15 && self.imageArrayCurrentFivePosition.x <= 27) && (self.imageArrayCurrentFivePosition.y >= 129 && self.imageArrayCurrentFivePosition.y <= 155) && self.BottomimageObstacle[4].contains("BeeKiller") {
                                         
                                         playAudioFiles(sound: "Danger", type: "mp3")
                                         
-                                        } else if (self.imageArrayCurrentSixPosition.x >= 62 && self.imageArrayCurrentSixPosition.x <= 66) && (self.imageArrayCurrentSixPosition.y >= 138 && self.imageArrayCurrentSixPosition.y <= 144) && self.BottomimageObstacle[5].contains("BeeKiller") {
+                                        } else if (self.imageArrayCurrentSixPosition.x >= 59 && self.imageArrayCurrentSixPosition.x <= 66) && (self.imageArrayCurrentSixPosition.y >= 129 && self.imageArrayCurrentSixPosition.y <= 155) && self.BottomimageObstacle[5].contains("BeeKiller") {
                                         
                                         playAudioFiles(sound: "Danger", type: "mp3")
                                         
-                                        } else if (self.imageArrayCurrentSevenPosition.x >= 107 && self.imageArrayCurrentSevenPosition.x <= 111) && (self.imageArrayCurrentSevenPosition.y >= 138 && self.imageArrayCurrentSevenPosition.y <= 144) && self.BottomimageObstacle[6].contains("BeeKiller") {
+                                        } else if (self.imageArrayCurrentSevenPosition.x >= 107 && self.imageArrayCurrentSevenPosition.x <= 116) && (self.imageArrayCurrentSevenPosition.y >= 129 && self.imageArrayCurrentSevenPosition.y <= 155) && self.BottomimageObstacle[6].contains("BeeKiller") {
                                         
                                         playAudioFiles(sound: "Danger", type: "mp3")
                                         
-                                        } else if (self.imageArrayCurrentEightPosition.x >= 155 && self.imageArrayCurrentEightPosition.x <= 159) && (self.imageArrayCurrentEightPosition.y >= 138 && self.imageArrayCurrentEightPosition.y <= 144) && self.BottomimageObstacle[7].contains("BeeKiller") {
+                                        } else if (self.imageArrayCurrentEightPosition.x >= 159 && self.imageArrayCurrentEightPosition.x <= 169) && (self.imageArrayCurrentEightPosition.y >= 129 && self.imageArrayCurrentEightPosition.y <= 155) && self.BottomimageObstacle[7].contains("BeeKiller") {
                                         
                                         playAudioFiles(sound: "Danger", type: "mp3")
                                         
@@ -938,9 +1000,12 @@ struct Bee: View {
                                         self.imageArrayNewEightPosition = self.imageArrayCurrentEightPosition
                                         
                                         
+                                        /*
+                                        
                                         //Bonus Coordinates Ended
                                         self.bonusPointOneCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointOneNewPosition.x, y:value.translation.height + self.bonusPointOneNewPosition.y)
                                         self.bonusPointOneNewPosition = self.bonusPointOneCurrentPoistion
+                                      
                                         
                                         self.bonusPointTwoCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointTwoNewPosition.x, y:value.translation.height + self.bonusPointTwoNewPosition.y)
                                         self.bonusPointTwoNewPosition = self.bonusPointTwoCurrentPoistion
@@ -960,7 +1025,7 @@ struct Bee: View {
                                         self.bonusPointSevenCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointSevenNewPosition.x, y:value.translation.height + self.bonusPointSevenNewPosition.y)
                                         self.bonusPointSevenNewPosition = self.bonusPointSevenCurrentPoistion
                                         
-                                        
+                                        */
                                         
                                         
                                            
@@ -986,15 +1051,21 @@ struct Bee: View {
                                                 playAudioFiles(sound: "BettyLandsOnJar", type: "mp3")
                                                 self.beeCurrentPosition = CGPoint(x: 0.0, y: 0.0)
                                                 
-                                                //Updating the Status feild
+                                                //Updating the Status field
                                                 self.getBeeXPosition = Int(self.beeCurrentPosition.x)
                                                 self.getBeeYPosition = Int(self.beeCurrentPosition.y)
                                                 
                                                 //Resetting timer values to zero
                                                 self.timeRemaining = 0
                                                 self.obstacleResetTime = 0
+                                                self.finalScores += self.playerScore
                                                 
-                                                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                                                    
+                                                    ReadSynthWord(word: "Your final score is \(self.finalScores)")
+                                                }
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 18) {
                                                     
                                                     playAudioFiles(sound: "Betty_Arrives_Home", type: "mp3")
                                                     
