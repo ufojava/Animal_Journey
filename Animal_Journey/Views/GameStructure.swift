@@ -143,15 +143,48 @@ struct Bee: View {
     @State private var bonusPointSevenNewPosition:    CGPoint = .zero
  
     
-    //Set bonus state position Top
-    @State private var bonusPointOneTopState = false
-    @State private var bonusPointTwoTopState = false
-    @State private var bonusPointThreeTopState = false
-    @State private var bonusPointFourTopState = false
-    @State private var bonusPointFiveTopState = false
-    @State private var bonusPointSixTopState = false
-    @State private var bonusPointSevenTopState = false
-    @State private var bonusPointEightTopState = false
+    //Set Honeycomb bonus state position Top
+    @State private var honeycombBonusPointOneTopState = false
+    @State private var honeycombBonusPointTwoTopState = false
+    @State private var honeycombBonusPointThreeTopState = false
+    @State private var honeycombBonusPointFourTopState = false
+    @State private var honeycombBonusPointFiveTopState = false
+    @State private var honeycombBonusPointSixTopState = false
+    @State private var honeycombBonusPointSevenTopState = false
+    @State private var honeycombBonusPointEightTopState = false
+    
+    
+    //Set Honeycomb bonus state position Bottom
+    @State private var HoneycombBonusPointOneBottomState = false
+    @State private var HoneycombBonusPointTwoBottomState = false
+    @State private var HoneycombBonusPointThreeBottomState = false
+    @State private var HoneycombBonusPointFourBottomState = false
+    @State private var HoneycombBonusPointFiveBottomState = false
+    @State private var HoneycombBonusPointSixBottomState = false
+    @State private var HoneycombBonusPointSevenBottomState = false
+    @State private var HoneycombBonusPointEightBottomState = false
+    
+    
+    //Set Bee Killer bonus state position Top
+   @State private var beeKillerBonusPointOneTopState = false
+   @State private var beeKillerBonusPointTwoTopState = false
+   @State private var beeKillerBonusPointThreeTopState = false
+   @State private var beeKillerBonusPointFourTopState = false
+   @State private var beeKillerBonusPointFiveTopState = false
+   @State private var beeKillerBonusPointSixTopState = false
+   @State private var beeKillerBonusPointSevenTopState = false
+   @State private var beeKillerBonusPointEightTopState = false
+       
+       
+   //Set Bee Killer bonus state position Bottom
+   @State private var beeKillerBonusPointOneBottomState = false
+   @State private var beeKillerBonusPointTwoBottomState = false
+   @State private var beeKillerBonusPointThreeBottomState = false
+   @State private var beeKillerBonusPointFourBottomState = false
+   @State private var beeKillerBonusPointFiveBottomState = false
+   @State private var beeKillerBonusPointSixBottomState = false
+   @State private var beeKillerBonusPointSevenBottomState = false
+   @State private var beeKillerBonusPointEightBottomState = false
     
     
     //Track bee position
@@ -752,72 +785,198 @@ struct Bee: View {
                                         //Top Bee Killer Coordinates
                                         
                                         //Bee Killer poistion one
-                                        if (self.topArrayCurrentOnePosition.x >= -184 && self.topArrayCurrentOnePosition.x <= -165 ) && (self.topArrayCurrentOnePosition.y >= -113 && self.topArrayCurrentFourPosition.y <= -80) && self.topImageObstacle[0].contains("BeeKiller") {
+                                        if (self.topArrayCurrentOnePosition.x >= -184 && self.topArrayCurrentOnePosition.x <= -165 ) && (self.topArrayCurrentOnePosition.y >= -113 && self.topArrayCurrentFourPosition.y <= -80) && self.topImageObstacle[0].contains("BeeKiller") && self.beeKillerBonusPointOneTopState != true {
                                             
                                             playAudioFiles(sound: "Danger", type: "mp3")
+                                            
+                                            self.beeKillerBonusPointOneTopState = true
+                                                
+                                            if self.beeKillerBonusPointOneTopState {
+                                                
+                                                self.finalScores -= 20
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    ReadSynthWord(word: "20 bonus points deducted")
+                                                    self.beeKillerBonusPointOneTopState.toggle()
+                                                }
+                                            }
                                             
                 
                                         
                                             //Bee Killer Position Two
-                                        } else if (self.topArrayCurrentTwoPosition.x >= -136 && self.topArrayCurrentTwoPosition.x <= -123) && (self.topArrayCurrentTwoPosition.y >= -113 && self.topArrayCurrentTwoPosition.y <= -80) && self.topImageObstacle[1].contains("BeeKiller") {
+                                        } else if (self.topArrayCurrentTwoPosition.x >= -136 && self.topArrayCurrentTwoPosition.x <= -123) && (self.topArrayCurrentTwoPosition.y >= -113 && self.topArrayCurrentTwoPosition.y <= -80) && self.topImageObstacle[1].contains("BeeKiller") && self.beeKillerBonusPointTwoTopState != true {
                                             
                                             playAudioFiles(sound: "Danger", type: "mp3")
                                             
+                                            //Bonus point deduction
+                                            self.beeKillerBonusPointTwoTopState = true
+                                            
+                                            if self.beeKillerBonusPointTwoTopState {
+                                                
+                                                self.finalScores -= 20
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    ReadSynthWord(word: "20 bonus points deducted")
+                                                    self.beeKillerBonusPointTwoTopState.toggle()
+                                                }
+                                                
+                                            }
+                                            
+                                            
                                             
                                                                                        
-                                        } else if (self.topArrayCurrentThreePosition.x >= -85 && self.topArrayCurrentThreePosition.x <= -71) && (self.topArrayCurrentThreePosition.y >= -113 && self.topArrayCurrentThreePosition.y <= -80) && self.topImageObstacle[2].contains("BeeKiller") {
+                                        } else if (self.topArrayCurrentThreePosition.x >= -85 && self.topArrayCurrentThreePosition.x <= -71) && (self.topArrayCurrentThreePosition.y >= -113 && self.topArrayCurrentThreePosition.y <= -80) && self.topImageObstacle[2].contains("BeeKiller") && self.beeKillerBonusPointThreeTopState != true {
                                         
-                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                            playAudioFiles(sound: "Danger", type: "mp3")
+                                            
+                                            //Bonus point deduction
+                                            self.beeKillerBonusPointThreeTopState = true
+                                            
+                                            if self.beeKillerBonusPointThreeTopState {
+                                                
+                                                self.finalScores -= 20
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    ReadSynthWord(word: "20 bonus points deducted")
+                                                    self.beeKillerBonusPointThreeTopState.toggle()
+                                                }
+                                                
+                                            }
+                                            
+                
                                         
-                                        } else if (self.topArrayCurrentFourPosition.x >= -35 && self.topArrayCurrentFourPosition.x <= -26) && (self.topArrayCurrentFourPosition.y >= -113 && self.topArrayCurrentFourPosition.y <= -80) && self.topImageObstacle[3].contains("BeeKiller") {
+                                        } else if (self.topArrayCurrentFourPosition.x >= -35 && self.topArrayCurrentFourPosition.x <= -26) && (self.topArrayCurrentFourPosition.y >= -113 && self.topArrayCurrentFourPosition.y <= -80) && self.topImageObstacle[3].contains("BeeKiller") && self.beeKillerBonusPointFourTopState != true {
                                         
-                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                                playAudioFiles(sound: "Danger", type: "mp3")
+                                            
+                                            //Bonus point deduction
+                                            self.beeKillerBonusPointFourTopState = true
+                                            
+                                            if self.beeKillerBonusPointFourTopState {
+                                                
+                                                self.finalScores -= 20
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    ReadSynthWord(word: "20 bonus points deducted")
+                                                    self.beeKillerBonusPointFourTopState.toggle()
+                                                }
+                                                
+                                            }
+                        
                                         
-                                        } else if (self.topArrayCurrentFivePosition.x >= 15 && self.topArrayCurrentFivePosition.x <= 27) && (self.topArrayCurrentFivePosition.y >= -113 && self.topArrayCurrentFivePosition.y <= -80) && self.topImageObstacle[4].contains("BeeKiller") {
+                                        } else if (self.topArrayCurrentFivePosition.x >= 15 && self.topArrayCurrentFivePosition.x <= 27) && (self.topArrayCurrentFivePosition.y >= -113 && self.topArrayCurrentFivePosition.y <= -80) && self.topImageObstacle[4].contains("BeeKiller") && self.beeKillerBonusPointFiveTopState != true {
                                         
-                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                            playAudioFiles(sound: "Danger", type: "mp3")
+                                            
+                                            //Deduct 20 bonus points
+                                            self.beeKillerBonusPointFiveTopState = true
+                                            
+                                            if self.beeKillerBonusPointFiveTopState {
+                                                
+                                                self.finalScores -= 20
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                                    
+                                                    ReadSynthWord(word: "20 bonus point deducted")
+                                                    self.beeKillerBonusPointFiveTopState.toggle()
+                                                
+                                                }
+                                            }
                                         
-                                        } else if (self.topArrayCurrentSixPosition.x >= 59 && self.topArrayCurrentSixPosition.x <= 66) && (self.topArrayCurrentSixPosition.y >= -113 && self.topArrayCurrentSixPosition.y <= -80) && self.topImageObstacle[5].contains("BeeKiller") {
+                                        } else if (self.topArrayCurrentSixPosition.x >= 59 && self.topArrayCurrentSixPosition.x <= 66) && (self.topArrayCurrentSixPosition.y >= -113 && self.topArrayCurrentSixPosition.y <= -80) && self.topImageObstacle[5].contains("BeeKiller") && self.beeKillerBonusPointSixTopState != true {
                                         
-                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                            playAudioFiles(sound: "Danger", type: "mp3")
+                                            
+                                            //Bonus point deduction
+                                            self.beeKillerBonusPointSixTopState = true
+                                            
+                                            if self.beeKillerBonusPointSixTopState {
+                                                
+                                                self.finalScores -= 20
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    ReadSynthWord(word: "20 bonus points deducted")
+                                                    self.beeKillerBonusPointSixTopState.toggle()
+                                                }
+                                                
+                                            }
+                                            
+                                   
                                         
-                                        } else if (self.topArrayCurrentSevenPosition.x >= 107 && self.topArrayCurrentSevenPosition.x <= 116) && (self.topArrayCurrentSevenPosition.y >= -113 && self.topArrayCurrentSevenPosition.y <= -80) && self.topImageObstacle[6].contains("BeeKiller") {
+                                        } else if (self.topArrayCurrentSevenPosition.x >= 107 && self.topArrayCurrentSevenPosition.x <= 116) && (self.topArrayCurrentSevenPosition.y >= -113 && self.topArrayCurrentSevenPosition.y <= -80) && self.topImageObstacle[6].contains("BeeKiller") && self.beeKillerBonusPointSevenTopState != true {
                                         
-                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                                playAudioFiles(sound: "Danger", type: "mp3")
+                                            
+                                              //Bonus point deduction
+                                              self.beeKillerBonusPointSevenTopState = true
+                                              
+                                              if self.beeKillerBonusPointSevenTopState {
+                                                  
+                                                  self.finalScores -= 20
+                                                  
+                                                  DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                      
+                                                      ReadSynthWord(word: "20 bonus points deducted")
+                                                      self.beeKillerBonusPointSevenTopState.toggle()
+                                                  }
+                                                  
+                                              }
                                         
-                                        } else if (self.topArrayCurrentEightPosition.x >= 159 && self.topArrayCurrentEightPosition.x <= 169) && (self.topArrayCurrentEightPosition.y >= -113 && self.topArrayCurrentEightPosition.y <= -80) && self.topImageObstacle[7].contains("BeeKiller") {
+                                        } else if (self.topArrayCurrentEightPosition.x >= 159 && self.topArrayCurrentEightPosition.x <= 169) && (self.topArrayCurrentEightPosition.y >= -113 && self.topArrayCurrentEightPosition.y <= -80) && self.topImageObstacle[7].contains("BeeKiller") && self.beeKillerBonusPointEightTopState != true {
                                         
-                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                                playAudioFiles(sound: "Danger", type: "mp3")
+                                            
+                                            //Bonus point deduction
+                                            self.beeKillerBonusPointEightTopState = true
+                                            
+                                            if self.beeKillerBonusPointEightTopState {
+                                                
+                                                self.finalScores -= 20
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    ReadSynthWord(word: "20 bonus points deducted")
+                                                    self.beeKillerBonusPointEightTopState.toggle()
+                                                }
+                                                
+                                            }
+                                            
+                                      
                                         
                                         }
                                         
                                         
                                         //Bonus points Top
-                                        if (self.topArrayCurrentOnePosition.x >= -184 && self.topArrayCurrentOnePosition.x <= -165 ) && (self.topArrayCurrentOnePosition.y >= -113 && self.topArrayCurrentFourPosition.y <= -80) && self.topImageObstacle[0].contains("Honeycomb") && self.bonusPointOneTopState != true {
+                                        if (self.topArrayCurrentOnePosition.x >= -184 && self.topArrayCurrentOnePosition.x <= -165 ) && (self.topArrayCurrentOnePosition.y >= -113 && self.topArrayCurrentFourPosition.y <= -80) && self.topImageObstacle[0].contains("Honeycomb") && self.honeycombBonusPointOneTopState != true {
                                             
-                                            self.bonusPointOneTopState = true
+                                            self.honeycombBonusPointOneTopState = true
                                             
-                                            if self.bonusPointOneTopState {
+                                            if self.honeycombBonusPointOneTopState {
                                             self.finalScores += 20
                                             ReadSynthWord(word: "20 bonus points added")
                                             
                                             }
-                                        } else if (self.topArrayCurrentTwoPosition.x >= -136 && self.topArrayCurrentTwoPosition.x <= -123) && (self.topArrayCurrentTwoPosition.y >= -113 && self.topArrayCurrentTwoPosition.y <= -80) && self.topImageObstacle[1].contains("Honeycomb") && self.bonusPointTwoTopState != true {
+                                        } else if (self.topArrayCurrentTwoPosition.x >= -136 && self.topArrayCurrentTwoPosition.x <= -123) && (self.topArrayCurrentTwoPosition.y >= -113 && self.topArrayCurrentTwoPosition.y <= -80) && self.topImageObstacle[1].contains("Honeycomb") && self.honeycombBonusPointTwoTopState != true {
                                             
-                                            self.bonusPointTwoTopState = true
+                                            self.honeycombBonusPointTwoTopState = true
                                             
-                                            if self.bonusPointTwoTopState {
+                                            if self.honeycombBonusPointTwoTopState {
                                             self.finalScores += 20
                                             ReadSynthWord(word: "20 bonus points added")
                                             
                                             }
                                             
                                             
-                                        } else if (self.topArrayCurrentThreePosition.x >= -85 && self.topArrayCurrentThreePosition.x <= -71) && (self.topArrayCurrentThreePosition.y >= -113 && self.topArrayCurrentThreePosition.y <= -80) && self.topImageObstacle[2].contains("Honeycomb") && self.bonusPointThreeTopState != true {
+                                        } else if (self.topArrayCurrentThreePosition.x >= -85 && self.topArrayCurrentThreePosition.x <= -71) && (self.topArrayCurrentThreePosition.y >= -113 && self.topArrayCurrentThreePosition.y <= -80) && self.topImageObstacle[2].contains("Honeycomb") && self.honeycombBonusPointThreeTopState != true {
                                             
-                                            self.bonusPointThreeTopState = true
+                                            self.honeycombBonusPointThreeTopState = true
                                             
-                                            if self.bonusPointThreeTopState {
+                                            if self.honeycombBonusPointThreeTopState {
                                                 
                                                 self.finalScores += 20
                                                 ReadSynthWord(word: "20 bonus points added")
@@ -825,32 +984,34 @@ struct Bee: View {
                                                 
                                             }
                                             
-                                        } else if (self.topArrayCurrentFourPosition.x >= -35 && self.topArrayCurrentFourPosition.x <= -26) && (self.topArrayCurrentFourPosition.y >= -113 && self.topArrayCurrentFourPosition.y <= -80) && self.topImageObstacle[3].contains("Honeycomb") && self.bonusPointFourTopState != true {
+                                        } else if (self.topArrayCurrentFourPosition.x >= -35 && self.topArrayCurrentFourPosition.x <= -26) && (self.topArrayCurrentFourPosition.y >= -113 && self.topArrayCurrentFourPosition.y <= -80) && self.topImageObstacle[3].contains("Honeycomb") && self.honeycombBonusPointFourTopState != true {
                                             
                                             
-                                            self.bonusPointFourTopState = true
+                                            self.honeycombBonusPointFourTopState = true
                                             
-                                            if self.bonusPointFourTopState {
+                                            if self.honeycombBonusPointFourTopState {
                                                 
                                                 self.finalScores += 20
                                                 ReadSynthWord(word: "20 bonus points added")
                                             }
                                             
                                             
-                                        } else if (self.topArrayCurrentFivePosition.x >= 15 && self.topArrayCurrentFivePosition.x <= 27) && (self.topArrayCurrentFivePosition.y >= -113 && self.topArrayCurrentFivePosition.y <= -80) && self.topImageObstacle[4].contains("Honeycomb") && self.bonusPointFiveTopState != true {
+                                        } else if (self.topArrayCurrentFivePosition.x >= 15 && self.topArrayCurrentFivePosition.x <= 27) && (self.topArrayCurrentFivePosition.y >= -113 && self.topArrayCurrentFivePosition.y <= -80) && self.topImageObstacle[4].contains("Honeycomb") && self.honeycombBonusPointFiveTopState != true {
                                             
-                                            self.bonusPointFiveTopState = true
+                                            self.honeycombBonusPointFiveTopState = true
+                                            
+                                            if self.honeycombBonusPointFiveTopState {
                                             
                                             self.finalScores += 20
                                             ReadSynthWord(word: "20 bonus points added")
+                                            }
+                                            
+                                        } else if (self.topArrayCurrentSixPosition.x >= 59 && self.topArrayCurrentSixPosition.x <= 66) && (self.topArrayCurrentSixPosition.y >= -113 && self.topArrayCurrentSixPosition.y <= -80) && self.topImageObstacle[5].contains("Honeycomb") && self.honeycombBonusPointSixTopState != true {
                                             
                                             
-                                        } else if (self.topArrayCurrentSixPosition.x >= 59 && self.topArrayCurrentSixPosition.x <= 66) && (self.topArrayCurrentSixPosition.y >= -113 && self.topArrayCurrentSixPosition.y <= -80) && self.topImageObstacle[5].contains("Honeycomb") && self.bonusPointSixTopState != true {
+                                            self.honeycombBonusPointSixTopState = true
                                             
-                                            
-                                            self.bonusPointSixTopState = true
-                                            
-                                            if self.bonusPointSixTopState {
+                                            if self.honeycombBonusPointSixTopState {
                                                 
                                                 self.finalScores += 20
                                                 ReadSynthWord(word: "20 bonus points added")
@@ -858,12 +1019,12 @@ struct Bee: View {
                                             }
                                             
                                             
-                                        } else if (self.topArrayCurrentSevenPosition.x >= 107 && self.topArrayCurrentSevenPosition.x <= 116) && (self.topArrayCurrentSevenPosition.y >= -113 && self.topArrayCurrentSevenPosition.y <= -80) && self.topImageObstacle[6].contains("Honeycomb") && self.bonusPointSevenTopState != true {
+                                        } else if (self.topArrayCurrentSevenPosition.x >= 107 && self.topArrayCurrentSevenPosition.x <= 116) && (self.topArrayCurrentSevenPosition.y >= -113 && self.topArrayCurrentSevenPosition.y <= -80) && self.topImageObstacle[6].contains("Honeycomb") && self.honeycombBonusPointSevenTopState != true {
                                             
                                             
-                                            self.bonusPointSevenTopState = true
+                                            self.honeycombBonusPointSevenTopState = true
                                             
-                                            if self.bonusPointSevenTopState {
+                                            if self.honeycombBonusPointSevenTopState {
                                                 
                                                 self.finalScores += 20
                                                 ReadSynthWord(word: "20 bonus points added")
@@ -872,11 +1033,11 @@ struct Bee: View {
                                             
                                             
                                             
-                                        } else if (self.topArrayCurrentEightPosition.x >= 159 && self.topArrayCurrentEightPosition.x <= 169) && (self.topArrayCurrentEightPosition.y >= -113 && self.topArrayCurrentEightPosition.y <= -80) && self.topImageObstacle[7].contains("Honeycomb") && self.bonusPointEightTopState != true {
+                                        } else if (self.topArrayCurrentEightPosition.x >= 159 && self.topArrayCurrentEightPosition.x <= 169) && (self.topArrayCurrentEightPosition.y >= -113 && self.topArrayCurrentEightPosition.y <= -80) && self.topImageObstacle[7].contains("Honeycomb") && self.honeycombBonusPointEightTopState != true {
                                             
-                                            self.bonusPointEightTopState = true
+                                            self.honeycombBonusPointEightTopState = true
                                             
-                                            if self.bonusPointEightTopState {
+                                            if self.honeycombBonusPointEightTopState {
                                                 
                                                 self.finalScores += 20
                                                 ReadSynthWord(word: "20 bonus points added")
@@ -889,39 +1050,269 @@ struct Bee: View {
                                         
                                         
                                         //Bottom Bee Killer conditions
-                                        if (self.imageArrayCurrentOnePosition.x >= -184 && self.imageArrayCurrentOnePosition.x  <= -165) && (self.imageArrayCurrentOnePosition.y >= 129 && self.imageArrayCurrentOnePosition.y <= 155) && self.BottomimageObstacle[0].contains("BeeKiller") {
-                                            
-                                            playAudioFiles(sound: "Danger", type: "mp3")
-                                        
-                                        } else if (self.imageArrayCurrentTwoPosition.x >= -136 && self.imageArrayCurrentTwoPosition.x <= -123) && (self.imageArrayCurrentTwoPosition.y >= 129 && self.imageArrayCurrentTwoPosition.y <= 155) && self.BottomimageObstacle[1].contains("BeeKiller") {
+                                        if (self.imageArrayCurrentOnePosition.x >= -184 && self.imageArrayCurrentOnePosition.x  <= -165) && (self.imageArrayCurrentOnePosition.y >= 129 && self.imageArrayCurrentOnePosition.y <= 155) && self.BottomimageObstacle[0].contains("BeeKiller") && self.beeKillerBonusPointOneBottomState != true {
                                             
                                             playAudioFiles(sound: "Danger", type: "mp3")
                                             
-                                        } else if (self.imageArrayCurrentThreePosition.x >= -85 && self.imageArrayCurrentThreePosition.x <= -71) && (self.imageArrayCurrentThreePosition.y >= 129 && self.imageArrayCurrentThreePosition.y <= 155) && self.BottomimageObstacle[2].contains("BeeKiller") {
+                                            //Bonus point deduction
+                                            self.beeKillerBonusPointOneBottomState = true
+                                            
+                                            if self.beeKillerBonusPointOneBottomState {
+                                                
+                                                self.finalScores -= 20
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    ReadSynthWord(word: "20 bonus points deducted")
+                                                    self.beeKillerBonusPointOneBottomState.toggle()
+                                                }
+                                                
+                                            }
+                                      
                                         
-                                        playAudioFiles(sound: "Danger", type: "mp3")
                                         
-                                        } else if (self.imageArrayCurrentFourPosition.x >= -35 && self.imageArrayCurrentFourPosition.x <= -26) && (self.imageArrayCurrentFourPosition.y >= 129 && self.imageArrayCurrentFourPosition.y <= 155) && self.BottomimageObstacle[3].contains("BeeKiller") {
+                                        } else if (self.imageArrayCurrentTwoPosition.x >= -136 && self.imageArrayCurrentTwoPosition.x <= -123) && (self.imageArrayCurrentTwoPosition.y >= 129 && self.imageArrayCurrentTwoPosition.y <= 155) && self.BottomimageObstacle[1].contains("BeeKiller") && self.beeKillerBonusPointTwoBottomState != true {
+                                            
+                                            playAudioFiles(sound: "Danger", type: "mp3")
+                                            
+                                            //Bonus point deduction
+                                            self.beeKillerBonusPointTwoBottomState = true
+                                            
+                                            if self.beeKillerBonusPointTwoBottomState {
+                                                
+                                                self.finalScores -= 20
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    ReadSynthWord(word: "20 bonus points deducted")
+                                                    self.beeKillerBonusPointTwoBottomState.toggle()
+                                                }
+                                                
+                                            }
+                                            
+                                      
+                                            
+                                        } else if (self.imageArrayCurrentThreePosition.x >= -85 && self.imageArrayCurrentThreePosition.x <= -71) && (self.imageArrayCurrentThreePosition.y >= 129 && self.imageArrayCurrentThreePosition.y <= 155) && self.BottomimageObstacle[2].contains("BeeKiller") && self.beeKillerBonusPointThreeBottomState != true {
                                         
-                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                            playAudioFiles(sound: "Danger", type: "mp3")
+                                            
+                                            //Bonus point deduction
+                                            self.beeKillerBonusPointThreeBottomState = true
+                                            
+                                            if self.beeKillerBonusPointThreeBottomState {
+                                                
+                                                self.finalScores -= 20
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    ReadSynthWord(word: "20 bonus points deducted")
+                                                    self.beeKillerBonusPointThreeBottomState.toggle()
+                                                }
+                                                
+                                            }
+                                            
+                                
                                         
-                                        } else if (self.imageArrayCurrentFivePosition.x >= 15 && self.imageArrayCurrentFivePosition.x <= 27) && (self.imageArrayCurrentFivePosition.y >= 129 && self.imageArrayCurrentFivePosition.y <= 155) && self.BottomimageObstacle[4].contains("BeeKiller") {
+                                        } else if (self.imageArrayCurrentFourPosition.x >= -35 && self.imageArrayCurrentFourPosition.x <= -26) && (self.imageArrayCurrentFourPosition.y >= 129 && self.imageArrayCurrentFourPosition.y <= 155) && self.BottomimageObstacle[3].contains("BeeKiller") && self.beeKillerBonusPointFourBottomState != true {
                                         
-                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                            playAudioFiles(sound: "Danger", type: "mp3")
+                                            
+                                            //Bonus point deduction
+                                            self.beeKillerBonusPointFourBottomState = true
+                                            
+                                            if self.beeKillerBonusPointFourBottomState {
+                                                
+                                                self.finalScores -= 20
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    ReadSynthWord(word: "20 bonus points deducted")
+                                                    self.beeKillerBonusPointFourBottomState.toggle()
+                                                }
+                                                
+                                            }
                                         
-                                        } else if (self.imageArrayCurrentSixPosition.x >= 59 && self.imageArrayCurrentSixPosition.x <= 66) && (self.imageArrayCurrentSixPosition.y >= 129 && self.imageArrayCurrentSixPosition.y <= 155) && self.BottomimageObstacle[5].contains("BeeKiller") {
+                                        } else if (self.imageArrayCurrentFivePosition.x >= 15 && self.imageArrayCurrentFivePosition.x <= 27) && (self.imageArrayCurrentFivePosition.y >= 129 && self.imageArrayCurrentFivePosition.y <= 155) && self.BottomimageObstacle[4].contains("BeeKiller") && self.beeKillerBonusPointFiveBottomState != true {
                                         
-                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                            playAudioFiles(sound: "Danger", type: "mp3")
+                                            
+                                            //Bonus point deduction
+                                            self.beeKillerBonusPointFiveBottomState = true
+                                            
+                                            if self.beeKillerBonusPointFiveBottomState {
+                                                
+                                                self.finalScores -= 20
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    ReadSynthWord(word: "20 bonus points deducted")
+                                                    self.beeKillerBonusPointFiveBottomState.toggle()
+                                                }
+                                                
+                                            }
+                                            
+                                         
                                         
-                                        } else if (self.imageArrayCurrentSevenPosition.x >= 107 && self.imageArrayCurrentSevenPosition.x <= 116) && (self.imageArrayCurrentSevenPosition.y >= 129 && self.imageArrayCurrentSevenPosition.y <= 155) && self.BottomimageObstacle[6].contains("BeeKiller") {
+                                        } else if (self.imageArrayCurrentSixPosition.x >= 59 && self.imageArrayCurrentSixPosition.x <= 66) && (self.imageArrayCurrentSixPosition.y >= 129 && self.imageArrayCurrentSixPosition.y <= 155) && self.BottomimageObstacle[5].contains("BeeKiller") && self.beeKillerBonusPointSixBottomState != true {
                                         
-                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                                playAudioFiles(sound: "Danger", type: "mp3")
+                                            
+                                            //Bonus point deduction
+                                            self.beeKillerBonusPointSixBottomState = true
+                                            
+                                            if self.beeKillerBonusPointSixBottomState {
+                                                
+                                                self.finalScores -= 20
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    ReadSynthWord(word: "20 bonus points deducted")
+                                                    self.beeKillerBonusPointSixBottomState.toggle()
+                                                }
+                                                
+                                            }
+                                            
+                                      
                                         
-                                        } else if (self.imageArrayCurrentEightPosition.x >= 159 && self.imageArrayCurrentEightPosition.x <= 169) && (self.imageArrayCurrentEightPosition.y >= 129 && self.imageArrayCurrentEightPosition.y <= 155) && self.BottomimageObstacle[7].contains("BeeKiller") {
+                                        } else if (self.imageArrayCurrentSevenPosition.x >= 107 && self.imageArrayCurrentSevenPosition.x <= 116) && (self.imageArrayCurrentSevenPosition.y >= 129 && self.imageArrayCurrentSevenPosition.y <= 155) && self.BottomimageObstacle[6].contains("BeeKiller") && self.beeKillerBonusPointSevenBottomState != true {
                                         
-                                        playAudioFiles(sound: "Danger", type: "mp3")
+                                                playAudioFiles(sound: "Danger", type: "mp3")
+                                            
+                                            //Bonus point deduction
+                                            self.beeKillerBonusPointSevenBottomState = true
+                                            
+                                            if self.beeKillerBonusPointSevenBottomState {
+                                                
+                                                self.finalScores -= 20
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    ReadSynthWord(word: "20 bonus points deducted")
+                                                    self.beeKillerBonusPointSevenBottomState.toggle()
+                                                }
+                                                
+                                            }
+                                            
+                                
+                                        
+                                        } else if (self.imageArrayCurrentEightPosition.x >= 159 && self.imageArrayCurrentEightPosition.x <= 169) && (self.imageArrayCurrentEightPosition.y >= 129 && self.imageArrayCurrentEightPosition.y <= 155) && self.BottomimageObstacle[7].contains("BeeKiller") && self.beeKillerBonusPointEightBottomState != true {
+                                        
+                                            playAudioFiles(sound: "Danger", type: "mp3")
+                                            
+                                            //Bonus point deduction
+                                            self.beeKillerBonusPointEightBottomState = true
+                                            
+                                            if self.beeKillerBonusPointEightBottomState {
+                                                
+                                                self.finalScores -= 20
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    ReadSynthWord(word: "20 bonus points deducted")
+                                                    self.beeKillerBonusPointEightBottomState.toggle()
+                                                }
+                                                
+                                            }
+                                            
+                                      
                                         
                                         }
+                                        
+                                        
+                                        
+                                        
+                                        //Honeycomb Bottom
+                                        
+                                        if (self.imageArrayCurrentOnePosition.x >= -184 && self.imageArrayCurrentOnePosition.x  <= -165) && (self.imageArrayCurrentOnePosition.y >= 129 && self.imageArrayCurrentOnePosition.y <= 155) && self.BottomimageObstacle[0].contains("Honeycom") && self.HoneycombBonusPointOneBottomState != true {
+                                            
+                                            self.HoneycombBonusPointOneBottomState = true
+                                            
+                                            if self.HoneycombBonusPointOneBottomState {
+                                                
+                                                self.finalScores += 20
+                                                ReadSynthWord(word: "20 bonus points added")
+                                                
+                                                
+                                            }
+                                            
+                                        } else if (self.imageArrayCurrentTwoPosition.x >= -136 && self.imageArrayCurrentTwoPosition.x <= -123) && (self.imageArrayCurrentTwoPosition.y >= 129 && self.imageArrayCurrentTwoPosition.y <= 155) && self.BottomimageObstacle[1].contains("Honeycomb") && self.HoneycombBonusPointTwoBottomState != true {
+                                            
+                                            self.HoneycombBonusPointTwoBottomState = true
+                                            
+                                            if self.HoneycombBonusPointTwoBottomState {
+                                                
+                                                self.finalScores += 20
+                                                ReadSynthWord(word: "20 bonus points added")
+                                            }
+                                            
+                                        } else if (self.imageArrayCurrentThreePosition.x >= -85 && self.imageArrayCurrentThreePosition.x <= -71) && (self.imageArrayCurrentThreePosition.y >= 129 && self.imageArrayCurrentThreePosition.y <= 155) && self.BottomimageObstacle[2].contains("Honeycomb") && self.HoneycombBonusPointThreeBottomState != true {
+                                            
+                                            self.HoneycombBonusPointThreeBottomState = true
+                                            
+                                            if self.HoneycombBonusPointThreeBottomState {
+                                                
+                                                self.finalScores += 20
+                                                ReadSynthWord(word: "20 bonus points added")
+                                                
+                                            }
+                                            
+                                        } else if (self.imageArrayCurrentFourPosition.x >= -35 && self.imageArrayCurrentFourPosition.x <= -26) && (self.imageArrayCurrentFourPosition.y >= 129 && self.imageArrayCurrentFourPosition.y <= 155) && self.BottomimageObstacle[3].contains("Honeycomb") && self.HoneycombBonusPointFourBottomState != true {
+                                            
+                                            self.HoneycombBonusPointFourBottomState = true
+                                            
+                                            if self.HoneycombBonusPointFourBottomState {
+                                                
+                                                self.finalScores += 20
+                                                ReadSynthWord(word: "20 bonus points added")
+                                                
+                                            }
+                                            
+                                        } else if (self.imageArrayCurrentFivePosition.x >= 15 && self.imageArrayCurrentFivePosition.x <= 27) && (self.imageArrayCurrentFivePosition.y >= 129 && self.imageArrayCurrentFivePosition.y <= 155) && self.BottomimageObstacle[4].contains("Honeycomb") && self.HoneycombBonusPointFiveBottomState != true {
+                                            
+                                                self.HoneycombBonusPointFiveBottomState = true
+                                            
+                                            if self.HoneycombBonusPointFiveBottomState {
+                                                
+                                                self.finalScores += 20
+                                                ReadSynthWord(word: "20 bonus points added")
+                                                
+                                            }
+                                            
+                                        } else if (self.imageArrayCurrentSixPosition.x >= 59 && self.imageArrayCurrentSixPosition.x <= 66) && (self.imageArrayCurrentSixPosition.y >= 129 && self.imageArrayCurrentSixPosition.y <= 155) && self.BottomimageObstacle[5].contains("Honeycomb") && self.HoneycombBonusPointSixBottomState != true {
+                                            
+                                            self.HoneycombBonusPointSixBottomState = true
+                                            
+                                            if self.HoneycombBonusPointSixBottomState {
+                                                
+                                                self.finalScores += 20
+                                                ReadSynthWord(word: "20 bonus points added")
+                                                
+                                            }
+                                            
+                                        } else if (self.imageArrayCurrentSevenPosition.x >= 107 && self.imageArrayCurrentSevenPosition.x <= 116) && (self.imageArrayCurrentSevenPosition.y >= 129 && self.imageArrayCurrentSevenPosition.y <= 155) && self.BottomimageObstacle[6].contains("Honeycomb") && self.HoneycombBonusPointSevenBottomState != true {
+                                            
+                                            self.HoneycombBonusPointSevenBottomState = true
+                                            
+                                            if self.HoneycombBonusPointSevenBottomState {
+                                                
+                                                self.finalScores += 20
+                                                ReadSynthWord(word: "20 bonus points added")
+                                                
+                                            }
+                                            
+                                        } else if (self.imageArrayCurrentEightPosition.x >= 159 && self.imageArrayCurrentEightPosition.x <= 169) && (self.imageArrayCurrentEightPosition.y >= 129 && self.imageArrayCurrentEightPosition.y <= 155) && self.BottomimageObstacle[7].contains("Honeycomb") && self.HoneycombBonusPointEightBottomState != true {
+                                            
+                                            self.HoneycombBonusPointEightBottomState = true
+                                            
+                                            if self.HoneycombBonusPointEightBottomState {
+                                                
+                                                self.finalScores += 20
+                                                ReadSynthWord(word: "20 bonus points added")
+                                                
+                                            }
+                                        }
+                                        
+                                        
                                         
                                         
                                            
@@ -1000,32 +1391,6 @@ struct Bee: View {
                                         self.imageArrayNewEightPosition = self.imageArrayCurrentEightPosition
                                         
                                         
-                                        /*
-                                        
-                                        //Bonus Coordinates Ended
-                                        self.bonusPointOneCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointOneNewPosition.x, y:value.translation.height + self.bonusPointOneNewPosition.y)
-                                        self.bonusPointOneNewPosition = self.bonusPointOneCurrentPoistion
-                                      
-                                        
-                                        self.bonusPointTwoCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointTwoNewPosition.x, y:value.translation.height + self.bonusPointTwoNewPosition.y)
-                                        self.bonusPointTwoNewPosition = self.bonusPointTwoCurrentPoistion
-                                        
-                                        self.bonusPointThreeCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointThreeNewPosition.x, y:value.translation.height + self.bonusPointThreeNewPosition.y)
-                                        self.bonusPointThreeNewPosition = self.bonusPointThreeCurrentPoistion
-                                        
-                                        self.bonusPointFourCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointFourNewPosition.x, y:value.translation.height + self.bonusPointFourNewPosition.y)
-                                        self.bonusPointFourNewPosition = self.bonusPointFourCurrentPoistion
-                                        
-                                        self.bonusPointFiveCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointFiveNewPosition.x, y:value.translation.height + self.bonusPointFiveNewPosition.y)
-                                        self.bonusPointFiveNewPosition = self.bonusPointFiveCurrentPoistion
-                                        
-                                        self.bonusPointSixCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointSixNewPosition.x, y:value.translation.height + self.bonusPointSixNewPosition.y)
-                                        self.bonusPointSixNewPosition = self.bonusPointSixCurrentPoistion
-                                        
-                                        self.bonusPointSevenCurrentPoistion = CGPoint(x:value.translation.width + self.bonusPointSevenNewPosition.x, y:value.translation.height + self.bonusPointSevenNewPosition.y)
-                                        self.bonusPointSevenNewPosition = self.bonusPointSevenCurrentPoistion
-                                        
-                                        */
                                         
                                         
                                            
