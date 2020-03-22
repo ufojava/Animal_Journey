@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct ContentView: View {
     
@@ -15,6 +16,10 @@ struct ContentView: View {
     @State private var showStartButton = false
     @State private var gameHelpLink = false
     @State private var rotation = 0.0
+    
+    //Toggle to switch to control music
+    @State private var backgroundMusicIsOnToggle = false
+  
     
  
     
@@ -70,8 +75,11 @@ struct ContentView: View {
                                                                     .onAppear() {
                                                                         
                                                                         self.rotation += 360
-                                                                       PlayBackgroundMusic(sound: "Fantasyland", type: "mp3")
                                                                         
+                                                                        PlayBackgroundMusic(sound: "Fantasyland", type: "mp3")
+                                                                       
+                                                                    
+                                                                      
                                                         }
                                                                 
                                                     }//End of If ShowStartButton
@@ -96,9 +104,34 @@ struct ContentView: View {
                                             NavigationLink(destination: GameHelp()) {
                                             
                                             Text("Help").foregroundColor(Color.orange)
+                                                
+                                               
                                          }
                                         
                                         }
+                                        
+                                        HStack {
+                                            
+                                                Text("Pause / Play background Music")
+                                                    .font(.custom("Chalkboard SE", size: 15))
+                                                    .foregroundColor(Color.orange)
+                                                
+                                                MusicIcons(icons: "pause")
+                                                    .onTapGesture {
+                                                        
+                                                        pauseMusic()
+                                                
+                                                }
+                                            
+                                                MusicIcons(icons: "play")
+                                                    .onTapGesture {
+                                                      resumeMusic()
+                                            }
+                                        }
+                                        
+                                        
+                                        
+                                        
                                      }//VStack for buttons within ZStack
                                        
                                         
@@ -131,5 +164,25 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+
+struct MusicIcons: View {
+    
+    var icons = ""
+    
+    
+    var body: some View {
+        
+        
+        
+        Image(systemName: icons)
+            .resizable()
+            .frame(width:20,height: 20)
+            .scaledToFill()
+            .foregroundColor(Color.black)
+
+        
     }
 }

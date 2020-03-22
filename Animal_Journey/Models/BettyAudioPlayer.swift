@@ -61,6 +61,7 @@ func PlayBackgroundMusic(sound:String, type:String) {
             backgroundAudioPlayer?.numberOfLoops = -1
             backgroundAudioPlayer?.volume = 0.2
             backgroundAudioPlayer?.play()
+        
             
         } catch {
             
@@ -68,4 +69,16 @@ func PlayBackgroundMusic(sound:String, type:String) {
         }
     }
     
+}
+
+//Function to stop music
+func pauseMusic() {
+
+    backgroundAudioPlayer?.pause()
+}
+
+//Function to stop music
+func resumeMusic() {
+
+    backgroundAudioPlayer?.play()
 }
