@@ -103,7 +103,7 @@ struct ContentView: View {
                                             
                                             NavigationLink(destination: GameHelp()) {
                                             
-                                            Text("Help").foregroundColor(Color.orange)
+                                            Text("Tutorial").foregroundColor(Color.orange)
                                                 
                                                
                                          }

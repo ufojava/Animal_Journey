@@ -220,6 +220,10 @@ struct Bee: View {
     @State private var bonusPoints = 0
     
     
+    //Game status
+    @State private var gamePlayStatus = true
+    
+    
     
     
     
@@ -319,7 +323,7 @@ struct Bee: View {
         
         var beeHomeResult = ""
         
-        if (self.getBeeXPosition == 0) && (self.getBeeYPosition == 0) && self.beeHealthCounter > 0{
+        if (self.beeCurrentPosition.x >= -3 && self.beeCurrentPosition.x <= 3) && (self.beeCurrentPosition.y >= -3 && self.beeCurrentPosition.y <= 3) && (self.beeHealthCounter > 0){
             
             beeHomeResult = "Betty is home 🤪"
           
@@ -413,10 +417,10 @@ struct Bee: View {
                                     .overlay(Circle().stroke(Color.white,lineWidth: 2))
                                     .onReceive(timer) {_ in
                                         
-                                        if self.timeRemaining > 0 {
+                                        if self.timeRemaining > 0 && self.gamePlayStatus == true {
                                             self.timeRemaining -= 1
                                             
-                                            if self.timeRemaining == 2 {
+                                            if self.timeRemaining == 2  && self.gamePlayStatus == true {
                                                 
                                                 self.readTimeRemaining = "\(self.timeRemaining) minutes remaining"
                                                 ReadSynthWord(word: self.readTimeRemaining)
@@ -426,10 +430,31 @@ struct Bee: View {
                                                 self.readTimeRemaining = "\(self.timeRemaining) minute remaining"
                                                 ReadSynthWord(word: self.readTimeRemaining)
                                                 
-                                            } else if self.timeRemaining == 0 {
+                                            } else if self.timeRemaining == 0 && self.gamePlayStatus == true {
                                                 
                                                 ReadSynthWord(word: "Time is up")
+                                                
+                                                
+                                                
+                                                //Resetting timer values to zero
+                                                self.timeRemaining = 0
+                                                self.obstacleResetTime = 0
+                                                self.finalScores += self.playerScore
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                                                    
+                                                    ReadSynthWord(word: "Your final score is \(self.finalScores)")
+                                                }
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 18) {
+                                                    
+                                                    playAudioFiles(sound: "Betty_Arrives_Home", type: "mp3")
+                                                    
+                                                }
+                                                
                                                 self.playerScore = 0
+                                                self.gamePlayStatus = false
+                                                pauseMusic()
                                         
                                                 
                                             }
@@ -592,10 +617,7 @@ struct Bee: View {
                                         self.topImageObstacle.shuffle()
                                     }
                                      
-                                    /* NOTE:
-                                    No need to set time as this is being taken care off by the botton obstacle
-                                    
-                                    */
+                                 
                                     }
                                     
                                 }//End Top Obstacle HStack
@@ -643,7 +665,7 @@ struct Bee: View {
                                     
                                    
                                         //Bee Killer Poisen
-                                        GameImageV2(imageName: "BeeKiller", imageWidth: 40, imageHeight: 40)
+                                        GameImageV2(imageName: "Hazard", imageWidth: 40, imageHeight: 40)
                                         
                                         //Tree covering the Killer Poisen
                                         GameImageV2(imageName: "Tree", imageWidth: 110, imageHeight: 130)
@@ -1314,6 +1336,7 @@ struct Bee: View {
                                         
                                         
                                         
+                                       
                                         
                                            
                                        }//End onChanged
@@ -1321,6 +1344,15 @@ struct Bee: View {
                                        .onEnded { value in
                                         
                                         self.beeCurrentPosition = CGPoint(x:value.translation.width + self.beeNewPosition.x, y:value.translation.height + self.beeNewPosition.y)
+                                         //Betty arrives home
+                                        //Betty arrives home
+                                       if (self.beeCurrentPosition.x >= -3 && self.beeCurrentPosition.x <= 3) && (self.beeCurrentPosition.y >= -3 && self.beeCurrentPosition.y <= 3) && (self.beeHealthCounter > 0) {
+                                          
+                                          //Set play game status
+                                          self.gamePlayStatus = false
+                                          
+                                          playAudioFiles(sound: "Betty_Arrives_Home", type: "mp3")
+                                       }
                                         self.beeNewPosition = self.beeCurrentPosition
                                         
                                         
@@ -1399,12 +1431,7 @@ struct Bee: View {
                                            self.getBeeYPosition = Int(self.beeNewPosition.y)
                                   
                                         
-                                        //Betty arrives home
-                                        if (self.beeCurrentPosition.x == 0 && self.beeCurrentPosition.y == 0) && (self.beeHealthCounter > 0) {
-                                            
-                                            playAudioFiles(sound: "Betty_Arrives_Home", type: "mp3")
-                                            
-                                        }//End of Betty arrives home
+                                       
                                         
                                         //Jar Power
                                         if (self.beeCurrentPosition.x >= 75 && self.beeCurrentPosition.x <= 85) && (self.beeCurrentPosition.y >= 319 && self.beeCurrentPosition.y <= 335) && self.beeHealthCounter > 0 {
@@ -1434,6 +1461,12 @@ struct Bee: View {
                                                     
                                                     playAudioFiles(sound: "Betty_Arrives_Home", type: "mp3")
                                                     
+                                                }
+                                                
+                                                //Pause Music
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                                    
+                                                    pauseMusic()
                                                 }
                                                
                                                 

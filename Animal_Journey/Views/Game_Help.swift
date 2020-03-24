@@ -83,7 +83,7 @@ var body: some View {
                                         
                                     
                                     
-                                    Text("Take Betty to the Sun Flower").font(.custom("Chalkboard SE", size: 15))
+                                    Text("Take Betty to the Sun Flower to add meals 🍔").font(.custom("Chalkboard SE", size: 15))
                                         .transition(.slide)
                             
                     
@@ -106,7 +106,7 @@ var body: some View {
                                         .transition(.slide)
                                     
                                     
-                                    Text("Click on themometer to add meals").font(.custom("Chalkboard SE", size: 15))
+                                    Text("Click on themometer to add meals, max 40 points\n there!! 🌡").font(.custom("Chalkboard SE", size: 15))
                                         .transition(.slide)
                     
                                     }.padding()
@@ -126,7 +126,7 @@ var body: some View {
                                         .transition(.slide)
                                     
                                     
-                                    Text("Try to get Betty home. X and Y axis 0").font(.custom("Chalkboard SE", size: 15))
+                                    Text("Try get the honeycombs. 20 bonus points each 🤪 ").font(.custom("Chalkboard SE", size: 15))
                                         .transition(.slide)
                     
                                     }.padding()
@@ -145,7 +145,7 @@ var body: some View {
                                             .transition(.slide)
                                         
                                         
-                                        Text("Avoid the random Bee killers").font(.custom("Chalkboard SE", size: 15))
+                                        Text("Avoid the moving Bee killers. 20 point deducted ☣️").font(.custom("Chalkboard SE", size: 15))
                                             .transition(.slide)
                                 
                                     }.padding()
@@ -164,7 +164,7 @@ var body: some View {
                                         .transition(.slide)
                                     
                                     
-                                    Text("There are a few 20 point bonuses").font(.custom("Chalkboard SE", size: 15))
+                                    Text("Get Betty to X: 0 Y: 0 you get 320 plus bonus\n points 🍻").font(.custom("Chalkboard SE", size: 15))
                                         .transition(.slide)
                     
                                     }.padding()
@@ -184,7 +184,7 @@ var body: some View {
                                         .transition(.slide)
                                         
                                     
-                                    Text("You can get Betty home quicker via the magic jar").font(.custom("Chalkboard SE", size: 15))
+                                    Text("You can get Betty home quicker via the Magic\n Jar 🍯").font(.custom("Chalkboard SE", size: 15))
                                         .transition(.slide)
                     
                                     }.padding()
@@ -203,7 +203,7 @@ var body: some View {
                                         .transition(.slide)
                                     
                                     
-                                    Text("If you hit the Bee Killer, go to Sunflower to feed").font(.custom("Chalkboard SE", size: 15))
+                                    Text("Remember, you only have 3 minutes to complete\n game ⏰").font(.custom("Chalkboard SE", size: 15))
                                     .transition(.slide)
                     
                                     }.padding()
