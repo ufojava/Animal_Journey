@@ -32,6 +32,7 @@ var body: some View {
                        .scaledToFill()
                       .edgesIgnoringSafeArea(.all)
             
+            
             VStack {
                 
                 VStack {
@@ -64,6 +65,16 @@ var body: some View {
                     Spacer().frame(height:20)
                     
                 }//Title VStack
+                
+                VStack {
+                    
+                    if showGameTips {
+                    Text("The aim of the game is to get Betty from home for\n a meal and back again with maximum point. Good Luck 👌")
+                        .font(.custom("Chalkboard SE", size: 15))
+                        .transition(.slide)
+                    }
+                    
+                }.padding()
                 
                 
                 
@@ -164,7 +175,7 @@ var body: some View {
                                         .transition(.slide)
                                     
                                     
-                                    Text("Get Betty to X: 0 Y: 0 you get 320 plus bonus\n points 🍻").font(.custom("Chalkboard SE", size: 15))
+                                    Text("Get Betty close to  X: 0 Y: 0 you get 320 plus bonus\n points 🍻").font(.custom("Chalkboard SE", size: 15))
                                         .transition(.slide)
                     
                                     }.padding()
@@ -184,7 +195,7 @@ var body: some View {
                                         .transition(.slide)
                                         
                                     
-                                    Text("You can get Betty home quicker via the Magic\n Jar 🍯").font(.custom("Chalkboard SE", size: 15))
+                                    Text("You can get Betty home quicker via the Magic\n Jar, but you lose the jackpot 🍯").font(.custom("Chalkboard SE", size: 15))
                                         .transition(.slide)
                     
                                     }.padding()

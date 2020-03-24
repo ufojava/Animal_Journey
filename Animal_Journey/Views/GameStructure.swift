@@ -218,6 +218,7 @@ struct Bee: View {
     //Variables to hold scores
     @State private var finalScores = 0
     @State private var bonusPoints = 0
+    @State private var showBonusScoreOnBetty = false
     
     
     //Game status
@@ -691,9 +692,21 @@ struct Bee: View {
                         
                             
                             HStack {
+                                
+                                ZStack(alignment: .center) {
                            
                                 GameImageV2(imageName: "Bee", imageWidth: 130, imageHeight: 130)
                                     
+                                    if self.showBonusScoreOnBetty {
+                                    Text("20")
+                                    .frame(width:40,height: 40)
+                                    .background(Color.blue)
+                                    .foregroundColor(Color.white)
+                                    .clipShape(Circle())
+                                    .overlay(Circle().stroke(Color.white,lineWidth: 2))
+ 
+                                    }
+                                }
                                            
                                    }.offset(x:self.beeCurrentPosition.x, y:beeCurrentPosition.y) //Current Position of Bee
                                 
@@ -705,6 +718,8 @@ struct Bee: View {
                                         self.readTimeRemaining = "\(self.timeRemaining) minutes remaining"
                                         ReadSynthWord(word: String(self.readTimeRemaining))
                                     }
+                                    
+                                
                             }
                                 
                         
@@ -978,18 +993,36 @@ struct Bee: View {
                                             
                                             self.honeycombBonusPointOneTopState = true
                                             
+                                            self.showBonusScoreOnBetty = true
+                                            
                                             if self.honeycombBonusPointOneTopState {
                                             self.finalScores += 20
                                             ReadSynthWord(word: "20 bonus points added")
+                                                
+                                                //Toggle show bonus on Betty's back
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    self.showBonusScoreOnBetty = false
+                                                }
                                             
                                             }
                                         } else if (self.topArrayCurrentTwoPosition.x >= -136 && self.topArrayCurrentTwoPosition.x <= -123) && (self.topArrayCurrentTwoPosition.y >= -113 && self.topArrayCurrentTwoPosition.y <= -80) && self.topImageObstacle[1].contains("Honeycomb") && self.honeycombBonusPointTwoTopState != true {
                                             
                                             self.honeycombBonusPointTwoTopState = true
                                             
+                                            self.showBonusScoreOnBetty = true
+                                            
                                             if self.honeycombBonusPointTwoTopState {
                                             self.finalScores += 20
                                             ReadSynthWord(word: "20 bonus points added")
+                                                
+                                                //Toggle show bonus on Betty's back
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    self.showBonusScoreOnBetty = false
+                                                }
                                             
                                             }
                                             
@@ -1351,7 +1384,26 @@ struct Bee: View {
                                           //Set play game status
                                           self.gamePlayStatus = false
                                           
-                                          playAudioFiles(sound: "Betty_Arrives_Home", type: "mp3")
+                                        //Resetting timer values to zero
+                                        self.timeRemaining = 0
+                                        self.obstacleResetTime = 0
+                                        self.finalScores += self.playerScore
+                                        
+                                        playAudioFiles(sound: "Betty_Arrives_Home", type: "mp3")
+                                        
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                                            
+                                            ReadSynthWord(word: "Your final score is \(self.finalScores)")
+                                        }
+                                        
+                                        
+                                        //Pause Music
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                            
+                                            pauseMusic()
+                                        }
+                                        
+                                        
                                        }
                                         self.beeNewPosition = self.beeCurrentPosition
                                         
