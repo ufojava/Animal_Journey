@@ -707,6 +707,15 @@ struct Bee: View {
                                     .clipShape(Circle())
                                     .overlay(Circle().stroke(Color.white,lineWidth: 2))
  
+                                    } else if self.showBettysDeductions {
+                                        
+                                        Text("-20")
+                                        .frame(width:45,height: 45)
+                                        .background(Color.red)
+                                        .foregroundColor(Color.white)
+                                        .clipShape(Circle())
+                                        .overlay(Circle().stroke(Color.white,lineWidth: 2))
+                                        
                                     }
                                 }
                                            
@@ -829,6 +838,9 @@ struct Bee: View {
                                             playAudioFiles(sound: "Danger", type: "mp3")
                                             
                                             self.beeKillerBonusPointOneTopState = true
+                                            
+                                            //Bonus deductions
+                                            self.showBettysDeductions.toggle()
                                                 
                                             if self.beeKillerBonusPointOneTopState {
                                                 
@@ -838,6 +850,7 @@ struct Bee: View {
                                                     
                                                     ReadSynthWord(word: "20 bonus points deducted")
                                                     self.beeKillerBonusPointOneTopState.toggle()
+                                                    self.showBettysDeductions.toggle()
                                                 }
                                             }
                                             
@@ -851,6 +864,9 @@ struct Bee: View {
                                             //Bonus point deduction
                                             self.beeKillerBonusPointTwoTopState = true
                                             
+                                            //Bonus deductions
+                                            self.showBettysDeductions.toggle()
+                                            
                                             if self.beeKillerBonusPointTwoTopState {
                                                 
                                                 self.finalScores -= 20
@@ -859,6 +875,7 @@ struct Bee: View {
                                                     
                                                     ReadSynthWord(word: "20 bonus points deducted")
                                                     self.beeKillerBonusPointTwoTopState.toggle()
+                                                    self.showBettysDeductions.toggle()
                                                 }
                                                 
                                             }
@@ -873,6 +890,9 @@ struct Bee: View {
                                             //Bonus point deduction
                                             self.beeKillerBonusPointThreeTopState = true
                                             
+                                            //Bonus deductions
+                                            self.showBettysDeductions.toggle()
+                                            
                                             if self.beeKillerBonusPointThreeTopState {
                                                 
                                                 self.finalScores -= 20
@@ -881,6 +901,7 @@ struct Bee: View {
                                                     
                                                     ReadSynthWord(word: "20 bonus points deducted")
                                                     self.beeKillerBonusPointThreeTopState.toggle()
+                                                    self.showBettysDeductions.toggle()
                                                 }
                                                 
                                             }
@@ -894,6 +915,9 @@ struct Bee: View {
                                             //Bonus point deduction
                                             self.beeKillerBonusPointFourTopState = true
                                             
+                                            //Bonus deductions
+                                            self.showBettysDeductions.toggle()
+                                            
                                             if self.beeKillerBonusPointFourTopState {
                                                 
                                                 self.finalScores -= 20
@@ -902,6 +926,7 @@ struct Bee: View {
                                                     
                                                     ReadSynthWord(word: "20 bonus points deducted")
                                                     self.beeKillerBonusPointFourTopState.toggle()
+                                                    self.showBettysDeductions.toggle()
                                                 }
                                                 
                                             }
@@ -914,6 +939,9 @@ struct Bee: View {
                                             //Deduct 20 bonus points
                                             self.beeKillerBonusPointFiveTopState = true
                                             
+                                            //Bonus deductions
+                                            self.showBettysDeductions.toggle()
+                                            
                                             if self.beeKillerBonusPointFiveTopState {
                                                 
                                                 self.finalScores -= 20
@@ -922,6 +950,7 @@ struct Bee: View {
                                                     
                                                     ReadSynthWord(word: "20 bonus point deducted")
                                                     self.beeKillerBonusPointFiveTopState.toggle()
+                                                    self.showBettysDeductions.toggle()
                                                 
                                                 }
                                             }
@@ -933,6 +962,9 @@ struct Bee: View {
                                             //Bonus point deduction
                                             self.beeKillerBonusPointSixTopState = true
                                             
+                                            //Bonus deductions
+                                            self.showBettysDeductions.toggle()
+                                            
                                             if self.beeKillerBonusPointSixTopState {
                                                 
                                                 self.finalScores -= 20
@@ -941,6 +973,7 @@ struct Bee: View {
                                                     
                                                     ReadSynthWord(word: "20 bonus points deducted")
                                                     self.beeKillerBonusPointSixTopState.toggle()
+                                                    self.showBettysDeductions.toggle()
                                                 }
                                                 
                                             }
@@ -953,6 +986,9 @@ struct Bee: View {
                                             
                                               //Bonus point deduction
                                               self.beeKillerBonusPointSevenTopState = true
+                                            
+                                            //Bonus deductions
+                                            self.showBettysDeductions.toggle()
                                               
                                               if self.beeKillerBonusPointSevenTopState {
                                                   
@@ -962,6 +998,7 @@ struct Bee: View {
                                                       
                                                       ReadSynthWord(word: "20 bonus points deducted")
                                                       self.beeKillerBonusPointSevenTopState.toggle()
+                                                    self.showBettysDeductions.toggle()
                                                   }
                                                   
                                               }
@@ -973,6 +1010,9 @@ struct Bee: View {
                                             //Bonus point deduction
                                             self.beeKillerBonusPointEightTopState = true
                                             
+                                            //Bonus deductions
+                                            self.showBettysDeductions.toggle()
+                                            
                                             if self.beeKillerBonusPointEightTopState {
                                                 
                                                 self.finalScores -= 20
@@ -981,6 +1021,7 @@ struct Bee: View {
                                                     
                                                     ReadSynthWord(word: "20 bonus points deducted")
                                                     self.beeKillerBonusPointEightTopState.toggle()
+                                                    self.showBettysDeductions.toggle()
                                                 }
                                                 
                                             }
@@ -1172,6 +1213,9 @@ struct Bee: View {
                                             //Bonus point deduction
                                             self.beeKillerBonusPointOneBottomState = true
                                             
+                                            //Bonus deductions
+                                            self.showBettysDeductions.toggle()
+                                            
                                             if self.beeKillerBonusPointOneBottomState {
                                                 
                                                 self.finalScores -= 20
@@ -1180,6 +1224,7 @@ struct Bee: View {
                                                     
                                                     ReadSynthWord(word: "20 bonus points deducted")
                                                     self.beeKillerBonusPointOneBottomState.toggle()
+                                                    self.showBettysDeductions.toggle()
                                                 }
                                                 
                                             }
@@ -1193,6 +1238,9 @@ struct Bee: View {
                                             //Bonus point deduction
                                             self.beeKillerBonusPointTwoBottomState = true
                                             
+                                            //Bonus deductions
+                                            self.showBettysDeductions.toggle()
+                                            
                                             if self.beeKillerBonusPointTwoBottomState {
                                                 
                                                 self.finalScores -= 20
@@ -1201,6 +1249,7 @@ struct Bee: View {
                                                     
                                                     ReadSynthWord(word: "20 bonus points deducted")
                                                     self.beeKillerBonusPointTwoBottomState.toggle()
+                                                    self.showBettysDeductions.toggle()
                                                 }
                                                 
                                             }
@@ -1214,6 +1263,9 @@ struct Bee: View {
                                             //Bonus point deduction
                                             self.beeKillerBonusPointThreeBottomState = true
                                             
+                                            //Bonus deductions
+                                            self.showBettysDeductions.toggle()
+                                            
                                             if self.beeKillerBonusPointThreeBottomState {
                                                 
                                                 self.finalScores -= 20
@@ -1222,6 +1274,7 @@ struct Bee: View {
                                                     
                                                     ReadSynthWord(word: "20 bonus points deducted")
                                                     self.beeKillerBonusPointThreeBottomState.toggle()
+                                                    self.showBettysDeductions.toggle()
                                                 }
                                                 
                                             }
@@ -1235,6 +1288,9 @@ struct Bee: View {
                                             //Bonus point deduction
                                             self.beeKillerBonusPointFourBottomState = true
                                             
+                                            //Bonus deductions
+                                            self.showBettysDeductions.toggle()
+                                            
                                             if self.beeKillerBonusPointFourBottomState {
                                                 
                                                 self.finalScores -= 20
@@ -1243,6 +1299,7 @@ struct Bee: View {
                                                     
                                                     ReadSynthWord(word: "20 bonus points deducted")
                                                     self.beeKillerBonusPointFourBottomState.toggle()
+                                                    self.showBettysDeductions.toggle()
                                                 }
                                                 
                                             }
@@ -1254,6 +1311,9 @@ struct Bee: View {
                                             //Bonus point deduction
                                             self.beeKillerBonusPointFiveBottomState = true
                                             
+                                            //Bonus deductions
+                                            self.showBettysDeductions.toggle()
+                                            
                                             if self.beeKillerBonusPointFiveBottomState {
                                                 
                                                 self.finalScores -= 20
@@ -1262,6 +1322,7 @@ struct Bee: View {
                                                     
                                                     ReadSynthWord(word: "20 bonus points deducted")
                                                     self.beeKillerBonusPointFiveBottomState.toggle()
+                                                    self.showBettysDeductions.toggle()
                                                 }
                                                 
                                             }
@@ -1274,6 +1335,8 @@ struct Bee: View {
                                             
                                             //Bonus point deduction
                                             self.beeKillerBonusPointSixBottomState = true
+                                            //Bonus deductions
+                                            self.showBettysDeductions.toggle()
                                             
                                             if self.beeKillerBonusPointSixBottomState {
                                                 
@@ -1283,6 +1346,7 @@ struct Bee: View {
                                                     
                                                     ReadSynthWord(word: "20 bonus points deducted")
                                                     self.beeKillerBonusPointSixBottomState.toggle()
+                                                    self.showBettysDeductions.toggle()
                                                 }
                                                 
                                             }
@@ -1296,6 +1360,9 @@ struct Bee: View {
                                             //Bonus point deduction
                                             self.beeKillerBonusPointSevenBottomState = true
                                             
+                                            //Bonus deductions
+                                            self.showBettysDeductions.toggle()
+                                            
                                             if self.beeKillerBonusPointSevenBottomState {
                                                 
                                                 self.finalScores -= 20
@@ -1304,6 +1371,7 @@ struct Bee: View {
                                                     
                                                     ReadSynthWord(word: "20 bonus points deducted")
                                                     self.beeKillerBonusPointSevenBottomState.toggle()
+                                                    self.showBettysDeductions.toggle()
                                                 }
                                                 
                                             }
@@ -1317,6 +1385,9 @@ struct Bee: View {
                                             //Bonus point deduction
                                             self.beeKillerBonusPointEightBottomState = true
                                             
+                                            //Bonus deductions
+                                            self.showBettysDeductions.toggle()
+                                            
                                             if self.beeKillerBonusPointEightBottomState {
                                                 
                                                 self.finalScores -= 20
@@ -1325,6 +1396,7 @@ struct Bee: View {
                                                     
                                                     ReadSynthWord(word: "20 bonus points deducted")
                                                     self.beeKillerBonusPointEightBottomState.toggle()
+                                                    self.showBettysDeductions.toggle()
                                                 }
                                                 
                                             }
