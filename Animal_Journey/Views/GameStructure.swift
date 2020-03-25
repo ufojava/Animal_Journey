@@ -534,14 +534,14 @@ struct Bee: View {
                                                 
                                                 //Add 10 Points to Player Score
                                                 
-                                                if self.playerScore <= 30 || self.playerScore < 40 {
+                                                if (self.playerScore >= 0 && self.playerScore <= 40) && (self.getBeeXPosition >= -120 && self.getBeeXPosition <= -100) && (self.getBeeYPosition >= -250 && self.getBeeYPosition <= 200) {
                                                     
                                                 self.playerScore += 10
                                                     
                                                     ReadSynthWord(word: "\(self.playerScore) Booster Meals")
                                                 } else {
                                                     
-                                                    ReadSynthWord(word: "You have maximum booster meals")
+                                                    ReadSynthWord(word: "Place Betty in center of flower or You have maximum booster meals")
                                                 }
                                                 playAudioFiles(sound: "BeeClickAction", type: "mp3")
                                         }
