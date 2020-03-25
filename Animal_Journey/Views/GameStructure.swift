@@ -194,7 +194,7 @@ struct Bee: View {
     
     //Struct to tract Timer
     @State private var timeRemaining = 3
-    let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+    @State private var timer = Timer.publish(every: 60,tolerance: 0.5, on: .main, in: .common).autoconnect()
     @State private var readTimeRemaining = ""
     
     
@@ -212,7 +212,7 @@ struct Bee: View {
     //Variable to Obstacle reset
     @State private var obstacleResetTimerStatus = false
     @State private var obstacleResetTime = 180
-    let resetTimer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+    @State private var resetTimer = Timer.publish(every: 5,tolerance: 0.5, on: .main, in: .common).autoconnect()
     
     
     //Variables to hold scores
@@ -420,8 +420,11 @@ struct Bee: View {
                                     .overlay(Circle().stroke(Color.white,lineWidth: 2))
                                     .onReceive(timer) {_ in
                                         
-                                        if self.timeRemaining > 0 && self.gamePlayStatus == true {
+                                    if self.timeRemaining > 0 && self.gamePlayStatus == true {
+                                            
+                                       
                                             self.timeRemaining -= 1
+                                        
                                             
                                             if self.timeRemaining == 2  && self.gamePlayStatus == true {
                                                 
@@ -436,12 +439,9 @@ struct Bee: View {
                                             } else if self.timeRemaining == 0 && self.gamePlayStatus == true {
                                                 
                                                 ReadSynthWord(word: "Time is up")
-                                                
-                                                
-                                                
-                                                //Resetting timer values to zero
-                                                self.timeRemaining = 0
-                                                self.obstacleResetTime = 0
+                                                    
+                                        
+                                                self.timer.upstream.connect().cancel()
                                                 self.finalScores += self.playerScore
                                                 
                                                 DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
@@ -455,16 +455,15 @@ struct Bee: View {
                                                     
                                                 }
                                                 
-                                                self.playerScore = 0
-                                                self.gamePlayStatus = false
+                                                self.timer.upstream.connect().cancel()
                                                 pauseMusic()
                                         
                                                 
                                             }
                                             
-                                            
+                                        
                                            
-                                        }
+                                      }
                                         
                                 }
                                 
@@ -494,6 +493,8 @@ struct Bee: View {
                                 
                                 Text("Score").foregroundColor(Color.white).font(.custom("Chalkbaord SE", size: 20))
                                 
+                        
+                             
                                 
                             }//End of Timer HStack
             
@@ -603,7 +604,9 @@ struct Bee: View {
                                     
                                     
                                     
-                                }.onReceive(resetTimer) { time in
+                                }
+                                
+                                .onReceive(resetTimer) { time in
                                     
                                     
                                     if self.obstacleResetTime == 0 {
@@ -620,8 +623,9 @@ struct Bee: View {
                                         self.topImageObstacle.shuffle()
                                     }
                                      
-                                 
+                                        self.obstacleResetTime -= 5
                                     }
+ 
                                     
                                 }//End Top Obstacle HStack
                                 
@@ -635,7 +639,9 @@ struct Bee: View {
                                 ForEach(0..<BottomimageObstacle.count) { bottomImage in
                                     GameImageV2(imageName: self.BottomimageObstacle[bottomImage], imageWidth: 40, imageHeight: 40)
                                     
-                                }.onReceive(resetTimer) { time in
+                                }
+                                
+                                .onReceive(resetTimer) { time in
                                     
                                     if self.obstacleResetTime == 0 {
                                         
@@ -1593,15 +1599,16 @@ struct Bee: View {
                                         
                                         self.beeCurrentPosition = CGPoint(x:value.translation.width + self.beeNewPosition.x, y:value.translation.height + self.beeNewPosition.y)
                                          //Betty arrives home
-                                        //Betty arrives home
+                                     
                                        if (self.beeCurrentPosition.x >= -3 && self.beeCurrentPosition.x <= 3) && (self.beeCurrentPosition.y >= -3 && self.beeCurrentPosition.y <= 3) && (self.beeHealthCounter > 0) {
                                           
                                           //Set play game status
                                           self.gamePlayStatus = false
-                                          
-                                        //Resetting timer values to zero
-                                        self.timeRemaining = 0
-                                        self.obstacleResetTime = 0
+                                        
+                                        //Stop both Timers
+                                        self.timer.upstream.connect().cancel()
+                                        self.resetTimer.upstream.connect().cancel()
+                                        
                                         self.finalScores += self.playerScore
                                         
                                         playAudioFiles(sound: "Betty_Arrives_Home", type: "mp3")
@@ -1714,9 +1721,9 @@ struct Bee: View {
                                                 self.getBeeXPosition = Int(self.beeCurrentPosition.x)
                                                 self.getBeeYPosition = Int(self.beeCurrentPosition.y)
                                                 
-                                                //Resetting timer values to zero
-                                                self.timeRemaining = 0
-                                                self.obstacleResetTime = 0
+                                                //Stop both Timers
+                                                self.timer.upstream.connect().cancel()
+                                                self.resetTimer.upstream.connect().cancel()
                                                 self.finalScores += self.playerScore
                                                 
                                                 DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
