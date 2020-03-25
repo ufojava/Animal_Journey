@@ -219,8 +219,10 @@ struct Bee: View {
     @State private var finalScores = 0
     @State private var bonusPoints = 0
     @State private var showBonusScoreOnBetty = false
+    @State private var showBettysDeductions = false
     
     
+
     //Game status
     @State private var gamePlayStatus = true
     
@@ -1031,12 +1033,20 @@ struct Bee: View {
                                             
                                             self.honeycombBonusPointThreeTopState = true
                                             
+                                            self.showBonusScoreOnBetty = true
+                                            
                                             if self.honeycombBonusPointThreeTopState {
+                                            self.finalScores += 20
                                                 
-                                                self.finalScores += 20
-                                                ReadSynthWord(word: "20 bonus points added")
+                                            ReadSynthWord(word: "20 bonus points added")
                                                 
+                                                //Toggle show bonus on Betty's back
                                                 
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    self.showBonusScoreOnBetty = false
+                                                }
+                                            
                                             }
                                             
                                         } else if (self.topArrayCurrentFourPosition.x >= -35 && self.topArrayCurrentFourPosition.x <= -26) && (self.topArrayCurrentFourPosition.y >= -113 && self.topArrayCurrentFourPosition.y <= -80) && self.topImageObstacle[3].contains("Honeycomb") && self.honeycombBonusPointFourTopState != true {
@@ -1044,10 +1054,21 @@ struct Bee: View {
                                             
                                             self.honeycombBonusPointFourTopState = true
                                             
+                                            self.showBonusScoreOnBetty = true
+                                            
                                             if self.honeycombBonusPointFourTopState {
                                                 
-                                                self.finalScores += 20
-                                                ReadSynthWord(word: "20 bonus points added")
+                                            self.finalScores += 20
+                                                
+                                            ReadSynthWord(word: "20 bonus points added")
+                                                
+                                                //Toggle show bonus on Betty's back
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    self.showBonusScoreOnBetty = false
+                                                }
+                                            
                                             }
                                             
                                             
@@ -1055,10 +1076,19 @@ struct Bee: View {
                                             
                                             self.honeycombBonusPointFiveTopState = true
                                             
-                                            if self.honeycombBonusPointFiveTopState {
+                                            self.showBonusScoreOnBetty = true
                                             
+                                            if self.honeycombBonusPointFiveTopState {
                                             self.finalScores += 20
                                             ReadSynthWord(word: "20 bonus points added")
+                                                
+                                                //Toggle show bonus on Betty's back
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    self.showBonusScoreOnBetty = false
+                                                }
+                                            
                                             }
                                             
                                         } else if (self.topArrayCurrentSixPosition.x >= 59 && self.topArrayCurrentSixPosition.x <= 66) && (self.topArrayCurrentSixPosition.y >= -113 && self.topArrayCurrentSixPosition.y <= -80) && self.topImageObstacle[5].contains("Honeycomb") && self.honeycombBonusPointSixTopState != true {
@@ -1066,11 +1096,21 @@ struct Bee: View {
                                             
                                             self.honeycombBonusPointSixTopState = true
                                             
+                                            self.showBonusScoreOnBetty = true
+                                            
                                             if self.honeycombBonusPointSixTopState {
                                                 
-                                                self.finalScores += 20
-                                                ReadSynthWord(word: "20 bonus points added")
+                                            self.finalScores += 20
                                                 
+                                            ReadSynthWord(word: "20 bonus points added")
+                                                
+                                                //Toggle show bonus on Betty's back
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    self.showBonusScoreOnBetty = false
+                                                }
+                                            
                                             }
                                             
                                             
@@ -1079,11 +1119,21 @@ struct Bee: View {
                                             
                                             self.honeycombBonusPointSevenTopState = true
                                             
+                                            self.showBonusScoreOnBetty = true
+                                            
                                             if self.honeycombBonusPointSevenTopState {
                                                 
-                                                self.finalScores += 20
-                                                ReadSynthWord(word: "20 bonus points added")
+                                            self.finalScores += 20
                                                 
+                                            ReadSynthWord(word: "20 bonus points added")
+                                                
+                                                //Toggle show bonus on Betty's back
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    self.showBonusScoreOnBetty = false
+                                                }
+                                            
                                             }
                                             
                                             
@@ -1092,12 +1142,22 @@ struct Bee: View {
                                             
                                             self.honeycombBonusPointEightTopState = true
                                             
+                                            self.showBonusScoreOnBetty = true
+                                            
                                             if self.honeycombBonusPointEightTopState {
+                                            self.finalScores += 20
+                                            ReadSynthWord(word: "20 bonus points added")
                                                 
-                                                self.finalScores += 20
-                                                ReadSynthWord(word: "20 bonus points added")
+                                                //Toggle show bonus on Betty's back
                                                 
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    self.showBonusScoreOnBetty = false
+                                                }
+                                            
                                             }
+                                            
+                                            
                                             
                                         }
                                         
@@ -1282,89 +1342,172 @@ struct Bee: View {
                                             
                                             self.HoneycombBonusPointOneBottomState = true
                                             
+                                            self.showBonusScoreOnBetty = true
+                                            
                                             if self.HoneycombBonusPointOneBottomState {
                                                 
-                                                self.finalScores += 20
-                                                ReadSynthWord(word: "20 bonus points added")
+                                            self.finalScores += 20
                                                 
+                                            ReadSynthWord(word: "20 bonus points added")
                                                 
+                                                //Toggle show bonus on Betty's back
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    self.showBonusScoreOnBetty = false
+                                                }
+                                            
                                             }
                                             
                                         } else if (self.imageArrayCurrentTwoPosition.x >= -136 && self.imageArrayCurrentTwoPosition.x <= -123) && (self.imageArrayCurrentTwoPosition.y >= 129 && self.imageArrayCurrentTwoPosition.y <= 155) && self.BottomimageObstacle[1].contains("Honeycomb") && self.HoneycombBonusPointTwoBottomState != true {
                                             
                                             self.HoneycombBonusPointTwoBottomState = true
                                             
+                                            self.showBonusScoreOnBetty = true
+                                            
                                             if self.HoneycombBonusPointTwoBottomState {
                                                 
-                                                self.finalScores += 20
-                                                ReadSynthWord(word: "20 bonus points added")
+                                            self.finalScores += 20
+                                                
+                                            ReadSynthWord(word: "20 bonus points added")
+                                                
+                                                //Toggle show bonus on Betty's back
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    self.showBonusScoreOnBetty = false
+                                                }
+                                            
                                             }
                                             
                                         } else if (self.imageArrayCurrentThreePosition.x >= -85 && self.imageArrayCurrentThreePosition.x <= -71) && (self.imageArrayCurrentThreePosition.y >= 129 && self.imageArrayCurrentThreePosition.y <= 155) && self.BottomimageObstacle[2].contains("Honeycomb") && self.HoneycombBonusPointThreeBottomState != true {
                                             
                                             self.HoneycombBonusPointThreeBottomState = true
                                             
+                                            self.showBonusScoreOnBetty = true
+                                            
                                             if self.HoneycombBonusPointThreeBottomState {
                                                 
-                                                self.finalScores += 20
-                                                ReadSynthWord(word: "20 bonus points added")
+                                            self.finalScores += 20
                                                 
+                                            ReadSynthWord(word: "20 bonus points added")
+                                                
+                                                //Toggle show bonus on Betty's back
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    self.showBonusScoreOnBetty = false
+                                                }
+                                            
                                             }
                                             
                                         } else if (self.imageArrayCurrentFourPosition.x >= -35 && self.imageArrayCurrentFourPosition.x <= -26) && (self.imageArrayCurrentFourPosition.y >= 129 && self.imageArrayCurrentFourPosition.y <= 155) && self.BottomimageObstacle[3].contains("Honeycomb") && self.HoneycombBonusPointFourBottomState != true {
                                             
                                             self.HoneycombBonusPointFourBottomState = true
                                             
+                                            self.showBonusScoreOnBetty = true
+                                            
                                             if self.HoneycombBonusPointFourBottomState {
                                                 
-                                                self.finalScores += 20
-                                                ReadSynthWord(word: "20 bonus points added")
+                                            self.finalScores += 20
                                                 
+                                            ReadSynthWord(word: "20 bonus points added")
+                                                
+                                                //Toggle show bonus on Betty's back
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    self.showBonusScoreOnBetty = false
+                                                }
+                                            
                                             }
                                             
                                         } else if (self.imageArrayCurrentFivePosition.x >= 15 && self.imageArrayCurrentFivePosition.x <= 27) && (self.imageArrayCurrentFivePosition.y >= 129 && self.imageArrayCurrentFivePosition.y <= 155) && self.BottomimageObstacle[4].contains("Honeycomb") && self.HoneycombBonusPointFiveBottomState != true {
                                             
                                                 self.HoneycombBonusPointFiveBottomState = true
                                             
+                                            self.showBonusScoreOnBetty = true
+                                            
                                             if self.HoneycombBonusPointFiveBottomState {
                                                 
-                                                self.finalScores += 20
-                                                ReadSynthWord(word: "20 bonus points added")
+                                            self.finalScores += 20
                                                 
+                                            ReadSynthWord(word: "20 bonus points added")
+                                                
+                                                //Toggle show bonus on Betty's back
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    self.showBonusScoreOnBetty = false
+                                                }
+                                            
                                             }
                                             
                                         } else if (self.imageArrayCurrentSixPosition.x >= 59 && self.imageArrayCurrentSixPosition.x <= 66) && (self.imageArrayCurrentSixPosition.y >= 129 && self.imageArrayCurrentSixPosition.y <= 155) && self.BottomimageObstacle[5].contains("Honeycomb") && self.HoneycombBonusPointSixBottomState != true {
                                             
                                             self.HoneycombBonusPointSixBottomState = true
                                             
+                                            self.showBonusScoreOnBetty = true
+                                            
                                             if self.HoneycombBonusPointSixBottomState {
                                                 
-                                                self.finalScores += 20
-                                                ReadSynthWord(word: "20 bonus points added")
+                                            self.finalScores += 20
                                                 
+                                            ReadSynthWord(word: "20 bonus points added")
+                                                
+                                                //Toggle show bonus on Betty's back
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    self.showBonusScoreOnBetty = false
+                                                }
+                                            
                                             }
                                             
                                         } else if (self.imageArrayCurrentSevenPosition.x >= 107 && self.imageArrayCurrentSevenPosition.x <= 116) && (self.imageArrayCurrentSevenPosition.y >= 129 && self.imageArrayCurrentSevenPosition.y <= 155) && self.BottomimageObstacle[6].contains("Honeycomb") && self.HoneycombBonusPointSevenBottomState != true {
                                             
                                             self.HoneycombBonusPointSevenBottomState = true
                                             
+                                            self.showBonusScoreOnBetty = true
+                                            
                                             if self.HoneycombBonusPointSevenBottomState {
                                                 
-                                                self.finalScores += 20
-                                                ReadSynthWord(word: "20 bonus points added")
+                                            self.finalScores += 20
                                                 
+                                            ReadSynthWord(word: "20 bonus points added")
+                                                
+                                                //Toggle show bonus on Betty's back
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    self.showBonusScoreOnBetty = false
+                                                }
+                                            
                                             }
                                             
                                         } else if (self.imageArrayCurrentEightPosition.x >= 159 && self.imageArrayCurrentEightPosition.x <= 169) && (self.imageArrayCurrentEightPosition.y >= 129 && self.imageArrayCurrentEightPosition.y <= 155) && self.BottomimageObstacle[7].contains("Honeycomb") && self.HoneycombBonusPointEightBottomState != true {
                                             
                                             self.HoneycombBonusPointEightBottomState = true
                                             
+                                            self.showBonusScoreOnBetty = true
+                                            
                                             if self.HoneycombBonusPointEightBottomState {
                                                 
-                                                self.finalScores += 20
-                                                ReadSynthWord(word: "20 bonus points added")
+                                            self.finalScores += 20
                                                 
+                                            ReadSynthWord(word: "20 bonus points added")
+                                                
+                                                //Toggle show bonus on Betty's back
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                    
+                                                    self.showBonusScoreOnBetty = false
+                                                }
+                                            
                                             }
+                                            
+                                            
+                                            
                                         }
                                         
                                         
