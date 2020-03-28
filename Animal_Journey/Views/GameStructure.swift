@@ -235,6 +235,7 @@ struct Bee: View {
     var beeMessageMaxLimit = "Max food limit 😩"
     var beeMessageMinLimit = "Min food limit 😨"
     var beeMessageBeeKiller = "Betty poisened!! ☣️"
+    @State private var bettyLandsOnJar = "Well done. Betty has landed on the Majr Jar and will be carried straight home"
     
     
     //Naviagtion obstacles for top an buttom of screen
@@ -394,14 +395,14 @@ struct Bee: View {
                             HStack {
                                
                                 
-                                Text("Betty's Status:").foregroundColor(Color.yellow).font(.custom("Chalkboard SE", size: 20))
+                                Text("Home Yet?:").foregroundColor(Color.yellow).font(.custom("Chalkboard SE", size: 20))
                                 Text("\(beeHome)").foregroundColor(Color.white).font(.custom("Chalkboard SE", size: 20))
                                 
                             }
                                
                                Spacer().frame(height:10)
                                
-                            Text("Betty's Location X: \(self.getBeeXPosition) Y: \(self.getBeeYPosition)").foregroundColor(Color.black).font(.custom("Chalkboard SE", size: 20))
+                            Text("Grid Guide X: \(self.getBeeXPosition) Y: \(self.getBeeYPosition)").foregroundColor(Color.black).font(.custom("Chalkboard SE", size: 20))
                                 .frame(width:350,height: 30)
                                 .background(Color.green)
                                 .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white,lineWidth: 2))
@@ -623,7 +624,7 @@ struct Bee: View {
                                         self.topImageObstacle.shuffle()
                                     }
                                      
-                                        self.obstacleResetTime -= 5
+                                        self.obstacleResetTime -= 1
                                     }
  
                                     
@@ -657,7 +658,7 @@ struct Bee: View {
                                         self.BottomimageObstacle.shuffle() //Shuffle the array
                                     }
                                     
-                                    self.obstacleResetTime -= 5
+                                    self.obstacleResetTime -= 1
                                 }
                                 
                               
@@ -1609,11 +1610,24 @@ struct Bee: View {
                                         self.timer.upstream.connect().cancel()
                                         self.resetTimer.upstream.connect().cancel()
                                         
-                                        self.finalScores += self.playerScore
+                                        //Add extra bonus points
+                                        self.finalScores += 50
                                         
-                                        playAudioFiles(sound: "Betty_Arrives_Home", type: "mp3")
+                                        //Read out bonus point
+                                        ReadSynthWord(word: "50 extra bonus points added")
+                                        
+                                        
+                                        self.finalScores += self.playerScore
+                                       
                                         
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                                          
+                                            playAudioFiles(sound: "Betty_Arrives_Home", type: "mp3")
+                                            
+                                        }
+                                        
+                                        
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
                                             
                                             ReadSynthWord(word: "Your final score is \(self.finalScores)")
                                         }
@@ -1714,7 +1728,8 @@ struct Bee: View {
                                             self.beeLandsOnHoneyJar = true
                                             
                                             if self.beeLandsOnHoneyJar {
-                                                playAudioFiles(sound: "BettyLandsOnJar", type: "mp3")
+                                                //playAudioFiles(sound: "BettyLandsOnJar", type: "mp3")
+                                                ReadSynthWord(word: self.bettyLandsOnJar)
                                                 self.beeCurrentPosition = CGPoint(x: 0.0, y: 0.0)
                                                 
                                                 //Updating the Status field
@@ -1726,12 +1741,12 @@ struct Bee: View {
                                                 self.resetTimer.upstream.connect().cancel()
                                                 self.finalScores += self.playerScore
                                                 
-                                                DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                                                     
                                                     ReadSynthWord(word: "Your final score is \(self.finalScores)")
                                                 }
                                                 
-                                                DispatchQueue.main.asyncAfter(deadline: .now() + 18) {
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 9) {
                                                     
                                                     playAudioFiles(sound: "Betty_Arrives_Home", type: "mp3")
                                                     

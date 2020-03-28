@@ -175,7 +175,7 @@ var body: some View {
                                         .transition(.slide)
                                     
                                     
-                                    Text("Get Betty close to  X: 0 Y: 0 you get 320 plus bonus\n points 🍻").font(.custom("Chalkboard SE", size: 15))
+                                    Text("Get Betty close to  X: 0 Y: 0 you get 50 plus bonus\n points 🍻").font(.custom("Chalkboard SE", size: 15))
                                         .transition(.slide)
                     
                                     }.padding()
